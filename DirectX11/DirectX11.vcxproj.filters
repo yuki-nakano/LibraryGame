@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ソース ファイル">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="WindowsAPI">
+      <UniqueIdentifier>{405a7536-4ba8-4b06-9be3-f9de4083075a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DirextX">
+      <UniqueIdentifier>{ebbf3f9a-8ac1-4eef-b18f-a83424741b1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="model">
+      <UniqueIdentifier>{5068a0ed-407b-4721-a588-52d8148f811b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\main.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="src\WindowsAPI\WindowsAPI.cpp">
+      <Filter>WindowsAPI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DirectX\DirectXGraphics.cpp">
+      <Filter>DirextX</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Model\Obj.cpp">
+      <Filter>model</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\WindowsAPI\WindowsAPI.h">
+      <Filter>WindowsAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DirectX\DirectXGraphics.h">
+      <Filter>DirextX</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DirectX\DIrectInput.h">
+      <Filter>DirextX</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Model\Obj.h">
+      <Filter>model</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DirectX\DirectXGraphicsUtility.h">
+      <Filter>DirextX</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
