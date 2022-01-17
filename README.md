@@ -1,0 +1,2 @@
+# DirectXLibrary
+DirectX11でのライブラリ作成とそれを用いたゲーム作成　
