@@ -1,7 +1,4 @@
-﻿#include <Windows.h>
-
-#include "DirectX/DirectXGraphics.h"
-#include "WindowsAPI/WindowsAPI.h"
+﻿#include "Library/Library.h"
 
 int WINAPI WinMain(
 	HINSTANCE hInstace,
@@ -9,35 +6,33 @@ int WINAPI WinMain(
 	LPSTR lpCmpLine,
 	int nCmdshow)
 {
-	WindowsAPI window;
-	if (!window.Draw("test", 640, 480)) { return 0; }
+	// ライブラリ初期化
+	if (!engine::Library::Init("test", 640, 480)) { return 0; }
+	engine::Library::LoadObj("res/hikouki.obj", "hikouki");
 
-	DirectXGraphics directGraphics;
-	if (!directGraphics.Init()) { return 0; }
+	engine::Vec3f pos(0, -10, 0);
+	engine::Vec3f rote(-20, 0, -30);
+	engine::Vec3f scale(1, 1, 1);
 
-	while (true)
+	while (engine::Library::CheckMwssage())
 	{
-		MSG msg;
+		// ライブラリ更新
+		engine::Library::Update();
 
-		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
-		{
-			if (msg.message == WM_QUIT)
-			{
-				break;
-			}
-			else
-			{
-				TranslateMessage(&msg);
-				DispatchMessage(&msg);
-			}
-		}
-		else
-		{
-			directGraphics.StartRendering();
+		// 描画開始
+		engine::Library::StartRendering();
 
-			directGraphics.FinishRendering();
-		}
+		//engine::Library::DrawRect(0, 0, 100, 100, 0.0f);
+
+		rote.y += 0.01f;
+
+		engine::Library::RenderObj("hikouki", pos, rote, scale);
+
+		//描画終了
+		engine::Library::FinishRendering();
 	}
 
-	directGraphics.Releace();
+	engine::Library::ReleseObj("hikouki");
+
+	engine::Library::Release();
 }
