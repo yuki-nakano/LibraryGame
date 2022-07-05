@@ -158,7 +158,7 @@ namespace engine
 				int count{ 0 };
 				while (std::getline(ss, num, ' '))
 				{
-					vertex[count] = std::atof(num.c_str());
+					vertex[count] = std::stof(num);
 					count++;
 				}
 				objData.vecesDataList.push_back(vertex);
@@ -170,7 +170,7 @@ namespace engine
 				int count{ 0 };
 				while (std::getline(ss, num, ' '))
 				{
-					normal[count] = std::atof(num.c_str());
+					normal[count] = std::stof(num);
 					count++;
 				}
 				objData.nomalDataList.push_back(normal);
@@ -187,7 +187,7 @@ namespace engine
 					int count{ 0 };
 					while (std::getline(data_ss, num, '/'))
 					{
-						element[count] = std::atoi(num.c_str()) - 1;
+						element[count] = std::stoi(num) - 1;
 						count++;
 					}
 

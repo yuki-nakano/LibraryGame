@@ -27,8 +27,6 @@ namespace engine
 
 	void ObjManager::DeleteObj(const std::string& name_)
 	{
-		m_objList.at(name_)->Relese();
-
 		delete m_objList.at(name_);
 
 		m_objList.erase(name_);

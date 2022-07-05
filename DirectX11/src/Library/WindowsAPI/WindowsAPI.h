@@ -1,4 +1,4 @@
-﻿#ifndef WINDOWS_API_H
+#ifndef WINDOWS_API_H
 #define WINDOWS_API_H
 
 #include <Windows.h>
@@ -10,9 +10,6 @@ namespace engine
 {
 	class WindowsAPI : public Singleton<WindowsAPI>
 	{
-	public:
-		static const char* m_windowClassName;
-
 	private:
 		friend class Singleton<WindowsAPI>;
 
@@ -26,10 +23,14 @@ namespace engine
 
 		static LRESULT CALLBACK Procedure(HWND window_handle_, UINT message_id_, WPARAM wparam, LPARAM lparam);
 
-	private:
-		WNDCLASSEX m_windowClass;
+	public:
+		static const std::string m_windowClassName;
 
-		MSG msg;
+
+	private:
+		WNDCLASSEX m_windowClass{};
+
+		MSG msg{};
 	};
 }
 #endif // !WINDOW_API_H

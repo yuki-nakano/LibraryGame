@@ -8,23 +8,25 @@ namespace engine
 	{
 		for (auto key : m_keyState)
 		{
-			int keyStateResult = GetAsyncKeyState(key.first);
+			unsigned short keyStateResult = GetAsyncKeyState(key.first);
 
-			if (keyStateResult & 1)
+			if (keyStateResult & 0x0001)
 			{
 				m_keyState.at(key.first) = KeyState::Pushed;
 			}
-			else if (keyStateResult & 0x80000000)
+			else if (keyStateResult & 0x8000)
 			{
 				m_keyState.at(key.first) = KeyState::Held;
 			}
 			else
 			{
-				if (m_keyState.at(key.first) == KeyState::Not)
+				KeyState previousKeyState = m_keyState.at(key.first);
+
+				if (previousKeyState == KeyState::Not)
 				{
 					continue;
 				}
-				else if (m_keyState.at(key.first) == KeyState::Relesed)
+				else if (previousKeyState == KeyState::Relesed)
 				{
 					m_keyState.at(key.first) = KeyState::Not;
 				}
@@ -40,6 +42,8 @@ namespace engine
 	{
 		for (auto key : key_list_)
 		{
+			if (key < 0x00 && key > 0xFE) { continue; }
+
 			m_keyState[key] = KeyState::Not;
 		}
 	}

@@ -10,7 +10,7 @@ namespace engine
 
 		clientPos = screenPos;
 
-		HWND windowHandle = FindWindow(WindowsAPI::m_windowClassName, nullptr);
+		HWND windowHandle = FindWindow(WindowsAPI::m_windowClassName.c_str(), nullptr);
 		ScreenToClient(windowHandle, &clientPos);
 	}
 }

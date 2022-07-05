@@ -2,7 +2,7 @@
 
 namespace engine
 {
-	const char* WindowsAPI::m_windowClassName = "WindowClass";
+	const std::string WindowsAPI::m_windowClassName = "WindowClass";
 
 	bool WindowsAPI::CheckMessage()
 	{
@@ -35,7 +35,7 @@ namespace engine
 			LoadCursor(NULL, IDC_ARROW),
 			NULL,
 			NULL,
-			m_windowClassName,
+			m_windowClassName.c_str(),
 			NULL };
 
 		if (RegisterClassEx(&m_windowClass) == 0)
@@ -45,7 +45,7 @@ namespace engine
 
 		//ウィンドウ作成
 		HWND windowHandle = CreateWindow(
-			m_windowClassName,
+			m_windowClassName.c_str(),
 			window_name_.c_str(),
 			(WS_OVERLAPPEDWINDOW ^ WS_THICKFRAME),
 			CW_USEDEFAULT,

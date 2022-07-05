@@ -76,7 +76,7 @@ namespace engine
 
 	bool DirectXGraphics::CreateDeviceAndSwapChain()
 	{
-		HWND windowHandle = FindWindow(WindowsAPI::m_windowClassName, nullptr);
+		HWND windowHandle = FindWindow(WindowsAPI::m_windowClassName.c_str(), nullptr);
 		RECT rect;
 		GetClientRect(windowHandle, &rect);
 
@@ -139,7 +139,7 @@ namespace engine
 
 	bool DirectXGraphics::CreateDepthAndStencilView()
 	{
-		HWND windowHandle = FindWindow(WindowsAPI::m_windowClassName, nullptr);
+		HWND windowHandle = FindWindow(WindowsAPI::m_windowClassName.c_str(), nullptr);
 		RECT rect;
 		GetClientRect(windowHandle, &rect);
 
@@ -184,7 +184,7 @@ namespace engine
 
 	void DirectXGraphics::SetUpViewPort()
 	{
-		HWND windowHandle = FindWindow(WindowsAPI::m_windowClassName, nullptr);
+		HWND windowHandle = FindWindow(WindowsAPI::m_windowClassName.c_str(), nullptr);
 		RECT rect;
 		GetClientRect(windowHandle, &rect);
 

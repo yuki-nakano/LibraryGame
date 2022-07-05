@@ -12,9 +12,15 @@ namespace engine
 		virtual ~Singleton() {};
 
 	private:
+		// Singletonのためインスタンスをわかりやすい位置に変更​
+		/// インスタンス
 		static T* instance;
 
 	public:
+		/**
+		* @brief インスタンスの生成
+		* @return インスタンスのポインタ
+		*/
 		static T* CreateInstance()
 		{
 			if (instance == nullptr)
@@ -25,13 +31,20 @@ namespace engine
 			return instance;
 		};
 
+		/**
+		* @brief インスタンスの破棄
+		*/
 		static void DeleteInstance()
 		{
 			delete instance;
 			instance = nullptr;
 		};
 
-		static T* GetInstance() { return instance; };
+		/**
+		* @brief インスタンスの取得
+		* @return インスタンスのポインタ
+		*/
+		static T* GetInstance() { return instance; }
 
 	};
 
