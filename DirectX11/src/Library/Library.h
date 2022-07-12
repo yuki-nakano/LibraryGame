@@ -112,13 +112,13 @@ namespace engine
 		* @brief マウスのx座標の取得
 		* @return マウスのx座標
 		*/
-		long GetMousePosX() { return m_instance->mouse->GetPosX(); };
+		static long GetMousePosX() { return m_instance->mouse->GetPosX(); };
 
 		/**
 		* @brief マウスのy座標の取得
 		* @return マウスのy座標
 		*/
-		long GetMousePosY() { return m_instance->mouse->GetPosY(); };
+		static long GetMousePosY() { return m_instance->mouse->GetPosY(); };
 
 
 		//------------------------------------------------------------
