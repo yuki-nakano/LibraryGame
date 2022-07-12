@@ -67,7 +67,7 @@
     <ClCompile Include="src\Library\Model\ObjManager.cpp">
       <Filter>Library\Model</Filter>
     </ClCompile>
-    <ClCompile Include="src\Library\DirectX\DIrectXTexture.cpp">
+    <ClCompile Include="src\Library\DirectX\DirectXTexture.cpp">
       <Filter>Library\DirectX</Filter>
     </ClCompile>
     <ClCompile Include="src\Library\DirectX\Camera.cpp">

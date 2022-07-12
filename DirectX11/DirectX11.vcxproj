@@ -21,7 +21,7 @@
   <ItemGroup>
     <ClCompile Include="src\Library\DirectX\Camera.cpp" />
     <ClCompile Include="src\Library\DirectX\DirectXGraphics.cpp" />
-    <ClCompile Include="src\Library\DirectX\DIrectXTexture.cpp" />
+    <ClCompile Include="src\Library\DirectX\DirectXTexture.cpp" />
     <ClCompile Include="src\Library\DirectX\Graphics2D.cpp" />
     <ClCompile Include="src\Library\DirectX\Matrix.cpp" />
     <ClCompile Include="src\Library\Library.cpp" />
