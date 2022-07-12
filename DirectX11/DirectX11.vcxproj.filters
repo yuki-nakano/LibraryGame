@@ -67,9 +67,6 @@
     <ClCompile Include="src\Library\Model\ObjManager.cpp">
       <Filter>Library\Model</Filter>
     </ClCompile>
-    <ClCompile Include="src\Library\DirectX\DirectXTexture.cpp">
-      <Filter>Library\DirectX</Filter>
-    </ClCompile>
     <ClCompile Include="src\Library\DirectX\Camera.cpp">
       <Filter>Library\DirectX</Filter>
     </ClCompile>
@@ -81,6 +78,9 @@
     </ClCompile>
     <ClCompile Include="src\Library\WindowsAPI\Mouse.cpp">
       <Filter>Library\WindowsAPI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Library\DirectX\DirectXTexture.cpp">
+      <Filter>Library\DirectX</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
