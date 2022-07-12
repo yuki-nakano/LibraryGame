@@ -1,8 +1,14 @@
 # DirectXLibrary
 DirectX11でのライブラリ作成とそれを用いたゲーム作成　
 
+DirectX11/src/Libraryファイルの中に入っています。
 |ファイルパス|コード概要|
 |--|--|
-|src/DirectX|DirextX関連|
-|src/Model|モデルの読み込み|
-|src/WindowsAPI|ウィンドウ生成|
+|DirectX|DirextX関連|
+|HLSL|HLSL|
+|Lib|外部ライブラリー|
+|Model|Obj解析、描画|
+|Shader|シェーダー生成、管理|
+|Utility|Singleton|
+|WindowsAPI|Window生成、キーボード、マウス|
+|cso|コンパイル後HLSL|
