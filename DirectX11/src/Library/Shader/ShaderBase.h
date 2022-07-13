@@ -16,8 +16,8 @@ namespace engine
 	class ShaderBase
 	{
 	public:
-		ShaderBase();
-		~ShaderBase();
+		ShaderBase() = default;
+		~ShaderBase() = default;
 
 	public:
 		/**

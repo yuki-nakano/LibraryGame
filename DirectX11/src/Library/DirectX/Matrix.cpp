@@ -5,14 +5,6 @@
 
 namespace engine
 {
-	Matrix::Matrix()
-	{
-	}
-
-	Matrix::~Matrix()
-	{
-	}
-
 	DirectX::XMMATRIX Matrix::CreateWorldMatrix(Vec3f pos_, Vec3f rote_, Vec3f scale_)
 	{
 		DirectX::XMMATRIX transrate = DirectX::XMMatrixTranslation(pos_.x, pos_.y, pos_.z);

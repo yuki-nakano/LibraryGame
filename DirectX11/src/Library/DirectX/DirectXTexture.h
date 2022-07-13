@@ -11,30 +11,34 @@
 
 namespace engine
 {
+	/**
+	* @brief テクスチャ描画クラス
+	*/
 	class DirectXTexture : public Singleton<DirectXTexture>
 	{
 	private:
 		struct ConstantBuffer
 		{
-			DirectX::XMFLOAT4X4 world;
-			DirectX::XMFLOAT4 viewport;
+			DirectX::XMFLOAT4X4 world;	/// ワールド変換行列
+			DirectX::XMFLOAT4 viewport;	/// ビューポート行列
 		};
 
 		struct CustomVertex
 		{
-			float pos[3];
-			float uv[2];
+			float pos[3];	/// 座標
+			float uv[2];	/// uv値
 		};
 
 	private:
 		friend class Singleton<DirectXTexture>;
 
-		DirectXTexture();
-		~DirectXTexture();
+		DirectXTexture() = default;
+		~DirectXTexture() = default;
 
 	public:
 		/**
 		* @brief 初期化
+		* @return 初期化成功時true
 		*/
 		bool Init();
 
@@ -64,6 +68,7 @@ namespace engine
 
 		/**
 		* @brief テクスチャの解放
+		* @param name_ LoadTexture関数で登録した名前
 		*/
 		void ReleseTexture(const std::string& name_);
 
@@ -99,10 +104,11 @@ namespace engine
 		bool CreateSampler();
 
 	private:
+		/// 読み込んだテクスチャデータ保存
 		std::map<std::string, ID3D11ShaderResourceView*> texList{};
 
-		std::string m_vShaderName{ "VertexTex" };
-		std::string m_pShaderName{ "PixelTex" };
+		std::string m_vShaderName{ "VertexTex" };	/// vertexシェーダーを呼び出す用の名前
+		std::string m_pShaderName{ "PixelTex" };	/// pixelシェーダーを呼び出す用の名前
 
 		ID3D11Buffer* m_vertexBuffer;
 		ID3D11Buffer* m_indexBuffer;

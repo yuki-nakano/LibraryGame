@@ -8,21 +8,24 @@
 
 namespace engine
 {
+	/**
+	* @brief カメラ情報保管クラス
+	*/
 	class Camera : public Singleton<Camera>
 	{
 	public:
 		struct View
 		{
-			DirectX::XMVECTOR vecPos;
-			DirectX::XMVECTOR vecFocus;
-			DirectX::XMVECTOR vecUp;
+			DirectX::XMVECTOR vecPos;	/// カメラ座標
+			DirectX::XMVECTOR vecFocus;	/// 注視点
+			DirectX::XMVECTOR vecUp;	/// カメラの上方向ベクトル
 		};
 
 		struct Proj
 		{
-			float fov;
-			float nearZ;
-			float farZ;
+			float fov;		/// 視野角
+			float nearZ;	/// 最短距離
+			float farZ;		/// 最長距離
 		};
 
 	private:
@@ -32,6 +35,8 @@ namespace engine
 		~Camera();
 
 	public:
+		//アクセサ
+
 		void SetPos(Vec4f pos_) { pos = pos_; view.vecPos = DirectX::XMVectorSet(pos.x, pos.y, pos.z, pos.w); }
 		void SetFocus(Vec4f focus_) { focus = focus_; view.vecFocus = DirectX::XMVectorSet(focus.x, focus.y, focus.z, focus.w); }
 		void SetFOV(float fov_) { proj.fov = DirectX::XMConvertToRadians(fov_); }
@@ -44,9 +49,9 @@ namespace engine
 		Proj GetProj() { return proj; }
 
 	private:
-		Vec4f pos;
-		Vec4f focus;
-		Vec4f up;
+		Vec4f pos;		/// カメラ座標 
+		Vec4f focus;	/// 注視点
+		Vec4f up;		/// カメラの上方向ベクトル
 		View view;
 		Proj proj;
 	};

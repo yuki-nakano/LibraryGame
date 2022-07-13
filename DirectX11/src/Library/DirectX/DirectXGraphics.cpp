@@ -12,14 +12,6 @@
 
 namespace engine
 {
-	DirectXGraphics::DirectXGraphics()
-	{
-	}
-
-	DirectXGraphics::~DirectXGraphics()
-	{
-	}
-
 	bool DirectXGraphics::Init()
 	{
 		if (!CreateDeviceAndSwapChain()) { return false; }

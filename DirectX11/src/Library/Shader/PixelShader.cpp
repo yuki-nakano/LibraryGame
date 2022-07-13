@@ -14,8 +14,6 @@ namespace engine
 
 	void PixelShader::DeleteShader()
 	{
-		//delete[] m_data;
-
 		if (m_interfaace != nullptr) { return; }
 		m_interfaace->Release();
 	}

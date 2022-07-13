@@ -16,14 +16,17 @@ namespace engine
 	using VecesData = std::array<float, 3>;
 	using NomalData = std::array<float, 3>;
 
+	/**
+	* @brief objファイルの読み込みと描画クラス
+	*/
 	class Obj
 	{
 	private:
 		/// 解析データ
 		struct ObjData
 		{
-			std::vector<VecesData> vecesDataList;
-			std::vector<NomalData> nomalDataList;
+			std::vector<VecesData> vecesDataList;	/// 頂点データ
+			std::vector<NomalData> nomalDataList;	/// 法線データ
 		};
 
 		struct CustomVertex
@@ -32,16 +35,17 @@ namespace engine
 			NomalData nomalData;
 		};
 
-		struct ConstantBuffer {
-			DirectX::XMFLOAT4X4 world;
-			DirectX::XMFLOAT4X4 view;
-			DirectX::XMFLOAT4X4 proj;
-			DirectX::XMFLOAT4 LightVec;
-			DirectX::XMFLOAT4 LightCol;
+		struct ConstantBuffer
+		{
+			DirectX::XMFLOAT4X4 world;	/// ワールド変換行列
+			DirectX::XMFLOAT4X4 view;	/// ビューポート変換行列
+			DirectX::XMFLOAT4X4 proj;	/// プロジェクション変換行列
+			DirectX::XMFLOAT4 LightVec;	/// ライト座標行列
+			DirectX::XMFLOAT4 LightCol;	/// ライト色行列
 		};
 
 	public:
-		Obj();
+		Obj() = default;
 		~Obj();
 
 	public:
@@ -96,15 +100,15 @@ namespace engine
 		bool CreateConstantBuffer();
 
 	private:
-		ID3D11Buffer* m_vertexBuffer{};
-		ID3D11Buffer* m_indexBuffer{};
-		ID3D11Buffer* m_constantBuffer{};
+		ID3D11Buffer* m_vertexBuffer{ nullptr };
+		ID3D11Buffer* m_indexBuffer{ nullptr };
+		ID3D11Buffer* m_constantBuffer{ nullptr };
 		ID3D11InputLayout* m_inputLayout{};
-		int m_vertexNum;
-		std::vector<UWORD> m_index;
+		int m_vertexNum;	/// 頂点数
+		std::vector<UWORD> m_index{};
 
-		std::string m_vShaderName{ "VertexObj" };
-		std::string m_pShaderName{ "PixelBase" };
+		std::string m_vShaderName{ "VertexObj" };	/// vertexシェーダーを呼び出す用の名前
+		std::string m_pShaderName{ "PixelBase" };	/// pixelシェーダーを呼び出す用の名前
 
 	};
 }

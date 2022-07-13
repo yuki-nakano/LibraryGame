@@ -5,11 +5,16 @@
 
 namespace engine
 {
+	/**
+	* @brief バーテックスシェーダー
+	*/
 	class VertexShader : public ShaderBase
 	{
-		using ShaderBase::ShaderBase;
 	public:
+		VertexShader() = default;
+		~VertexShader() = default;
 
+	public:
 		/**
 		* @brief シェーダーの作成
 		* @return 作成成功時にtrue

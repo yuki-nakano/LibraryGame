@@ -2,21 +2,21 @@
 
 namespace engine
 {
-	ShaderManager::ShaderManager()
-	{
-	}
-
-	ShaderManager::~ShaderManager()
-	{
-	}
-
 	bool ShaderManager::Init()
 	{
 		if (!CreateShader("src/Library/cso/PixelShader.cso", "PixelBase", ShaderType::Pixel)) { return false; }
 		if (!CreateShader("src/Library/cso/VertexShader.cso", "VertexBase", ShaderType::Vertex)) { return false; }
+
+		// 2Dポリゴン描画用
 		if (!CreateShader("src/Library/cso/Vertex2D.cso", "Vertex2D", ShaderType::Vertex)) { return false; }
+
+		// obj用
 		if (!CreateShader("src/Library/cso/VertexObj.cso", "VertexObj", ShaderType::Vertex)) { return false; }
+
+		// テクスチャ用
 		if (!CreateShader("src/Library/cso/VertexTex.cso", "VertexTex", ShaderType::Vertex)) { return false; }
+
+		// テクスチャ用
 		if (!CreateShader("src/Library/cso/PixcelTex.cso", "PixelTex", ShaderType::Pixel)) { return false; }
 
 		return true;

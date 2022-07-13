@@ -6,13 +6,16 @@
 
 namespace engine
 {
+	/**
+	* @brief マウス情報クラス
+	*/
 	class Mouse : public Singleton<Mouse>
 	{
 	private:
 		friend class Singleton<Mouse>;
 
-		Mouse() {};
-		~Mouse() {};
+		Mouse() = default;
+		~Mouse() = default;
 
 	public:
 		/**
@@ -20,12 +23,14 @@ namespace engine
 		*/
 		void Update();
 
+		// アクセサ
+
 		long GetPosX() { return screenPos.x; }
 		long GetPosY() { return screenPos.y; }
 
 	private:
-		POINT screenPos{};
-		POINT clientPos{};
+		POINT screenPos{};	/// 画面上の座標
+		POINT clientPos{};	/// ウインドウ上の座標
 
 
 	};

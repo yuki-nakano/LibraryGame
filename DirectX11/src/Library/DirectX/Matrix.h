@@ -8,13 +8,16 @@
 
 namespace engine
 {
+	/**
+	* @brief 行列生成クラス
+	*/
 	class Matrix : public Singleton<Matrix>
 	{
 	private:
 		friend class Singleton<Matrix>;
 
-		Matrix();
-		~Matrix();
+		Matrix() = default;
+		~Matrix() = default;
 
 	public:
 		/**
@@ -38,6 +41,9 @@ namespace engine
 		*/
 		DirectX::XMMATRIX CreateProjMatrix();
 
+		/**
+		* @brief ビューポート用行列の取得
+		*/
 		DirectX::XMFLOAT4 GetViewportMatrix();
 
 		/**
@@ -52,10 +58,12 @@ namespace engine
 		*/
 		DirectX::XMFLOAT4 CreateLightColMatrix();
 
+		// アクセサ
+
 		void SetViewport(Vec2f viewport_) { viewport = viewport_; }
 
 	private:
-		Vec2f viewport;
+		Vec2f viewport{};	/// ビューポート
 	};
 }
 

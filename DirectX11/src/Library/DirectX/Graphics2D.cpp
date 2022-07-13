@@ -4,15 +4,6 @@
 
 namespace engine
 {
-	Graphics2D::Graphics2D()
-	{
-	}
-
-	Graphics2D::~Graphics2D()
-	{
-
-	}
-
 	void engine::Graphics2D::DrawPorigon(float pos_x_, float pos_y_, float width_, float height_, float angle_)
 	{
 		ID3D11DeviceContext* context = DirectXGraphics::GetInstance()->GetContext();

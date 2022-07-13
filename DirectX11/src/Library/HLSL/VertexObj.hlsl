@@ -29,14 +29,11 @@ VSOutput main(VSInput input)
 	output.pos = mul(output.pos, proj);
 
 	float4 normal;
-	// 移動が計算に反映させない
 	input.nor.w = 0.0;
-	// 頂点の法線にワールド行列を掛け合わせて
-	// ワールド座標上での法線の向きに変換する
+	// 頂点の法線にワールド行列を掛け合わせてワールド座標上での法線の向きに変換する
 	normal = mul(input.nor, world).xyzw;
 	normal = normalize(normal);
-	// saturate => 引数で指定した値を0～1間での範囲に収める
-	// dot => 内積計算
+	// saturate:引数で指定した値を0～1間での範囲に収める
 	float rad = saturate(dot(normal, LightVector));
 
 	// ライトのカラー * 光のあたり加減

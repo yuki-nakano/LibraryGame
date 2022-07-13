@@ -6,6 +6,9 @@
 
 namespace engine
 {
+	/**
+	* @brief ライト情報保管
+	*/
 	class Light : public Singleton<Light>
 	{
 	private:
@@ -21,7 +24,8 @@ namespace engine
 		Vec4f GetPos() { return pos; }
 		Vec4f GetCol() { return col; }
 
-
+		void SetPos(Vec4f pos_) { pos = pos_; pos.w = 1.0f; }
+		void SetCol(Vec4f col_) { col = col_; }
 	private:
 		/// ライト座標
 		Vec4f pos{ 0.0f, 10.0f, 0.0f, 1.0f };

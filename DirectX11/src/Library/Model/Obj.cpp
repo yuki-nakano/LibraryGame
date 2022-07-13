@@ -11,10 +11,6 @@
 
 namespace engine
 {
-	Obj::Obj()
-	{
-	}
-
 	Obj::~Obj()
 	{
 		Relese();

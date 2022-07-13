@@ -9,12 +9,15 @@
 
 namespace engine
 {
+	/**
+	* @brief obj情報管理
+	*/
 	class ObjManager : public Singleton<ObjManager>
 	{
 	private:
 		friend class Singleton<ObjManager>;
 
-		ObjManager();
+		ObjManager() = default;
 		~ObjManager();
 
 	public:
@@ -39,6 +42,7 @@ namespace engine
 		void RenderObj(const std::string& name_, Vec3f pos_, Vec3f rote_, Vec3f scale_);
 
 	private:
+		/// obj情報保存
 		std::map<std::string, Obj*> m_objList;
 	};
 }

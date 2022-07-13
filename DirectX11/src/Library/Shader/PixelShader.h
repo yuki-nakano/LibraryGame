@@ -5,11 +5,16 @@
 
 namespace engine
 {
+	/**
+	* @brief ピクセルシェーダ
+	*/
 	class PixelShader : public ShaderBase
 	{
-		using ShaderBase::ShaderBase;
 	public:
+		PixelShader() = default;
+		~PixelShader() = default;
 
+	public:
 		/**
 		* @brief シェーダーの作成
 		* @return 作成成功時にtrue

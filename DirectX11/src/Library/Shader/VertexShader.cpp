@@ -14,8 +14,6 @@ namespace engine
 
 	void VertexShader::DeleteShader()
 	{
-		//delete[] m_data;
-
 		if (m_interface != nullptr) { return; }
 		m_interface->Release();
 	}

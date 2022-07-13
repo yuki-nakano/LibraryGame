@@ -25,7 +25,7 @@ namespace engine
 
 		m_instance->window->Draw(window_name_, widht_, height_);
 
-		Vec2f viewport(widht_, height_);
+		Vec2f viewport(static_cast<float>(widht_), static_cast<float>(height_));
 
 		m_instance->matrix->SetViewport(viewport);
 
@@ -43,6 +43,8 @@ namespace engine
 	void Library::Release()
 	{
 		m_instance->graphics->Release();
+
+		m_instance->graphics2d->Relese();
 	}
 
 	void Library::Update()

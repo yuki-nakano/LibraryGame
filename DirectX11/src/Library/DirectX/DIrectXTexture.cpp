@@ -7,14 +7,6 @@
 
 namespace engine
 {
-	DirectXTexture::DirectXTexture()
-	{
-	}
-
-	DirectXTexture::~DirectXTexture()
-	{
-	}
-
 	bool DirectXTexture::Init()
 	{
 		if (CreateVertexBuffer()) { return false; }

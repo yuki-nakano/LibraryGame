@@ -2,10 +2,6 @@
 
 namespace engine
 {
-	ObjManager::ObjManager()
-	{
-	}
-
 	ObjManager::~ObjManager()
 	{
 		for (auto obj : m_objList)

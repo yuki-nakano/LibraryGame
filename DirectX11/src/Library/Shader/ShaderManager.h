@@ -13,13 +13,16 @@
 
 namespace engine
 {
+	/**
+	* @briref シェーダー管理クラス
+	*/
 	class ShaderManager : public Singleton<ShaderManager>
 	{
 	private:
 		friend class Singleton<ShaderManager>;
 
-		ShaderManager();
-		~ShaderManager();
+		ShaderManager() = default;
+		~ShaderManager() = default;
 
 	public:
 		/**

@@ -8,13 +8,16 @@
 
 namespace engine
 {
+	/**
+	* @brief グラフィックスの初期化クラス
+	*/
 	class DirectXGraphics : public Singleton<DirectXGraphics>
 	{
 	private:
 		friend class Singleton<DirectXGraphics>;
 
-		DirectXGraphics();
-		~DirectXGraphics();
+		DirectXGraphics() = default;
+		~DirectXGraphics() = default;
 
 	public:
 		/**
