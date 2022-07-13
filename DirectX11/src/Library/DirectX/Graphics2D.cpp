@@ -9,7 +9,7 @@ namespace engine
 		ID3D11DeviceContext* context = DirectXGraphics::GetInstance()->GetContext();
 
 		DirectX::XMMATRIX world = DirectX::XMMatrixIdentity();
-		DirectX::XMMATRIX rotateZ = DirectX::XMMatrixRotationZ(angle_ / (180.0f * 3.14f));
+		DirectX::XMMATRIX rotateZ = DirectX::XMMatrixRotationZ(angle_ * (3.14f / 180.0f));
 		DirectX::XMMATRIX scale = DirectX::XMMatrixScaling(width_, height_, 1.0f);
 		DirectX::XMMATRIX translate = DirectX::XMMatrixTranslation(pos_x_, pos_y_, 0);
 		world = scale * rotateZ * translate;

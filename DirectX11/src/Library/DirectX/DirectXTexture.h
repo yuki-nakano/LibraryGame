@@ -115,6 +115,8 @@ namespace engine
 		ID3D11InputLayout* m_inputLayout;
 		ID3D11Buffer* m_constantBuffer;
 		ID3D11SamplerState* m_sampler;
+
+		ID3D11BlendState* m_blendState;
 	};
 }
 

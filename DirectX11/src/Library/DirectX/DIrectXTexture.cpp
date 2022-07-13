@@ -9,15 +9,15 @@ namespace engine
 {
 	bool DirectXTexture::Init()
 	{
-		if (CreateVertexBuffer()) { return false; }
+		if (!CreateVertexBuffer()) { return false; }
 
-		if (CreateIndexBuffer()) { return false; }
+		if (!CreateIndexBuffer()) { return false; }
 
-		if (CreateInputLayout()) { return false; }
+		if (!CreateInputLayout()) { return false; }
 
-		if (CreateConstantBuffer()) { return false; }
+		if (!CreateConstantBuffer()) { return false; }
 
-		if (CreateSampler()) { return false; }
+		if (!CreateSampler()) { return false; }
 
 		return true;
 	}
@@ -53,7 +53,7 @@ namespace engine
 		ID3D11DeviceContext* context = DirectXGraphics::GetInstance()->GetContext();
 
 		DirectX::XMMATRIX world = DirectX::XMMatrixIdentity();
-		DirectX::XMMATRIX rotateZ = DirectX::XMMatrixRotationZ(angle_ / (180.0f * 3.14f));
+		DirectX::XMMATRIX rotateZ = DirectX::XMMatrixRotationZ(angle_ * (3.14f / 180.0f));
 		DirectX::XMMATRIX scale = DirectX::XMMatrixScaling(width_, height_, 1.0f);
 		DirectX::XMMATRIX translate = DirectX::XMMatrixTranslation(pos_x_, pos_y_, 0);
 
@@ -116,7 +116,7 @@ namespace engine
 			return false;
 		}
 
-		return false;
+		return true;
 	}
 
 	bool DirectXTexture::CreateIndexBuffer()
@@ -203,4 +203,5 @@ namespace engine
 
 		return true;
 	}
+
 }
