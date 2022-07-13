@@ -40,6 +40,18 @@ namespace engine
 
 		DirectX::XMFLOAT4 GetViewportMatrix();
 
+		/**
+		* @brief ライトの座標行列の生成
+		* @return ライト座標の行列
+		*/
+		DirectX::XMVECTOR CreateLightPosMatrix();
+
+		/**
+		* @brief ライトの色行列の生成
+		* @return ライトの色行列
+		*/
+		DirectX::XMFLOAT4 CreateLightColMatrix();
+
 		void SetViewport(Vec2f viewport_) { viewport = viewport_; }
 
 	private:

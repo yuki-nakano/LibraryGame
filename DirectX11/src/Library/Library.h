@@ -13,7 +13,8 @@
 #include "WindowsAPI/Input.h"
 #include "WindowsAPI/Mouse.h"
 #include "Model/ObjManager.h"
-#include "DirectX/Camera.h"
+#include "Model/Camera.h"
+#include "Model/Light.h"
 #include "DirectX/Matrix.h"
 #include "DirectX/DirectXUtility.h" 
 #include "DirectX/DirectXTexture.h"
@@ -139,53 +140,9 @@ namespace engine
 
 
 		//------------------------------------------------------------
-		//   ShaderManager
-		//------------------------------------------------------------
-
-		/**
-		* @brief シェーダーの作成
-		* @param file_name_ 読み込むシェーダーファイルパス
-		* @param shader_name_ シェーダー呼び出し時の名前
-		* @param shader_type_ シェーダーのタイプ
-		*/
-		static bool CreateShader(const std::string& file_name_, const std::string& shader_name_, const ShaderType& shader_type_) { return m_instance->shader->CreateShader(file_name_, shader_name_, shader_type_); }
-
-		/**
-		* @brief シェーダーの削除
-		* @param shader_name_ CreateShader関数で登録した名前
-		*/
-		static void DeleteShader(const std::string& shader_name_) { m_instance->shader->DeleteShader(shader_name_); }
-
-		/**
-		* @brief シェーダーサイズの取得
-		* @param shader_name_ CreateShader関数で登録した名前
-		* @return シェーダーサイズ
-		*/
-		static long GetShaderSize(const std::string& shader_name_) { return m_instance->shader->GetShaderSize(shader_name_); }
-
-		/**
-		* @brief シェーダー情報の取得
-		* @param shader_name_ CreateShader関数で登録した名前
-		* @return シェーダー情報
-		*/
-		static std::string GetShaderData(const std::string& shader_name_) { return m_instance->shader->GetShaderData(shader_name_); }
-
-		/**
-		* @breif VertexShaderのInterfaceの取得
-		* @param shder_name_
-		*/
-		static ID3D11VertexShader* GetVertexInterface(const std::string& shader_name_) { return m_instance->shader->GetVertexInterface(shader_name_); }
-
-		/**
-		* @breif PixelShaderのInterfaceの取得
-		* @param shader_name_ CreateShader関数で登録した名前
-		*/
-		static ID3D11PixelShader* GetPixelInterface(const std::string& shader_name_) { return m_instance->shader->GetPixelInterface(shader_name_); }
-
-
-		//------------------------------------------------------------
 		//   Graphics2D
 		//------------------------------------------------------------
+
 		/**
 		* @brief 三角形の描画
 		* @param pos_x_ 描画するx座標
@@ -207,6 +164,7 @@ namespace engine
 		* @note 各頂点の角度が90°の矩形の描画
 		*/
 		static void DrawRect(float pos_x_, float pos_y_, float width_, float height_, float angle_) { m_instance->graphics2d->DrawRect(pos_x_, pos_y_, width_, height_, angle_); }
+
 
 		//------------------------------------------------------------
 		//   GraphicsTexture
@@ -262,6 +220,7 @@ namespace engine
 		*/
 		static void ReleseObj(const std::string& name_) { m_instance->obj->DeleteObj(name_); }
 
+
 	private:
 		// インスタンス
 		static Library* m_instance;
@@ -275,6 +234,7 @@ namespace engine
 		DirectXTexture* texture{ nullptr };
 		ObjManager* obj{ nullptr };
 		Camera* camera{ nullptr };
+		Light* light{ nullptr };
 		Matrix* matrix{ nullptr };
 	};
 }

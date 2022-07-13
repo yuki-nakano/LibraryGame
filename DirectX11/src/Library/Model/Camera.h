@@ -3,7 +3,7 @@
 
 #include <DirectXMath.h>
 
-#include "DirectXUtility.h"
+#include "../DirectX/DirectXUtility.h"
 #include "../Utility/Singleton.h"
 
 namespace engine

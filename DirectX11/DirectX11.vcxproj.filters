@@ -67,9 +67,6 @@
     <ClCompile Include="src\Library\Model\ObjManager.cpp">
       <Filter>Library\Model</Filter>
     </ClCompile>
-    <ClCompile Include="src\Library\DirectX\Camera.cpp">
-      <Filter>Library\DirectX</Filter>
-    </ClCompile>
     <ClCompile Include="src\Library\DirectX\Matrix.cpp">
       <Filter>Library\DirectX</Filter>
     </ClCompile>
@@ -81,6 +78,9 @@
     </ClCompile>
     <ClCompile Include="src\Library\DirectX\DirectXTexture.cpp">
       <Filter>Library\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Library\Model\Camera.cpp">
+      <Filter>Library\Model</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -117,9 +117,6 @@
     <ClInclude Include="src\Library\Model\ObjManager.h">
       <Filter>Library\Model</Filter>
     </ClInclude>
-    <ClInclude Include="src\Library\DirectX\Camera.h">
-      <Filter>Library\DirectX</Filter>
-    </ClInclude>
     <ClInclude Include="src\Library\DirectX\Matrix.h">
       <Filter>Library\DirectX</Filter>
     </ClInclude>
@@ -137,6 +134,12 @@
     </ClInclude>
     <ClInclude Include="src\Library\Utility\Singleton.h">
       <Filter>Library\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Library\Model\Camera.h">
+      <Filter>Library\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Library\Model\Light.h">
+      <Filter>Library\Model</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

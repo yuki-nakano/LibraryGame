@@ -11,6 +11,7 @@ namespace engine
 		mouse = Mouse::CreateInstance();
 		graphics = DirectXGraphics::CreateInstance();
 		camera = Camera::CreateInstance();
+		light = Light::CreateInstance();
 		matrix = Matrix::CreateInstance();
 		shader = ShaderManager::CreateInstance();
 		graphics2d = Graphics2D::CreateInstance();

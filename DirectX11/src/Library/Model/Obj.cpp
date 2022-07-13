@@ -114,9 +114,9 @@ namespace engine
 		DirectX::XMStoreFloat4x4(&constantBuffer.view, DirectX::XMMatrixTranspose(view));
 		DirectX::XMStoreFloat4x4(&constantBuffer.proj, DirectX::XMMatrixTranspose(proj));
 
-		DirectX::XMVECTOR light = DirectX::XMVector3Normalize(DirectX::XMVectorSet(0.0f, 0.5f, -1.0f, 0.0f));
+		DirectX::XMVECTOR light = Matrix::GetInstance()->CreateLightPosMatrix();
 		DirectX::XMStoreFloat4(&constantBuffer.LightVec, light);
-		constantBuffer.LightCol = DirectX::XMFLOAT4(1.0f, 1.0f, 1.0f, 1);
+		constantBuffer.LightCol = Matrix::GetInstance()->CreateLightColMatrix();
 
 		context->UpdateSubresource(m_constantBuffer, 0, NULL, &constantBuffer, 0, 0);
 

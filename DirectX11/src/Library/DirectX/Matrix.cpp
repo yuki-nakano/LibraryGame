@@ -1,6 +1,7 @@
 #include "Matrix.h"
 
-#include "Camera.h"
+#include "../Model/Camera.h"
+#include "../Model/Light.h"
 
 namespace engine
 {
@@ -38,5 +39,15 @@ namespace engine
 	DirectX::XMFLOAT4 Matrix::GetViewportMatrix()
 	{
 		return DirectX::XMFLOAT4(viewport.x, viewport.y, 0.0f, 1.0f);
+	}
+	DirectX::XMVECTOR Matrix::CreateLightPosMatrix()
+	{
+		Vec4f lightPos = Light::GetInstance()->GetPos();
+		return DirectX::XMVector3Normalize(DirectX::XMVectorSet(lightPos.x, lightPos.y, lightPos.z, lightPos.w));
+	}
+	DirectX::XMFLOAT4 Matrix::CreateLightColMatrix()
+	{
+		Vec4f LightCol = Light::GetInstance()->GetCol();
+		return DirectX::XMFLOAT4(LightCol.x, LightCol.y, LightCol.z, LightCol.w);
 	}
 }
