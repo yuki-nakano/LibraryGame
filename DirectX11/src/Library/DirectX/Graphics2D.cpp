@@ -4,6 +4,11 @@
 
 namespace engine
 {
+	Graphics2D::~Graphics2D()
+	{
+		Relese();
+	}
+
 	void engine::Graphics2D::DrawPorigon(float pos_x_, float pos_y_, float width_, float height_, float angle_)
 	{
 		ID3D11DeviceContext* context = DirectXGraphics::GetInstance()->GetContext();
@@ -66,13 +71,6 @@ namespace engine
 	void Graphics2D::Init()
 	{
 		CreateRect();
-	}
-
-	void Graphics2D::Relese()
-	{
-		m_vertexBuffer->Release();
-		m_indexBuffer->Release();
-		m_inputLayout->Release();
 	}
 
 	void Graphics2D::CreateRect()
@@ -157,5 +155,13 @@ namespace engine
 		{
 			return;
 		}
+	}
+
+	void Graphics2D::Relese()
+	{
+		if (m_vertexBuffer != nullptr) { m_vertexBuffer->Release(); }
+		if (m_indexBuffer != nullptr) { m_indexBuffer->Release(); }
+		if (m_inputLayout != nullptr) { m_inputLayout->Release(); }
+		if (m_constantBuffer != nullptr) { m_constantBuffer->Release(); }
 	}
 }

@@ -17,7 +17,7 @@ namespace engine
 		friend class Singleton<DirectXGraphics>;
 
 		DirectXGraphics() = default;
-		~DirectXGraphics() = default;
+		~DirectXGraphics();
 
 	public:
 		/**
@@ -26,11 +26,6 @@ namespace engine
 		* @note デバイス等の生成
 		*/
 		bool Init();
-
-		/**
-		* @brief DirectGraphicsの解放
-		*/
-		void Release();
 
 		/**
 		* @brief レンダリングの開始
@@ -75,6 +70,11 @@ namespace engine
 		* @brief ViewPortの設定
 		*/
 		void SetUpViewPort();
+
+		/**
+		* @brief DirectGraphicsの解放
+		*/
+		void Release();
 
 	private:
 

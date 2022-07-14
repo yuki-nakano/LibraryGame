@@ -12,6 +12,11 @@
 
 namespace engine
 {
+	DirectXGraphics::~DirectXGraphics()
+	{
+		Release();
+	}
+
 	bool DirectXGraphics::Init()
 	{
 		if (!CreateDeviceAndSwapChain()) { return false; }
@@ -23,25 +28,6 @@ namespace engine
 		SetUpViewPort();
 
 		return true;
-	}
-
-	void DirectXGraphics::Release()
-	{
-		if (m_context != nullptr)
-		{
-			m_context->ClearState();
-			m_context->Release();
-		}
-
-		if (m_swapChain != nullptr)
-		{
-			m_swapChain->Release();
-		}
-
-		if (m_device != nullptr)
-		{
-			m_device->Release();
-		}
 	}
 
 	void DirectXGraphics::StartRendering()
@@ -192,4 +178,14 @@ namespace engine
 			1,
 			&viewPort);
 	}
+
+	void DirectXGraphics::Release()
+	{
+		if (m_device != nullptr) { m_device->Release(); }
+		if (m_swapChain != nullptr) { m_swapChain->Release(); }
+		if (m_context != nullptr) { m_context->Release(); }
+		if (m_renderTargetView != nullptr) { m_renderTargetView->Release(); }
+		if (m_depthStencilView != nullptr) { m_depthStencilView->Release(); }
+	}
+
 }

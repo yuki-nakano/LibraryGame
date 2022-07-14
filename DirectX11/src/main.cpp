@@ -55,7 +55,7 @@ int WINAPI WinMain(
 		engine::Library::FinishRendering();
 	}
 
-	engine::Library::ReleseObj("hikouki");
+	//engine::Library::ReleseObj("hikouki");
 
 	engine::Library::Release();
 }

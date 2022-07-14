@@ -31,7 +31,7 @@ namespace engine
 		friend class Singleton<Graphics2D>;
 
 		Graphics2D() = default;
-		~Graphics2D() = default;
+		~Graphics2D();
 
 	public:
 		/**
@@ -57,13 +57,17 @@ namespace engine
 		void DrawRect(float pos_x_, float pos_y_, float width_, float height_, float angle_ = 0.0f);
 
 		void Init();
-		void Relese();
 
 	private:
 		/**
 		* @brief DrawRect関数用の情報生成
 		*/
 		void CreateRect();
+
+		/**
+		* @brief 作成したbuffer等の解放
+		*/
+		void Relese();
 
 	private:
 		std::string m_vShaderName{ "Vertex2D" };	/// vertexシェーダーを呼び出す用の名前

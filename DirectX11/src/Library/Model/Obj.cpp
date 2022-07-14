@@ -90,13 +90,6 @@ namespace engine
 		return true;
 	}
 
-	void Obj::Relese()
-	{
-		m_vertexBuffer->Release();
-		m_constantBuffer->Release();
-		m_inputLayout->Release();
-	}
-
 	void Obj::Render(Vec3f pos_, Vec3f rote_, Vec3f scale_)
 	{
 		ID3D11DeviceContext* context = DirectXGraphics::GetInstance()->GetContext();
@@ -207,31 +200,11 @@ namespace engine
 		return true;
 	}
 
-	bool Obj::CreateVertexBuffer()
+	void Obj::Relese()
 	{
-
-
-		return false;
+		if (m_vertexBuffer != nullptr) { m_vertexBuffer->Release(); }
+		if (m_indexBuffer != nullptr) { m_indexBuffer->Release(); }
+		if (m_constantBuffer != nullptr) { m_constantBuffer->Release(); }
+		if (m_inputLayout != nullptr) { m_inputLayout->Release(); }
 	}
-
-	bool Obj::CreateIndexBuffer()
-	{
-
-
-		return true;
-	}
-
-	bool Obj::CreateInputLayout()
-	{
-
-		return true;
-	}
-
-	bool Obj::CreateConstantBuffer()
-	{
-
-
-		return true;
-	}
-
 }

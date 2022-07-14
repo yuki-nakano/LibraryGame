@@ -22,7 +22,7 @@ namespace engine
 		friend class Singleton<ShaderManager>;
 
 		ShaderManager() = default;
-		~ShaderManager() = default;
+		~ShaderManager();
 
 	public:
 		/**
@@ -74,7 +74,7 @@ namespace engine
 
 	private:
 		/// シェーダー保存用
-		std::map<std::string, ShaderBase*> m_shaderList;
+		std::map<std::string, ShaderBase*> m_shaderList{};
 	};
 }
 

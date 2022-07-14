@@ -19,6 +19,31 @@ namespace engine
 		obj = ObjManager::CreateInstance();
 	}
 
+	Library::~Library()
+	{
+		input->DeleteInstance();
+		mouse->DeleteInstance();
+		graphics->DeleteInstance();
+		camera->DeleteInstance();
+		light->DeleteInstance();
+		matrix->DeleteInstance();
+		shader->DeleteInstance();
+		graphics2d->DeleteInstance();
+		texture->DeleteInstance();
+		obj->DeleteInstance();
+
+		input = nullptr;
+		mouse = nullptr;
+		graphics = nullptr;
+		camera = nullptr;
+		light = nullptr;
+		matrix = nullptr;
+		shader = nullptr;
+		graphics2d = nullptr;
+		texture = nullptr;
+		obj = nullptr;
+	}
+
 	bool Library::Init(const std::string& window_name_, const int& widht_, const int& height_)
 	{
 		m_instance = new Library;
@@ -42,9 +67,7 @@ namespace engine
 
 	void Library::Release()
 	{
-		m_instance->graphics->Release();
-
-		m_instance->graphics2d->Relese();
+		delete m_instance;
 	}
 
 	void Library::Update()

@@ -56,8 +56,6 @@ namespace engine
 		*/
 		bool Load(const std::string& file_name_);
 
-		void Relese();
-
 		/**
 		* @brief objモデルの描画
 		* @param pos_ 移動量
@@ -76,34 +74,15 @@ namespace engine
 		bool AnalyzeData(const std::string& file_name_, std::vector<CustomVertex>& custom_vertex_);
 
 		/**
-		* @brief VertexBufferの作成
-		* @return 作成成功時true
+		* @brief 作成したbuffer等の解放
 		*/
-		bool CreateVertexBuffer();
-
-		/**
-		* @brief IndexBufferの作成
-		* @return 作成成功時true
-		*/
-		bool CreateIndexBuffer();
-
-		/**
-		* @brief InputLayoutの作成
-		* @return 作成成功時true
-		*/
-		bool CreateInputLayout();
-
-		/**
-		* @brief ConstantBufferの作成
-		* @return 作成成功時true
-		*/
-		bool CreateConstantBuffer();
+		void Relese();
 
 	private:
 		ID3D11Buffer* m_vertexBuffer{ nullptr };
 		ID3D11Buffer* m_indexBuffer{ nullptr };
 		ID3D11Buffer* m_constantBuffer{ nullptr };
-		ID3D11InputLayout* m_inputLayout{};
+		ID3D11InputLayout* m_inputLayout{ nullptr };
 		int m_vertexNum;	/// 頂点数
 		std::vector<UWORD> m_index{};
 

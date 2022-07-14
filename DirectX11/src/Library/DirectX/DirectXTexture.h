@@ -33,7 +33,7 @@ namespace engine
 		friend class Singleton<DirectXTexture>;
 
 		DirectXTexture() = default;
-		~DirectXTexture() = default;
+		~DirectXTexture();
 
 	public:
 		/**
@@ -41,11 +41,6 @@ namespace engine
 		* @return 初期化成功時true
 		*/
 		bool Init();
-
-		/**
-		* @brief 解放
-		*/
-		void Relese();
 
 		/**
 		* @brief テクスチャの読み込み
@@ -103,6 +98,11 @@ namespace engine
 		*/
 		bool CreateSampler();
 
+		/**
+		* @brief 作成したbuffer等の解放
+		*/
+		void Relese();
+
 	private:
 		/// 読み込んだテクスチャデータ保存
 		std::map<std::string, ID3D11ShaderResourceView*> texList{};
@@ -110,13 +110,11 @@ namespace engine
 		std::string m_vShaderName{ "VertexTex" };	/// vertexシェーダーを呼び出す用の名前
 		std::string m_pShaderName{ "PixelTex" };	/// pixelシェーダーを呼び出す用の名前
 
-		ID3D11Buffer* m_vertexBuffer;
-		ID3D11Buffer* m_indexBuffer;
-		ID3D11InputLayout* m_inputLayout;
-		ID3D11Buffer* m_constantBuffer;
-		ID3D11SamplerState* m_sampler;
-
-		ID3D11BlendState* m_blendState;
+		ID3D11Buffer* m_vertexBuffer{ nullptr };
+		ID3D11Buffer* m_indexBuffer{ nullptr };
+		ID3D11InputLayout* m_inputLayout{ nullptr };
+		ID3D11Buffer* m_constantBuffer{ nullptr };
+		ID3D11SamplerState* m_sampler{ nullptr };
 	};
 }
 

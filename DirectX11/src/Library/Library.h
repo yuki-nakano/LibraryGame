@@ -30,6 +30,7 @@ namespace engine
 	{
 	private:
 		Library();
+		~Library();
 
 	public:
 		/**
@@ -45,6 +46,7 @@ namespace engine
 		/**
 		* @brief ライブラリの解放
 		* @note ゲームループ終了時に呼び出し
+		* @attention この関数呼び出し後はInit関数以外の呼び出し禁止
 		*/
 		static void Release();
 

@@ -7,6 +7,11 @@
 
 namespace engine
 {
+	DirectXTexture::~DirectXTexture()
+	{
+		Relese();
+	}
+
 	bool DirectXTexture::Init()
 	{
 		if (!CreateVertexBuffer()) { return false; }
@@ -20,19 +25,6 @@ namespace engine
 		if (!CreateSampler()) { return false; }
 
 		return true;
-	}
-
-	void DirectXTexture::Relese()
-	{
-		for (auto tex : texList)
-		{
-			tex.second->Release();
-		}
-
-		m_vertexBuffer->Release();
-		m_indexBuffer->Release();
-		m_inputLayout->Release();
-		m_constantBuffer->Release();
 	}
 
 	bool DirectXTexture::LoadTexture(const std::wstring& file_name_, const std::string& name_)
@@ -204,4 +196,17 @@ namespace engine
 		return true;
 	}
 
+	void DirectXTexture::Relese()
+	{
+		for (auto tex : texList)
+		{
+			tex.second->Release();
+		}
+
+		if (m_vertexBuffer != nullptr) { m_vertexBuffer->Release(); }
+		if (m_indexBuffer != nullptr) { m_indexBuffer->Release(); }
+		if (m_inputLayout != nullptr) { m_inputLayout->Release(); }
+		if (m_constantBuffer != nullptr) { m_constantBuffer->Release(); }
+		if (m_sampler != nullptr) { m_sampler->Release(); }
+	}
 }

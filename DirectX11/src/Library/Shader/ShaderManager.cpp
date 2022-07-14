@@ -2,6 +2,14 @@
 
 namespace engine
 {
+	ShaderManager::~ShaderManager()
+	{
+		for (auto shader : m_shaderList)
+		{
+			shader.second->DeleteShader();
+		}
+	}
+
 	bool ShaderManager::Init()
 	{
 		if (!CreateShader("src/Library/cso/PixelShader.cso", "PixelBase", ShaderType::Pixel)) { return false; }
