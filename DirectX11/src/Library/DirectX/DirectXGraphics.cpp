@@ -1,7 +1,8 @@
 ﻿#include "DirectXGraphics.h"
 #include "../WindowsAPI/WindowsAPI.h"
 
-#include <string>
+#include "../Shader/ShaderManager.h"
+#include "Direct2D.h"
 
 #pragma comment(lib,"d3d11.lib")
 
@@ -25,6 +26,8 @@ namespace engine
 
 		if (!CreateDepthAndStencilView()) { return false; }
 
+		if (!CreateBlendState()) { return false; }
+
 		SetUpViewPort();
 
 		return true;
@@ -32,24 +35,44 @@ namespace engine
 
 	void DirectXGraphics::StartRendering()
 	{
-		//RenderTargetViewの初期化
+		// RenderTargetViewの初期化
 		m_context->ClearRenderTargetView(
 			m_renderTargetView,
 			m_clearColor);
 
-		//DepthStenciの初期化
+		// DepthStenciの初期化
 		m_context->ClearDepthStencilView(
 			m_depthStencilView,
 			D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL,
 			1.0f,
 			0);
 
+		// 2d描画用
+		Direct2D::GetInstance()->GetRenderTarget2D()->BeginDraw();
 	}
 
 	void DirectXGraphics::FinishRendering()
 	{
+		// 2d描画用
+		Direct2D::GetInstance()->GetRenderTarget2D()->EndDraw();
+
 		//バッファの切り替え
-		m_swapChain->Present(0, 0);
+		m_swapChain->Present(1, 0);
+	}
+
+	void DirectXGraphics::SetUpBlendState()
+	{
+		FLOAT blendFactor[4] = { D3D11_BLEND_ZERO, D3D11_BLEND_ZERO, D3D11_BLEND_ZERO, D3D11_BLEND_ZERO };
+		m_context->OMSetBlendState(m_blendState, blendFactor, 0xffffffff);
+	}
+
+	void DirectXGraphics::SetUpContext(const std::string& v_shader_name_, const std::string& p_shader_name_)
+	{
+		m_context->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
+		m_context->OMSetRenderTargets(1, &m_renderTargetView, m_depthStencilView);
+
+		m_context->VSSetShader(ShaderManager::GetInstance()->GetVertexInterface(v_shader_name_), NULL, 0);
+		m_context->PSSetShader(ShaderManager::GetInstance()->GetPixelInterface(p_shader_name_), NULL, 0);
 	}
 
 	bool DirectXGraphics::CreateDeviceAndSwapChain()
@@ -78,7 +101,7 @@ namespace engine
 			nullptr,
 			D3D_DRIVER_TYPE_HARDWARE,
 			nullptr,
-			0,
+			D3D11_CREATE_DEVICE_BGRA_SUPPORT,
 			nullptr,
 			0,
 			D3D11_SDK_VERSION,
@@ -153,6 +176,31 @@ namespace engine
 			depthStencilTexture,
 			&depthStencilDesc,
 			&m_depthStencilView)))
+		{
+			return false;
+		}
+
+		return true;
+	}
+
+	bool DirectXGraphics::CreateBlendState()
+	{
+		D3D11_BLEND_DESC blendDesc;
+		ZeroMemory(&blendDesc, sizeof(blendDesc));
+		blendDesc.AlphaToCoverageEnable = FALSE;
+		blendDesc.IndependentBlendEnable = FALSE;
+		blendDesc.RenderTarget[0].BlendEnable = TRUE;
+
+		blendDesc.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
+		blendDesc.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA;
+
+		blendDesc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
+		blendDesc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_ONE;
+		blendDesc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ZERO;
+		blendDesc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
+		blendDesc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
+
+		if (FAILED(DirectXGraphics::GetInstance()->GetDevice()->CreateBlendState(&blendDesc, &m_blendState)))
 		{
 			return false;
 		}

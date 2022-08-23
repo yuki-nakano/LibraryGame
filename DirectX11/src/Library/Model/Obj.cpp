@@ -1,5 +1,6 @@
 ﻿#include "Obj.h"
 
+#include <iostream>
 #include <fstream>
 #include <sstream>
 #include <DirectXMath.h>
@@ -7,7 +8,6 @@
 #include "../Shader/ShaderManager.h"
 #include "../DirectX/Matrix.h"
 #include "../DirectX/DirectXGraphics.h"
-
 
 namespace engine
 {
@@ -20,7 +20,7 @@ namespace engine
 	{
 		std::vector<CustomVertex> customVertex;
 
-		if (!AnalyzeData(file_name_, customVertex)) { return false; }
+		if (!AnalyzeObjData(file_name_, customVertex)) { return false; }
 
 		D3D11_BUFFER_DESC vertexBufferDesc = {
 			sizeof(CustomVertex) * (UINT)m_vertexNum,
@@ -41,7 +41,7 @@ namespace engine
 		}
 
 		D3D11_BUFFER_DESC indexBufferDesc = {
-			sizeof(UWORD) * (UINT)m_index.size(),
+			sizeof(UWORD) * (UINT)m_indexList.size(),
 			D3D11_USAGE_DEFAULT,
 			D3D11_BIND_INDEX_BUFFER,
 			0,
@@ -49,7 +49,7 @@ namespace engine
 			0 };
 
 		D3D11_SUBRESOURCE_DATA indexSubresData = {
-			&m_index[0],
+			&m_indexList[0],
 			0,
 			0 };
 
@@ -60,6 +60,7 @@ namespace engine
 
 		D3D11_INPUT_ELEMENT_DESC vertexDesc[]{
 			{"POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0},
+			{"TEXTURE", 0, DXGI_FORMAT_R32G32_FLOAT, 0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0},
 			{"NORMAL", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0}
 		};
 
@@ -119,15 +120,16 @@ namespace engine
 		context->VSSetShader(ShaderManager::GetInstance()->GetVertexInterface(m_vShaderName), NULL, 0);
 		context->PSSetShader(ShaderManager::GetInstance()->GetPixelInterface(m_pShaderName), NULL, 0);
 		context->OMSetRenderTargets(1, DirectXGraphics::GetInstance()->GetRenderTargetView(), DirectXGraphics::GetInstance()->GetDepthStencilView());
-		context->DrawIndexed(m_vertexNum, 0, 0);
+		context->DrawIndexed(m_indexList.size(), 0, 0);
 	}
 
-	bool Obj::AnalyzeData(const std::string& file_name_, std::vector<CustomVertex>& custom_vertex_)
+	bool Obj::AnalyzeObjData(const std::string& file_name_, std::vector<CustomVertex>& custom_vertex_)
 	{
 		std::ifstream file(file_name_);
 		if (!file) { return false; }
 
 		ObjData objData{};
+		std::string currentMtlName{};
 
 		std::string str{};
 		while (std::getline(file, str))
@@ -152,6 +154,19 @@ namespace engine
 				}
 				objData.vecesDataList.push_back(vertex);
 			}
+			else if (key.compare("vt") == 0)
+			{
+				TextureUV uv{};
+				std::string num{};
+
+				std::getline(ss, num, ' ');
+				uv[0] = std::stof(num);
+
+				std::getline(ss, num, ' ');
+				uv[1] = std::stof(num) * -1;
+
+				objData.texDataList.push_back(uv);
+			}
 			else if (key.compare("vn") == 0)
 			{
 				NomalData normal{};
@@ -168,6 +183,7 @@ namespace engine
 			{
 				std::string m_data{};
 
+				int vertexCount{ 0 };
 				while (std::getline(ss, m_data, ' '))
 				{
 					std::array<int, 3> element;
@@ -176,6 +192,13 @@ namespace engine
 					int count{ 0 };
 					while (std::getline(data_ss, num, '/'))
 					{
+						if (num == "")
+						{
+							m_isAttachedTexture = false;
+							count++;
+							continue;
+						}
+
 						element[count] = std::stoi(num) - 1;
 						count++;
 					}
@@ -185,17 +208,166 @@ namespace engine
 					int vertexNum = element.at(0);
 					customVertex.vecesData = objData.vecesDataList.at(vertexNum);
 
+					if (m_isAttachedTexture)
+					{
+						int texNum = element.at(1);
+						customVertex.texData = objData.texDataList.at(texNum);
+					}
+
 					int normalNum = element.at(2);
 					customVertex.nomalData = objData.nomalDataList.at(normalNum);
 
 					custom_vertex_.push_back(customVertex);
 
-					m_index.push_back((UWORD)custom_vertex_.size() - 1);
+					m_indexList.push_back((UWORD)custom_vertex_.size() - 1);
+
+					m_mtlIndex.at(currentMtlName).push_back((UWORD)custom_vertex_.size() - 1);
+
+					vertexCount++;
 				}
+
+				if (vertexCount >= 4)
+				{
+					int indexListSize = m_indexList.size();
+					m_indexList.push_back(m_indexList[indexListSize - 4]);
+					m_indexList.push_back(m_indexList[indexListSize - 2]);
+				}
+			}
+			else if (key.compare("mtllib") == 0)
+			{
+				std::string name{};
+				std::getline(ss, name, ' ');
+
+				m_mtlFileName = name;
+			}
+			else if (key.compare("usemtl") == 0)
+			{
+				std::string name{};
+				std::getline(ss, name, ' ');
+
+				currentMtlName = name;
+
+				std::vector<UWORD> index{};
+				m_mtlIndex.emplace(name, index);
 			}
 		}
 
-		m_vertexNum = m_index.size();
+		m_vertexNum = custom_vertex_.size();
+
+		return true;
+	}
+
+	std::array<float, 3> Obj::AnalyzeVKey(std::stringstream ss)
+	{
+		std::array<float, 3> vertex{};
+		std::string num{};
+		int count{ 0 };
+		while (std::getline(ss, num, ' '))
+		{
+			vertex.at(count) = std::stof(num);
+			count++;
+		}
+
+		return vertex;
+	}
+
+	std::array<float, 2> Obj::AnalyzeVTKey(std::stringstream ss)
+	{
+		std::array<float, 2> uv{};
+		std::string num{};
+
+		std::getline(ss, num, ' ');
+		uv.at(0) = std::stof(num);
+
+		std::getline(ss, num, ' ');
+		uv.at(1) = std::stof(num) * -1;
+
+		return uv;
+	}
+
+	void Obj::AnalyzeVNKey()
+	{
+	}
+
+	void Obj::AnalyzeFKey()
+	{
+	}
+
+	bool Obj::AnalyzeMtlData()
+	{
+		if (m_mtlFileName == "none") { return true; }
+
+		std::ifstream file(m_mtlFileName);
+		if (!file) { return false; }
+
+		std::string currentMtlName{};
+
+		std::string str{};
+		while (std::getline(file, str))
+		{
+			std::stringstream ss{ str };
+			std::string key{};
+			std::getline(ss, key, ' ');
+			if (key.compare("#") == 0)
+			{
+				continue;
+			}
+			else if (key.compare("Kd") == 0)
+			{
+				std::array<float, 3 > param{};
+				std::string num{};
+				int count{ 0 };
+				while (std::getline(ss, num, ' '))
+				{
+					param[count] = std::stof(num);
+					count++;
+				}
+			}
+			else if (key.compare("Ks") == 0)
+			{
+
+			}
+			else if (key.compare("Ka") == 0)
+			{
+
+			}
+			else if (key.compare("d") == 0)
+			{
+
+			}
+			else if (key.compare("Tr") == 0)
+			{
+
+			}
+			else if (key.compare("Ni") == 0)
+			{
+
+			}
+			else if (key.compare("illum") == 0)
+			{
+
+			}
+			else if (key.compare("tf") == 0)
+			{
+
+			}
+			else if (key.compare("Ns") == 0)
+			{
+
+			}
+			else if (key.compare("sharpness") == 0)
+			{
+
+			}
+
+			else if (key.compare("newmtl"))
+			{
+				std::string name{};
+				std::getline(ss, name, ' ');
+
+				currentMtlName = name;
+			}
+		}
 
 		return true;
 	}

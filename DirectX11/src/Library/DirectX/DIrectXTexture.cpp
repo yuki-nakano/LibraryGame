@@ -40,16 +40,12 @@ namespace engine
 		return true;
 	}
 
-	void DirectXTexture::DrawTexture(const std::string& name_, float pos_x_, float pos_y_, float width_, float height_, float angle_)
+	void DirectXTexture::DrawTexture(const std::string& name_, const Vec2f& pos_, const float& width_, const float& height_, const float& degree_, const float& alpha_)
 	{
 		ID3D11DeviceContext* context = DirectXGraphics::GetInstance()->GetContext();
 
-		DirectX::XMMATRIX world = DirectX::XMMatrixIdentity();
-		DirectX::XMMATRIX rotateZ = DirectX::XMMatrixRotationZ(angle_ * (3.14f / 180.0f));
-		DirectX::XMMATRIX scale = DirectX::XMMatrixScaling(width_, height_, 1.0f);
-		DirectX::XMMATRIX translate = DirectX::XMMatrixTranslation(pos_x_, pos_y_, 0);
-
-		world = scale * rotateZ * translate;
+		// bufferの更新
+		DirectX::XMMATRIX world = Matrix::GetInstance()->CreateWorldMatrix2D(pos_, width_, height_, degree_);
 
 		ConstantBuffer constantBuffer;
 		DirectX::XMStoreFloat4x4(&constantBuffer.world, DirectX::XMMatrixTranspose(world));
@@ -57,20 +53,35 @@ namespace engine
 
 		context->UpdateSubresource(m_constantBuffer, 0, NULL, &constantBuffer, 0, 0);
 
+		D3D11_MAPPED_SUBRESOURCE mappedRes{};
+		CustomVertex vertexList[]
+		{
+			{ { -0.5f,  0.5f, 0.0f },{ 0.0f, 0.0f, 0.0f, alpha_ }, { 0.0f, 0.0f } },
+			{ {  0.5f,  0.5f, 0.0f },{ 0.0f, 0.0f, 0.0f, alpha_ }, { 1.0f, 0.0f } },
+			{ { -0.5f, -0.5f, 0.0f },{ 0.0f, 0.0f, 0.0f, alpha_ }, { 0.0f, 1.0f } },
+			{ {  0.5f, -0.5f, 0.0f },{ 0.0f, 0.0f, 0.0f, alpha_ }, { 1.0f, 1.0f } }
+		};
+
+		context->Map(m_vertexBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedRes);
+		memcpy(mappedRes.pData, vertexList, sizeof(vertexList));
+		context->Unmap(m_vertexBuffer, 0);
+
+		// 透過の設定
+		DirectXGraphics::GetInstance()->SetUpBlendState();
+
+		// GPUへ送るデータの設定
+		DirectXGraphics::GetInstance()->SetUpContext(m_vShaderName, m_pShaderName);
+
 		UINT strides = sizeof(CustomVertex);
 		UINT offsets = 0;
 		context->IASetInputLayout(m_inputLayout);
 		context->IASetVertexBuffers(0, 1, &m_vertexBuffer, &strides, &offsets);
-		context->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
 		context->VSSetConstantBuffers(0, 1, &m_constantBuffer);
-		context->VSSetShader(ShaderManager::GetInstance()->GetVertexInterface(m_vShaderName), NULL, 0);
-		context->PSSetShader(ShaderManager::GetInstance()->GetPixelInterface(m_pShaderName), NULL, 0);
-		context->OMSetRenderTargets(1, DirectXGraphics::GetInstance()->GetRenderTargetView(), DirectXGraphics::GetInstance()->GetDepthStencilView());
 		context->IASetIndexBuffer(m_indexBuffer, DXGI_FORMAT_R16_UINT, 0);
 		context->PSSetShaderResources(0, 1, &texList.at(name_));
 		context->PSSetSamplers(0, 1, &m_sampler);
 
-		context->DrawIndexed(6, 0, 0);
+		context->DrawIndexed(4, 0, 0);
 	}
 
 	void DirectXTexture::ReleseTexture(const std::string& name_)
@@ -83,18 +94,18 @@ namespace engine
 		// 頂点データ作成
 		CustomVertex vertexList[]
 		{
-			{ { -0.5f,  0.5f, 0.0f }, { 0.0f, 0.0f } },
-			{ {  0.5f,  0.5f, 0.0f }, { 1.0f, 0.0f } },
-			{ { -0.5f, -0.5f, 0.0f }, { 0.0f, 1.0f } },
-			{ {  0.5f, -0.5f, 0.0f }, { 1.0f, 1.0f } }
+			{ { -0.5f,  0.5f, 0.0f },{ 0.0f, 0.0f, 0.0f, 1.0f }, { 0.0f, 0.0f } },
+			{ {  0.5f,  0.5f, 0.0f },{ 0.0f, 0.0f, 0.0f, 1.0f }, { 1.0f, 0.0f } },
+			{ { -0.5f, -0.5f, 0.0f },{ 0.0f, 0.0f, 0.0f, 1.0f }, { 0.0f, 1.0f } },
+			{ {  0.5f, -0.5f, 0.0f },{ 0.0f, 0.0f, 0.0f, 1.0f }, { 1.0f, 1.0f } }
 
 		};
 
 		D3D11_BUFFER_DESC vertexBufferDesc = {
 			sizeof(CustomVertex) * 4,
-			D3D11_USAGE_DEFAULT,
+			D3D11_USAGE_DYNAMIC,
 			D3D11_BIND_VERTEX_BUFFER,
-			0,
+			D3D11_CPU_ACCESS_WRITE,
 			0,
 			sizeof(CustomVertex) };
 
@@ -119,7 +130,7 @@ namespace engine
 		};
 
 		D3D11_BUFFER_DESC indexBufferDesc = {
-			sizeof(UWORD) * 6,
+			sizeof(UWORD) * 4,
 			D3D11_USAGE_DEFAULT,
 			D3D11_BIND_INDEX_BUFFER,
 			0,
@@ -143,6 +154,7 @@ namespace engine
 	{
 		D3D11_INPUT_ELEMENT_DESC vertexDesc[]{
 			{"POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0},
+			{"COLOR", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0},
 			{"TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0}
 		};
 

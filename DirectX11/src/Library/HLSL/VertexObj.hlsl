@@ -11,6 +11,7 @@ cbuffer ConstantBuffer
 struct VSInput
 {
 	float4 pos : POSITION0;
+	float2 tex : TEXTURE;
 	float4 nor : NORMAL;
 };
 
@@ -22,7 +23,9 @@ struct VSOutput
 
 VSOutput main(VSInput input)
 {
-	VSOutput output = input;
+	VSOutput output;
+
+	output.pos = input.pos;
 
 	output.pos = mul(output.pos, world);
 	output.pos = mul(output.pos, view);
@@ -38,6 +41,7 @@ VSOutput main(VSInput input)
 
 	// ライトのカラー * 光のあたり加減
 	output.col = LightColor * rad;
+	output.col[3] = 1.0f;
 
 	return output;
 }
