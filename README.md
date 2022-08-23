@@ -1,14 +1,13 @@
 # DirectXLibrary
-DirectX11でのライブラリ作成とそれを用いたゲーム作成　
+自作のライブラリを用いたゲーム作成  
+ライブラリは[こちら](https://github.com/yuki-nakano/LibraryGame)  
 
-DirectX11/src/Libraryファイルの中に入っています。
-|ファイルパス|コード概要|
-|--|--|
-|DirectX|DirextX関連|
-|HLSL|HLSL|
-|Lib|外部ライブラリー|
-|Model|Obj解析、描画|
-|Shader|シェーダー生成、管理|
-|Utility|Singleton|
-|WindowsAPI|Window生成、キーボード、マウス|
-|cso|コンパイル後HLSL|
+エネルギーが尽きるまで飛び続けアイテムを集めるゲーム  
+## 操作方法
+|||
+|---|---|
+|A,D|左右旋回|
+|W|加速|
+|S|減速|
+|SPACE|機首を上げて上昇|
+|SHIFT|機首を下げて下降|
