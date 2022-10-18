@@ -1,4 +1,4 @@
-#include "Stage.h"
+ï»¿#include "Stage.h"
 
 #include "../../Library/Library.h"
 #include "Player.h"
@@ -7,12 +7,12 @@ namespace Game
 {
 	enum class MapData
 	{
-		Street_Empty,	// ‹ó”’
-		Street_Deadend,	// s‚«Ž~‚Ü‚è
-		Street_Curve,	// ƒJ[ƒu
-		Street_4Way,	// ŽlŠp
-		Street_3Way,	// ŽOŠp
-		Street_Straight,	// ’¼ü
+		Street_Empty,	// ç©ºç™½
+		Street_Deadend,	// è¡Œãæ­¢ã¾ã‚Š
+		Street_Curve,	// ã‚«ãƒ¼ãƒ–
+		Street_4Way,	// å››è§’
+		Street_3Way,	// ä¸‰è§’
+		Street_Straight,	// ç›´ç·š
 	};
 
 	Stage::Stage()
@@ -59,7 +59,7 @@ namespace Game
 			}
 		}
 
-		// ‰EˆÚ“®
+		// å³ç§»å‹•
 		if (engine::Library::IsHeldKey(KEY_D))
 		{
 			m_bgPos1.x += 0.5f * player_->GetSpeed();

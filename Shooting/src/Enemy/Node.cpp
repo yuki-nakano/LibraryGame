@@ -4,24 +4,25 @@
 
 namespace Game
 {
-	Node::Node(std::string name_, SelectRule rule_, unsigned int priority_, ActionBase* action_, Node* parent_, ExecJudgmentBase* execute_)
-		:name(name_)
-		, parent(parent_)
-		, Execute(execute_)
-		, Rule(rule_)
-		, Action(action_)
-		, Priority(priority_)
+	Node::Node(const std::string& name_, const SelectRule& rule_, const unsigned int& priority_,
+		ActionBase* action_, Node* parent_, ExecJudgmentBase* execute_)
+		:m_name(name_)
+		, m_parent(parent_)
+		, m_execute(execute_)
+		, m_rule(rule_)
+		, m_action(action_)
+		, m_priority(priority_)
 	{
 	}
 
 	Node* Node::Search(std::string search_name_)
 	{
-		if (name == search_name_)
+		if (m_name == search_name_)
 		{
 			return this;
 		}
 
-		for (auto itr = children.begin(); itr != children.end(); itr++)
+		for (auto itr = m_children.begin(); itr != m_children.end(); itr++)
 		{
 			Node* result = ((Node*)(*itr))->Search(search_name_);
 			if (result != nullptr)
@@ -38,13 +39,13 @@ namespace Game
 		if (child_ != nullptr)
 		{
 			child_->SetParent(this);
-			children.push_back(child_);
+			m_children.push_back(child_);
 		}
 	}
 
 	void Node::Delete()
 	{
-		for (auto itr = children.begin(); itr != children.end(); itr++)
+		for (auto itr = m_children.begin(); itr != m_children.end(); itr++)
 		{
 			((Node*)(*itr))->Delete();
 		}
@@ -56,23 +57,23 @@ namespace Game
 	{
 		std::vector<Node*> list;
 
-		for (int i = 0; i < children.size(); i++)
+		for (int i = 0; i < m_children.size(); i++)
 		{
 			bool canPushBuck = true;
-			if (children[i]->Execute != nullptr)
+			if (m_children[i]->m_execute != nullptr)
 			{
-				canPushBuck = children[i]->Execute->Judgment(enemy_);
+				canPushBuck = m_children[i]->m_execute->Judgment(enemy_);
 			}
 
 			if (canPushBuck)
 			{
-				list.push_back(children[i]);
+				list.push_back(m_children[i]);
 			}
 		}
 
 		Node* selectNode = nullptr;
 
-		switch (Rule)
+		switch (m_rule)
 		{
 		case Node::SelectRule::None:
 			break;
@@ -88,7 +89,7 @@ namespace Game
 
 		if (selectNode != nullptr)
 		{
-			if (selectNode->children.size() > 0)
+			if (selectNode->m_children.size() > 0)
 			{
 				return selectNode->Inference(enemy_);
 			}
@@ -109,21 +110,21 @@ namespace Game
 	Node* Node::SelectPriorty(std::vector<Node*>& list_, EnemyBase* enemy_)
 	{
 		Node* select_node = list_[0];
-		unsigned int priority = list_[0]->Priority;
+		unsigned int priority = list_[0]->m_priority;
 
 		for (auto itr = list_.begin(); itr != list_.end(); itr++)
 		{
-			if ((*itr)->Execute != nullptr)
+			if ((*itr)->m_execute != nullptr)
 			{
-				if (!(*itr)->Execute->Judgment(enemy_))
+				if (!(*itr)->m_execute->Judgment(enemy_))
 				{
 					continue;
 				}
 			}
 
-			if (priority > (*itr)->Priority)
+			if (priority > (*itr)->m_priority)
 			{
-				priority = (*itr)->Priority;
+				priority = (*itr)->m_priority;
 				select_node = (*itr);
 			}
 		}
@@ -133,9 +134,9 @@ namespace Game
 
 	ActionState Node::Update(EnemyBase* enemy_)
 	{
-		if (Action != nullptr)
+		if (m_action != nullptr)
 		{
-			return Action->Exec(enemy_);
+			return m_action->Exec(enemy_);
 		}
 
 		return ActionState::Failed;

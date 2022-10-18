@@ -1,4 +1,4 @@
-#ifndef ACTION_CHASE_H
+﻿#ifndef ACTION_CHASE_H
 #define ACTION_CHASE_H
 
 #include "../Library/Library.h"

@@ -1,4 +1,4 @@
-#include "SceneManager.h"
+﻿#include "SceneManager.h"
 
 #include "Title/TitleScene.h"
 #include "InGame/InGameScene.h"
@@ -37,9 +37,6 @@ namespace Game
 			break;
 		case Scene::InGame:
 			nextScene = new InGameScene();
-			break;
-		case Scene::Result:
-
 			break;
 		default:
 			break;

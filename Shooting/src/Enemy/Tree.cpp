@@ -5,13 +5,13 @@
 namespace Game
 {
 	Tree::Tree(Node* node_)
-		:root(node_)
+		:m_root(node_)
 	{
 	}
 
-	bool Tree::AddNode(std::string search_name_, Node* add_node_)
+	bool Tree::AddNode(const std::string& search_name_, Node* add_node_)
 	{
-		Node* result = root->Search(search_name_);
+		Node* result = m_root->Search(search_name_);
 		if (result != nullptr)
 		{
 			result->AddChild(add_node_);
@@ -23,7 +23,7 @@ namespace Game
 
 	Node* Tree::Inference(EnemyBase* enemy_)
 	{
-		return root->Inference(enemy_);
+		return m_root->Inference(enemy_);
 	}
 
 	Node* Tree::Update(EnemyBase* enemy_, Node* active_node_)
@@ -42,7 +42,7 @@ namespace Game
 
 	void Tree::Delete()
 	{
-		root->Delete();
-		root = nullptr;
+		m_root->Delete();
+		m_root = nullptr;
 	}
 }

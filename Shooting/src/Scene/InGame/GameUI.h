@@ -1,4 +1,4 @@
-#ifndef GAME_UI_H
+﻿#ifndef GAME_UI_H
 
 #include "Player.h"
 
@@ -15,9 +15,13 @@ namespace Game
 
 		void Draw();
 
+		/**
+		* @brief プレイヤーのUIの描画
+		*/
 		void DrawPlayerUI();
 
 	private:
+		/// プレイヤー情報
 		Player* m_player{};
 	};
 }

@@ -5,12 +5,20 @@ namespace Game
 {
 	class EnemyBase;
 
+	/**
+	* @brief ノードを実行するかの判定クラス
+	*/
 	class ExecJudgmentBase
 	{
 	public:
-		virtual ~ExecJudgmentBase() {};
+		ExecJudgmentBase() = default;
+		virtual ~ExecJudgmentBase() = default;
 
-		virtual bool Judgment(EnemyBase* enemy) = 0;
+		/**
+		* @brief ノードを実行するかの判定関数
+		* @param enemy_ 行動するエネミー情報
+		*/
+		virtual bool Judgment(EnemyBase* enemy_) = 0;
 	};
 }
 

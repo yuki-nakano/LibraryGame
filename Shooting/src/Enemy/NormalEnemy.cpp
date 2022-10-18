@@ -11,9 +11,9 @@ namespace Game
 {
 	NormalEnemy::NormalEnemy(const engine::Vec3f& factory_pos_)
 	{
-		aiTree = new Tree(new Node("Root", Node::SelectRule::Priority, 0));
-		aiTree->AddNode("Root", new Node("Loop", Node::SelectRule::None, 1, new ActionLoop));
-		aiTree->AddNode("Root", new Node("Dead", Node::SelectRule::None, 0, new ActionDead, nullptr, new JudgmentDead));
+		m_aiTree = new Tree(new Node("Root", Node::SelectRule::Priority, 0));
+		m_aiTree->AddNode("Root", new Node("Loop", Node::SelectRule::None, 1, new ActionLoop));
+		m_aiTree->AddNode("Root", new Node("Dead", Node::SelectRule::None, 0, new ActionDead, nullptr, new JudgmentDead));
 
 		engine::Library::LoadObj("res/Obj/enemy/Alien.obj", "alien");
 
@@ -24,14 +24,14 @@ namespace Game
 
 	void NormalEnemy::Update()
 	{
-		if (activeNode == nullptr)
+		if (m_activeNode == nullptr)
 		{
-			activeNode = aiTree->Inference(this);
+			m_activeNode = m_aiTree->Inference(this);
 		}
 
-		if (activeNode != nullptr)
+		if (m_activeNode != nullptr)
 		{
-			activeNode = aiTree->Update(this, activeNode);
+			m_activeNode = m_aiTree->Update(this, m_activeNode);
 		}
 
 		if (m_invincibleTimer > 0)

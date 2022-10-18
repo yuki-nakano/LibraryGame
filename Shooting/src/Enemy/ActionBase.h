@@ -5,21 +5,28 @@ namespace Game
 {
 	class EnemyBase;
 
+	/// モーションの状態
 	enum class ActionState
 	{
-		Run,		// 実行中
-		Success,	// 行動成功
-		Failed,		// 行動失敗
+		Run,		/// 実行中
+		Success,	/// 行動成功
+		Failed,		/// 行動失敗
 	};
 
+	/**
+	* @brief モーションクラスの継承元
+	*/
 	class ActionBase
 	{
 	public:
 		ActionBase() = default;
-		~ActionBase() = default;
+		virtual ~ActionBase() = default;
 
 	public:
-		// 行動実行関数
+		/**
+		* @brief 行動実行関数
+		* @param EnemyBase
+		*/
 		virtual ActionState Exec(EnemyBase*) = 0;
 	};
 }

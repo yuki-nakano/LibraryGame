@@ -1,4 +1,4 @@
-#include "InGameScene.h"
+﻿#include "InGameScene.h"
 
 #include "../../Library/Library.h"
 #include "Collision.h"
@@ -22,13 +22,15 @@ namespace Game
 
 		m_enemy = new EnemyManager(m_stage);
 
-		nextScene = Scene::Result;
+		nextScene = Scene::Title;
 
 		ShowCursor(FALSE);
 	}
 
 	InGameScene::~InGameScene()
 	{
+		delete m_enemy;
+		delete m_option;
 		delete m_bullet;
 		delete m_gameUI;
 		delete m_camera;

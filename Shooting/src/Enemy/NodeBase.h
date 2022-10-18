@@ -1,13 +1,14 @@
-#ifndef NODE_BASE_H
+﻿#ifndef NODE_BASE_H
 #define NODE_BASE_H
 
 namespace Game
 {
+	// ビヘービア
 	class NodeBase
 	{
 	public:
 		NodeBase() = default;
-		~NodeBase() = default;
+		virtual ~NodeBase() = default;
 
 	public:
 		virtual bool Exec() = 0;

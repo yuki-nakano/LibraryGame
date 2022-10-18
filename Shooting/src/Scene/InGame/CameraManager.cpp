@@ -1,4 +1,4 @@
-#include "CameraManager.h"
+﻿#include "CameraManager.h"
 
 #define _USE_MATH_DEFINES
 #include <math.h>

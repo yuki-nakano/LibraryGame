@@ -1,4 +1,4 @@
-#ifndef ACTION_DEAD_H
+﻿#ifndef ACTION_DEAD_H
 #define ACTION_DEAD_H
 
 #include "ActionBase.h"
@@ -6,6 +6,9 @@
 
 namespace Game
 {
+	/**
+	* @brief 敵モーション 死亡演出
+	*/
 	class ActionDead : public ActionBase
 	{
 	public:

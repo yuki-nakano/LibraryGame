@@ -13,22 +13,35 @@ namespace Game
 		Tree(Node* node_);
 		~Tree() = default;
 
-		// ノード追加
-		bool AddNode(std::string search_name_, Node* add_node_);
+		/**
+		* @brief ノード追加
+		* @param search_name_ 親ノードの名前
+		* @param add_node_ 追加するノード情報
+		*/
+		bool AddNode(const std::string& search_name_, Node* add_node_);
 
-		// 行動決定
+		/**
+		* @brief 行動決定
+		* @param enemy_ エネミー情報
+		*/
 		Node* Inference(EnemyBase* enemy_);
 
-		// 行動更新
+		/**
+		* @brief 行動更新
+		* @param enemy_ エネミー情報
+		* @param active_node_ 実行ノード
+		*/
 		Node* Update(EnemyBase* enemy_, Node* active_node_);
 
 	private:
-		// ノードの削除
+		/**
+		* @brief ノードの削除
+		*/
 		void Delete();
 
 	private:
-		// ルートの削除
-		Node* root;
+		/// ルートノード
+		Node* m_root;
 
 	};
 }

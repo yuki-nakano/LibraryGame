@@ -1,4 +1,4 @@
-#ifndef ENEMY_BASE_H
+ï»¿#ifndef ENEMY_BASE_H
 #define ENEMY_BASE_H
 
 #include "../Scene/InGame/ObjBase.h"
@@ -12,32 +12,45 @@ namespace Game
 		normal,
 	};
 
-	// ƒGƒlƒ~[‚ÌŒp³Œ³
+	/**
+	*ã‚¨ãƒãƒŸãƒ¼ã®ç¶™æ‰¿å…ƒ
+	*/
 	class EnemyBase : public ObjBase
 	{
 	public:
 		EnemyBase() = default;
-		~EnemyBase() = default;
+		virtual ~EnemyBase() = default;
 
 	public:
-		// XV
+		/**
+		* @brief æ›´æ–°
+		*/
 		virtual void Update() = 0;
 
-		// •`‰æ
+		/**
+		* @brief æç”»
+		*/
 		virtual void Draw() = 0;
 
-		// ÚG‚ÉŒÄ‚Ño‚·
+		/**
+		* @brief ä»–ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¨ã®æ¥è§¦æ™‚ã«å‘¼ã³å‡ºã™
+		* @param obj_base_ æ¥è§¦ã—ãŸã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+		*/
 		void Hit(ObjBase* obj_base_)
 		{
 			m_objState.hp -= obj_base_->GetState().damage;
 		}
 
+		// ã‚¿ã‚¤ãƒãƒ¼æ¸›å°‘é–¢æ•°
 		void SubDeadTimer() { m_deadTimer--; }
+
+		// ã‚¿ã‚¤ãƒãƒ¼æ¸›å°‘é–¢æ•°
 		void SubInvicibleTimer() { m_invincibleTime--; }
 
+		// åˆ‡ã‚Šæ›¿ãˆé–¢æ•°
 		void ChangeAlive() { m_isAlive ? m_isAlive = false : m_isAlive = true; }
 
-		// ƒAƒNƒZƒT
+		// ã‚¢ã‚¯ã‚»ã‚µ
 
 		engine::Vec3f GetFactoryPos() { return m_factoryPos; }
 		engine::Vec3f GetTargetPos() { return m_targetPos; }
@@ -53,28 +66,28 @@ namespace Game
 		void SetTargetPos(const engine::Vec3f& target_pos_) { m_targetPos = target_pos_; }
 
 	protected:
-		// ƒrƒw[ƒrƒA—pƒcƒŠ[
+		// ãƒ“ãƒ˜ãƒ¼ãƒ“ã‚¢ç”¨ãƒ„ãƒªãƒ¼
 		Tree* m_tree{};
 
-		engine::Vec3f m_col{ 0.0f, 0.0f, 0.0f };			// ’Êí‚ÌF
-		engine::Vec3f m_invincibleCol{ 1.0f, 0.0f, 0.0f };	// –³“G‚ÌF
+		engine::Vec3f m_col{ 0.0f, 0.0f, 0.0f };			/// é€šå¸¸æ™‚ã®è‰²
+		engine::Vec3f m_invincibleCol{ 1.0f, 0.0f, 0.0f };	/// ç„¡æ•µæ™‚ã®è‰²
 
-		engine::Vec3f m_factoryPos{};	// ¶¬Œ³‚ÌÀ•W
-		engine::Vec3f m_targetPos{};	// ’ÇÕ‘ÎÛ‚ÌÀ•W
+		engine::Vec3f m_factoryPos{};	/// ç”Ÿæˆå…ƒã®åº§æ¨™
+		engine::Vec3f m_targetPos{};	/// è¿½è·¡å¯¾è±¡ã®åº§æ¨™
 
-		float m_distance{ 300.0f };		//¶¬Œ³‚Æ‚Ì‹——£
+		float m_distance{ 300.0f };		///ç”Ÿæˆå…ƒã¨ã®è·é›¢
 
-		float m_fov{ 45.0f };		// ‹–ìŠp
-		float m_far{ 300.0f };		// ‹–ì‚Ì”¼Œa
-		float m_loopTime{ 180 };	// ¶¬Œ³‚ğˆêü‚·‚é‚Ü‚Å‚ÌŠÔ
+		float m_fov{ 45.0f };		/// è¦–é‡è§’
+		float m_far{ 300.0f };		/// è¦–é‡ã®åŠå¾„
+		float m_loopTime{ 180 };	/// ç”Ÿæˆå…ƒã‚’ä¸€å‘¨ã™ã‚‹ã¾ã§ã®æ™‚é–“
 
-		bool m_isAlive{ true };		// ¶‘¶ƒtƒ‰ƒO
+		bool m_isAlive{ true };		/// ç”Ÿå­˜ãƒ•ãƒ©ã‚°
 
-		int m_deadTime{ 120 };		// €–SŠÔ
-		int m_deadTimer{ 120 };		// €–SŠÔ‚Ü‚Å‚ÌƒJƒEƒ“ƒg
+		int m_deadTime{ 120 };		/// æ­»äº¡æ™‚é–“
+		int m_deadTimer{ 120 };		/// æ­»äº¡æ™‚é–“ã¾ã§ã®ã‚«ã‚¦ãƒ³ãƒˆ
 
-		int m_invincibleTime{ 60 };	// –³“GŠÔ
-		int m_invincibleTimer{ 0 };	// –³“GŠÔ‚ÌƒJƒEƒ“ƒg
+		int m_invincibleTime{ 60 };	/// ç„¡æ•µæ™‚é–“
+		int m_invincibleTimer{ 0 };	/// ç„¡æ•µæ™‚é–“ã®ã‚«ã‚¦ãƒ³ãƒˆ
 	};
 }
 

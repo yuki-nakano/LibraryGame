@@ -1,4 +1,4 @@
-#include "JudgmentDead.h"
+﻿#include "JudgmentDead.h"
 
 #include "EnemyBase.h"
 

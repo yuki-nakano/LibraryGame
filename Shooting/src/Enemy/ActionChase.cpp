@@ -1,4 +1,4 @@
-#include "ActionChase.h"
+﻿#include "ActionChase.h"
 
 #define _USE_MATH_DEFINES
 #include <math.h>

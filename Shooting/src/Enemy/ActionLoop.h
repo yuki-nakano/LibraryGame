@@ -1,4 +1,4 @@
-#ifndef ACTION_LOOP_H
+﻿#ifndef ACTION_LOOP_H
 #define ACTION_LOOP_H
 
 #include "ActionBase.h"
@@ -6,6 +6,9 @@
 
 namespace Game
 {
+	/**
+	* @brief 敵モーション 旋回
+	*/
 	class ActionLoop : public ActionBase
 	{
 	public:

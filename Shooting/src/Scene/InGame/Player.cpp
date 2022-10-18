@@ -1,4 +1,4 @@
-#include "Player.h"
+Ôªø#include "Player.h"
 
 #include "../../Library/Library.h"
 #include "Stage.h"
@@ -59,7 +59,7 @@ namespace Game
 
 	void Player::Move()
 	{
-		// éãì_à⁄ìÆ
+		// Ë¶ñÁÇπÁßªÂãï
 		m_rote.y += (engine::Library::GetMousePosX() - GetSystemMetrics(SM_CXSCREEN) / 2) * 0.1f;
 		m_rote.x += (engine::Library::GetMousePosY() - GetSystemMetrics(SM_CYSCREEN) / 2) * 0.1f;
 		if (m_rote.x > m_maxRote)
@@ -71,35 +71,35 @@ namespace Game
 			m_rote.x = -m_maxRote;
 		}
 
-		// ç∂à⁄ìÆ
+		// Â∑¶ÁßªÂãï
 		if (engine::Library::IsHeldKey(KEY_A))
 		{
 			m_moveVec.x += sinf((m_rote.y - 90.0f) / 180.0f * M_PI) * m_nomalSpeed / 2;
 			m_moveVec.z += cosf((m_rote.y - 90.0f) / 180.0f * M_PI) * m_nomalSpeed / 2;
 		}
 
-		// âEà⁄ìÆ
+		// Âè≥ÁßªÂãï
 		if (engine::Library::IsHeldKey(KEY_D))
 		{
 			m_moveVec.x += sinf((m_rote.y + 90.0f) / 180.0f * M_PI) * m_nomalSpeed / 2;
 			m_moveVec.z += cosf((m_rote.y + 90.0f) / 180.0f * M_PI) * m_nomalSpeed / 2;
 		}
 
-		// ëOêi
+		// ÂâçÈÄ≤
 		if (engine::Library::IsHeldKey(KEY_W))
 		{
 			m_moveVec.x += sinf(m_rote.y / 180.0f * M_PI) * m_moveSpeed;
 			m_moveVec.z += cosf(m_rote.y / 180.0f * M_PI) * m_moveSpeed;
 		}
 
-		// å„ëﬁ
+		// ÂæåÈÄÄ
 		if (engine::Library::IsHeldKey(KEY_S))
 		{
 			m_moveVec.x -= sinf(m_rote.y / 180.0f * M_PI) * m_nomalSpeed / 3;
 			m_moveVec.z -= cosf(m_rote.y / 180.0f * M_PI) * m_nomalSpeed / 3;
 		}
 
-		// â¡ë¨
+		// Âä†ÈÄü
 		if (engine::Library::IsHeldKey(KEY_SHIFT))
 		{
 			m_moveSpeed += m_acceleration;
@@ -111,7 +111,7 @@ namespace Game
 			if (m_moveSpeed < m_nomalSpeed) { m_moveSpeed = m_nomalSpeed; }
 		}
 
-		// ÉWÉÉÉìÉv
+		// „Ç∏„É£„É≥„Éó
 		if (engine::Library::IsHeldKey(KEY_SPACE) && m_canJump)
 		{
 			m_jump = m_jumpPower;

@@ -8,6 +8,9 @@
 
 namespace Game
 {
+	/**
+	* @brief 通常エネミー
+	*/
 	class NormalEnemy : public EnemyBase
 	{
 	public:
@@ -21,8 +24,8 @@ namespace Game
 		void Hit(ObjBase* obj_base_);
 
 	private:
-		Tree* aiTree;
-		Node* activeNode;
+		Tree* m_aiTree;		/// ビヘービアツリー
+		Node* m_activeNode;	/// 実行ノード
 	};
 }
 

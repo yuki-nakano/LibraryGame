@@ -1,4 +1,4 @@
-#ifndef JUDGMENT_DEAD_H
+﻿#ifndef JUDGMENT_DEAD_H
 #define JUDGMENT_DEAD_H
 
 #include "ExecJudgmentBase.h"
@@ -11,7 +11,7 @@ namespace Game
 	{
 	public:
 		JudgmentDead() = default;
-		virtual ~JudgmentDead() = default;
+		~JudgmentDead() = default;
 
 		bool Judgment(EnemyBase* enemy_);
 	};

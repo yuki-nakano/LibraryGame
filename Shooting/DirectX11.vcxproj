@@ -26,7 +26,6 @@
     <ClCompile Include="src\Enemy\EnemyManager.cpp" />
     <ClCompile Include="src\Enemy\JudgmentDead.cpp" />
     <ClCompile Include="src\Enemy\Node.cpp" />
-    <ClCompile Include="src\Enemy\NodeSearch.cpp" />
     <ClCompile Include="src\Enemy\NormalEnemy.cpp" />
     <ClCompile Include="src\Enemy\Tree.cpp" />
     <ClCompile Include="src\Library\DirectX\Direct2D.cpp" />
@@ -52,7 +51,6 @@
     <ClCompile Include="src\Scene\InGame\CameraManager.cpp" />
     <ClCompile Include="src\Scene\InGame\GameUI.cpp" />
     <ClCompile Include="src\Scene\InGame\InGameScene.cpp" />
-    <ClCompile Include="src\Scene\InGame\Map.cpp" />
     <ClCompile Include="src\Scene\InGame\Option.cpp" />
     <ClCompile Include="src\Scene\InGame\Player.cpp" />
     <ClCompile Include="src\Scene\InGame\Stage.cpp" />
@@ -71,7 +69,6 @@
     <ClInclude Include="src\Enemy\JudgmentDead.h" />
     <ClInclude Include="src\Enemy\Node.h" />
     <ClInclude Include="src\Enemy\NodeBase.h" />
-    <ClInclude Include="src\Enemy\NodeSearch.h" />
     <ClInclude Include="src\Enemy\NormalEnemy.h" />
     <ClInclude Include="src\Enemy\Tree.h" />
     <ClInclude Include="src\Library\DirectX\Direct2D.h" />
@@ -101,7 +98,6 @@
     <ClInclude Include="src\Scene\InGame\Collision.h" />
     <ClInclude Include="src\Scene\InGame\GameUI.h" />
     <ClInclude Include="src\Scene\InGame\InGameScene.h" />
-    <ClInclude Include="src\Scene\InGame\Map.h" />
     <ClInclude Include="src\Scene\InGame\ObjBase.h" />
     <ClInclude Include="src\Scene\InGame\Option.h" />
     <ClInclude Include="src\Scene\InGame\Player.h" />

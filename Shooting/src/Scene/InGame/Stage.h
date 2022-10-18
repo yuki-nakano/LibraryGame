@@ -1,4 +1,4 @@
-#ifndef STAGE_H
+﻿#ifndef STAGE_H
 #define STAGE_H
 
 #include "../../Library/Library.h"
@@ -11,9 +11,15 @@ namespace Game
 {
 	class Player;
 
+	/**
+	* @brief ステージ情報
+	*/
 	class Stage
 	{
 	public:
+		/**
+		* @brief ステージサイズ
+		*/
 		struct StageSize
 		{
 			float stageRight{ 0.0f };
@@ -26,10 +32,11 @@ namespace Game
 			int mapNumX{ 20 };
 		};
 
+		/// マップチップ
 		enum class MapData
 		{
-			Street_Empty,	// ��
-			Street_Straight,	// ����
+			Street_Empty,	// 空白
+			Street_Straight,	// 直線
 		};
 
 	public:
@@ -41,13 +48,17 @@ namespace Game
 
 		void Draw();
 
+		// アクセサ
+
 		StageSize GetStageData() { return m_stageSize; }
 
 	private:
 		StageSize m_stageSize{};
-		std::vector<std::vector<int>> m_stageData{};
-		std::array<std::string, 6> m_mapName{};
+		std::vector<std::vector<int>> m_stageData{};	/// ステージデータ
+		std::array<std::string, 6> m_mapName{};			/// マップチップデータ
 
+
+		// 背景用座標
 		engine::Vec2f m_bgPos1{};
 		engine::Vec2f m_bgPos2{};
 	};

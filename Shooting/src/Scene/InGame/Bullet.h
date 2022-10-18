@@ -1,4 +1,4 @@
-#ifndef BULLET_H
+ï»¿#ifndef BULLET_H
 #define BULLET_H
 
 #include "ObjBase.h"
@@ -7,22 +7,27 @@
 
 namespace Game
 {
-	// ’e‚Ìí—Ş
+	/// å¼¾ã®ç¨®é¡
 	enum class BulletType
 	{
 		Player,
 		Enemy,
 	};
 
-	// ’e‚Ìƒpƒ‰ƒ[ƒ^[
+	/**
+	* @brief å¼¾ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
+	*/
 	struct BulletState
 	{
 		BulletType m_bulletType{};
-		float m_speed{ 10.0f };		// ‘¬“x
-		int m_deleteTime{ 300 };	// ¶‘¶ŠÔ
-		int m_coolTime{ 60 };		// ƒN[ƒ‹ƒ^ƒCƒ€
+		float m_speed{ 10.0f };		// é€Ÿåº¦
+		int m_deleteTime{ 300 };	// ç”Ÿå­˜æ™‚é–“
+		int m_coolTime{ 60 };		// ã‚¯ãƒ¼ãƒ«ã‚¿ã‚¤ãƒ 
 	};
 
+	/**
+	* @brief å¼¾ã‚¯ãƒ©ã‚¹
+	*/
 	class Bullet : public ObjBase
 	{
 	public:
@@ -36,12 +41,14 @@ namespace Game
 
 		void Hit(ObjBase* obj_base_);
 
+		// ã‚¢ã‚¯ã‚»ã‚µ
+
 		BulletState GetState() { return m_bulletState; }
 		int GetDeleteTime() { return m_bulletState.m_deleteTime; }
 
 	private:
-		BulletState m_bulletState{};
-		std::string m_objName{ "none" };
+		BulletState m_bulletState{};		/// å¼¾ã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
+		std::string m_objName{ "none" };	/// ã‚ªãƒ–ã‚¸ã‚§æç”»æ™‚ã®åå‰
 	};
 }
 
