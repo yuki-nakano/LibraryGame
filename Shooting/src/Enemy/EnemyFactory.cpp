@@ -10,7 +10,7 @@ namespace Game
 	EnemyFactory::EnemyFactory(EnemyFactoryState enemy_factory_state_)
 		:m_enemyFactoryState(enemy_factory_state_)
 	{
-		engine::Library::LoadObj("res/Obj/enemy/Star.obj", "star");
+		engine::Library::LoadObj("res/enemy/Star.obj", "star");
 		m_rote.y += 90.0f;
 		m_pos.z += 400.0f;
 		m_scale = engine::Vec3f(10.0f, 10.0f, 10.0f);

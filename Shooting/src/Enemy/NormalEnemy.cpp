@@ -15,7 +15,7 @@ namespace Game
 		m_aiTree->AddNode("Root", new Node("Loop", Node::SelectRule::None, 1, new ActionLoop));
 		m_aiTree->AddNode("Root", new Node("Dead", Node::SelectRule::None, 0, new ActionDead, nullptr, new JudgmentDead));
 
-		engine::Library::LoadObj("res/Obj/enemy/Alien.obj", "alien");
+		engine::Library::LoadObj("res/enemy/Alien.obj", "alien");
 
 		m_scale = engine::Vec3f(100.0f, 100.0f, 100.0f);
 
