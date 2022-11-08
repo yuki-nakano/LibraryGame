@@ -6,6 +6,8 @@
 
 #include <vector>
 
+class BulletManager;
+
 namespace Game
 {
 	/**
@@ -24,8 +26,8 @@ namespace Game
 	class EnemyFactory : public ObjBase
 	{
 	public:
-		EnemyFactory(EnemyFactoryState enemy_factory_state_);
-		~EnemyFactory() = default;
+		EnemyFactory(BulletManager* bullet_manager_, EnemyFactoryState enemy_factory_state_);
+		~EnemyFactory();
 
 	public:
 		void Update();
@@ -50,6 +52,9 @@ namespace Game
 		EnemyFactoryState GetFactoryState() { return m_enemyFactoryState; }
 
 	private:
+		/// 弾
+		BulletManager* m_bullet{};
+
 		/// エネミーファクトリーのステータス
 		EnemyFactoryState m_enemyFactoryState{};
 

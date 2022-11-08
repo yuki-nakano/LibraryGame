@@ -3,6 +3,7 @@
 
 #include "../Scene/InGame/ObjBase.h"
 #include "../Library/Library.h"
+#include "../Scene/InGame/BulletManager.h"
 #include "Tree.h"
 
 namespace Game
@@ -19,7 +20,10 @@ namespace Game
 	{
 	public:
 		EnemyBase() = default;
-		virtual ~EnemyBase() = default;
+		virtual ~EnemyBase()
+		{
+			delete m_tree;
+		}
 
 	public:
 		/**
@@ -41,6 +45,22 @@ namespace Game
 			m_objState.hp -= obj_base_->GetState().damage;
 		}
 
+		/**
+		* @brief 弾の発射関数
+		*/
+		void ShotBullet()
+		{
+			if (m_bulletCoolTimer <= 0)
+			{
+				ObjState objState{ 1, 100, 20.0f };
+				m_bullet->CreateBullet(m_bulletState, objState, m_pos, m_rote, engine::Vec3f(10.0f, 10.0f, 10.0f));
+
+				m_bulletCoolTimer = m_bulletState.m_coolTime;
+			}
+
+			m_bulletCoolTimer--;
+		}
+
 		// タイマー減少関数
 		void SubDeadTimer() { m_deadTimer--; }
 
@@ -49,6 +69,7 @@ namespace Game
 
 		// 切り替え関数
 		void ChangeAlive() { m_isAlive ? m_isAlive = false : m_isAlive = true; }
+
 
 		// アクセサ
 
@@ -66,6 +87,9 @@ namespace Game
 		void SetTargetPos(const engine::Vec3f& target_pos_) { m_targetPos = target_pos_; }
 
 	protected:
+		/// 弾
+		BulletManager* m_bullet{};
+
 		// ビヘービア用ツリー
 		Tree* m_tree{};
 
@@ -88,6 +112,17 @@ namespace Game
 
 		int m_invincibleTime{ 60 };	/// 無敵時間
 		int m_invincibleTimer{ 0 };	/// 無敵時間のカウント
+
+		/// 弾のステータス
+		BulletState m_bulletState{
+		BulletType::Enemy,
+		50.0f,
+		300,
+		120,
+		"bullet"
+		};
+
+		int m_bulletCoolTimer{ 0 };		/// 弾のクールタイマー
 	};
 }
 

@@ -3,23 +3,20 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 
-#include "ActionLoop.h"
-#include "ActionDead.h"
-#include "JudgmentDead.h"
+#include "ActionEnemy.h"
+#include "JudgementAction.h"
 
 namespace Game
 {
-	NormalEnemy::NormalEnemy(const engine::Vec3f& factory_pos_)
+	NormalEnemy::NormalEnemy(BulletManager* bullet_manager_)
 	{
 		m_aiTree = new Tree(new Node("Root", Node::SelectRule::Priority, 0));
-		m_aiTree->AddNode("Root", new Node("Loop", Node::SelectRule::None, 1, new ActionLoop));
-		m_aiTree->AddNode("Root", new Node("Dead", Node::SelectRule::None, 0, new ActionDead, nullptr, new JudgmentDead));
-
-		engine::Library::LoadObj("res/enemy/Alien.obj", "alien");
+		m_aiTree->AddNode("Root", new Node("Loop", Node::SelectRule::None, 1, ActionLoop));
+		m_aiTree->AddNode("Root", new Node("Dead", Node::SelectRule::None, 0, ActionDead, JudgeDead));
 
 		m_scale = engine::Vec3f(100.0f, 100.0f, 100.0f);
 
-		//m_objState = { 1, 5, 50.0f };
+		m_bullet = bullet_manager_;
 	}
 
 	void NormalEnemy::Update()

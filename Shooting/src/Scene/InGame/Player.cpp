@@ -12,7 +12,6 @@ namespace Game
 		:m_stage(stage_)
 		, m_bullet(bullet_manager_)
 	{
-		engine::Library::LoadObj("res/Obj/hikouki.obj", "Player");
 		m_rote.y += 90.0f;
 		m_pos.x =
 			m_pos.z = 400.0f;
@@ -23,7 +22,6 @@ namespace Game
 
 	Player::~Player()
 	{
-		engine::Library::DeleteObj("Player");
 	}
 
 	void Player::Update()
@@ -45,11 +43,6 @@ namespace Game
 
 	void Player::Draw()
 	{
-		//engine::Library::RenderObj("Player", m_pos, m_rote, m_scale);
-
-		//engine::Vec3f pos = m_pos;
-		//engine::Library::RenderObj("Player", pos += engine::Vec3f(0.0f, 0.0f, 100.0f), m_rote, engine::Vec3f(1.0f, 1.0f, 1.0f));
-
 	}
 
 	void Player::Hit(ObjBase* obj_base_)

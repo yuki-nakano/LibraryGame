@@ -9,6 +9,11 @@ namespace Game
 	{
 	}
 
+	Tree::~Tree()
+	{
+		Delete();
+	}
+
 	bool Tree::AddNode(const std::string& search_name_, Node* add_node_)
 	{
 		Node* result = m_root->Search(search_name_);

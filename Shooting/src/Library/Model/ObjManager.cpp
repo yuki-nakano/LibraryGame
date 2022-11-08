@@ -4,9 +4,11 @@ namespace engine
 {
 	ObjManager::~ObjManager()
 	{
-		for (auto obj : m_objList)
+		for (auto itr = m_objList.begin(); itr != m_objList.end();)
 		{
-			delete obj.second;
+			delete itr->second;
+
+			itr = m_objList.erase(itr);
 		}
 	}
 

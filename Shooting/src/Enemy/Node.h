@@ -6,8 +6,8 @@
 #include <stdlib.h>
 #include <vector>
 
-#include "ExecJudgmentBase.h"
-#include "ActionBase.h"
+#include "ActionEnemy.h"
+#include "JudgementAction.h"
 
 namespace Game
 {
@@ -32,12 +32,11 @@ namespace Game
 		* @param name_ 登録するノード名前
 		* @param rule_ ノード選択時のルール
 		* @param priority_ 優先度
-		* @param action_ 実行するクラス
-		* @param parent_ 親ノードの名前
-		* @param execute_ 実行判定クラス
+		* @param action_ 実行する関数
+		* @param judge_ 実行判定関数
 		*/
 		Node(const std::string& name_, const SelectRule& rule_, const unsigned int& priority_,
-			ActionBase* action_ = nullptr, Node* parent_ = nullptr, ExecJudgmentBase* execute_ = nullptr);
+			ActionState(*action_)(EnemyBase*) = nullptr, bool (*judge_)(EnemyBase*) = nullptr);
 		~Node() = default;
 
 	public:
@@ -52,12 +51,6 @@ namespace Game
 		* @parma child_ 子ノードの情報
 		*/
 		void AddChild(Node* child_);
-
-		/**
-		* @brief 親の設定
-		* @param parent_ 親ノード
-		*/
-		void SetParent(Node* parent_) { m_parent = parent_; }
 
 		/**
 		* @brief ノードの全削除
@@ -91,14 +84,12 @@ namespace Game
 		ActionState Update(EnemyBase* enemy_);
 
 	private:
-		std::string m_name;	/// 名前
-		Node* m_parent;		/// 親
-		std::vector<Node*> m_children;	/// 子供ノードのリスト
-		ExecJudgmentBase* m_execute;	/// 実行可能かの判定関数
-		SelectRule m_rule;				/// ノード選択のルール
-		unsigned int m_priority;		/// 優先度
-
-		ActionBase* m_action;	/// 実行関数
+		std::string m_name{};	/// 名前
+		std::vector<Node*> m_children{};	/// 子供ノードのリスト
+		SelectRule m_rule{};			/// ノード選択のルール
+		unsigned int m_priority{};		/// 優先度
+		ActionState(*m_Action)(EnemyBase*);	/// 実行関数
+		bool (*m_Judge)(EnemyBase*) {};			/// 実行判定関数
 	};
 }
 

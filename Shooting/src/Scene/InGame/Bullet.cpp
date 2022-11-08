@@ -24,7 +24,7 @@ namespace Game
 
 	void Bullet::Draw()
 	{
-		engine::Library::RenderObj("star", m_pos, m_rote, m_scale);
+		engine::Library::RenderObj(m_bulletState.m_objName, m_pos, m_rote, m_scale);
 	}
 
 	void Bullet::Hit(ObjBase* obj_base_)

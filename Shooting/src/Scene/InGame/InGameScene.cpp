@@ -10,6 +10,7 @@ namespace Game
 	InGameScene::InGameScene()
 	{
 		std::vector<int> keyList = { KEY_A, KEY_D, KEY_S, KEY_W, KEY_SPACE, KEY_SHIFT ,KEY_LMOUSE ,KEY_ESC };
+		nextScene = Scene::Title;
 		engine::Library::RegisterKey(keyList);
 		engine::Library::SetZ(0.1f, 5000.0f);
 
@@ -19,10 +20,8 @@ namespace Game
 		m_gameUI = new GameUI(m_player);
 		m_camera = new CameraManager(m_player);
 		m_option = new Option;
-
-		m_enemy = new EnemyManager(m_stage);
-
-		nextScene = Scene::Title;
+		m_enemy = new EnemyManager(m_stage, m_bullet);
+		m_result = new Result(m_enemy);
 
 		ShowCursor(FALSE);
 	}
@@ -30,6 +29,7 @@ namespace Game
 	InGameScene::~InGameScene()
 	{
 		delete m_enemy;
+		delete m_result;
 		delete m_option;
 		delete m_bullet;
 		delete m_gameUI;
@@ -42,6 +42,16 @@ namespace Game
 
 	void InGameScene::Exec()
 	{
+		if (m_result->Exec())
+		{
+			if (engine::Library::IsHeldKey(KEY_ENTER))
+			{
+				m_isNextScene = true;
+			}
+
+			return;
+		}
+
 		if (m_option->Exec())
 		{
 			return;
@@ -57,6 +67,11 @@ namespace Game
 
 		SetCursorPos(GetSystemMetrics(SM_CXSCREEN) / 2, GetSystemMetrics(SM_CYSCREEN) / 2);
 		m_timer++;
+
+		if (m_player->GetState().hp < 0)
+		{
+			m_result->ConvertIsAlive();
+		}
 	}
 
 	void InGameScene::Draw()
@@ -68,11 +83,15 @@ namespace Game
 		m_enemy->Draw();
 
 		m_gameUI->DrawPlayerUI();
+
+		m_option->Draw();
+
+		m_result->Draw();
 	}
 
 	bool InGameScene::IsEnd()
 	{
-		return false;
+		return m_isNextScene;
 	}
 
 	void InGameScene::Collide()
@@ -116,6 +135,4 @@ namespace Game
 			obj_base_->Hit(result);
 		}
 	}
-
-
 }

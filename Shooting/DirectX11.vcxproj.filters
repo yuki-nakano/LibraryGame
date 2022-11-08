@@ -136,23 +136,20 @@
     <ClCompile Include="src\Enemy\Tree.cpp">
       <Filter>ソース ファイル\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="src\Enemy\ActionLoop.cpp">
-      <Filter>ソース ファイル\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Enemy\ActionChase.cpp">
-      <Filter>ソース ファイル\Enemy</Filter>
-    </ClCompile>
     <ClCompile Include="src\Scene\InGame\Option.cpp">
       <Filter>ソース ファイル\Scene\InGame</Filter>
     </ClCompile>
     <ClCompile Include="src\Enemy\EnemyManager.cpp">
       <Filter>ソース ファイル\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="src\Enemy\ActionDead.cpp">
+    <ClCompile Include="src\Enemy\JudgementAction.cpp">
       <Filter>ソース ファイル\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="src\Enemy\JudgmentDead.cpp">
+    <ClCompile Include="src\Enemy\ActionEnemy.cpp">
       <Filter>ソース ファイル\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Scene\InGame\Result.cpp">
+      <Filter>ソース ファイル\Scene\InGame</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -252,13 +249,7 @@
     <ClInclude Include="src\Scene\InGame\Collision.h">
       <Filter>ソース ファイル\Scene\InGame</Filter>
     </ClInclude>
-    <ClInclude Include="src\Enemy\EnemyBase.h">
-      <Filter>ソース ファイル\Enemy</Filter>
-    </ClInclude>
     <ClInclude Include="src\Enemy\EnemyFactory.h">
-      <Filter>ソース ファイル\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Enemy\ExecJudgmentBase.h">
       <Filter>ソース ファイル\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="src\Enemy\Node.h">
@@ -270,16 +261,7 @@
     <ClInclude Include="src\Enemy\Tree.h">
       <Filter>ソース ファイル\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="src\Enemy\ActionBase.h">
-      <Filter>ソース ファイル\Enemy</Filter>
-    </ClInclude>
     <ClInclude Include="src\Enemy\NodeBase.h">
-      <Filter>ソース ファイル\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Enemy\ActionLoop.h">
-      <Filter>ソース ファイル\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Enemy\ActionChase.h">
       <Filter>ソース ファイル\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="src\Scene\InGame\Option.h">
@@ -291,10 +273,16 @@
     <ClInclude Include="src\Random.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="src\Enemy\ActionDead.h">
+    <ClInclude Include="src\Enemy\JudgementAction.h">
       <Filter>ソース ファイル\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="src\Enemy\JudgmentDead.h">
+    <ClInclude Include="src\Enemy\ActionEnemy.h">
+      <Filter>ソース ファイル\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Scene\InGame\Result.h">
+      <Filter>ソース ファイル\Scene\InGame</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Enemy\EnemyBase.h">
       <Filter>ソース ファイル\Enemy</Filter>
     </ClInclude>
   </ItemGroup>

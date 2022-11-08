@@ -2,9 +2,9 @@
 #define NORMAL_ENEMY_H
 
 #include "../Enemy/EnemyBase.h"
-#include "ActionBase.h"
 #include "Tree.h"
 #include "../Library/Library.h"
+#include "../Scene/InGame/BulletManager.h"
 
 namespace Game
 {
@@ -14,7 +14,7 @@ namespace Game
 	class NormalEnemy : public EnemyBase
 	{
 	public:
-		NormalEnemy(const engine::Vec3f& factory_pos_);
+		NormalEnemy(BulletManager* bullet_manager_);
 		~NormalEnemy() = default;
 
 		void Update();

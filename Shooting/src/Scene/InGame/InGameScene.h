@@ -8,6 +8,7 @@
 #include "Stage.h"
 #include "BulletManager.h"
 #include "Option.h"
+#include "Result.h"
 #include "../../Enemy/EnemyManager.h"
 
 namespace Game
@@ -44,8 +45,11 @@ namespace Game
 		BulletManager* m_bullet{};	/// 弾
 		EnemyManager* m_enemy{};	/// エネミー
 		Option* m_option{};			/// オプション
+		Result* m_result{};			/// リザルト
 
 		int m_timer{ 0 };	/// タイマー
+
+		bool m_isNextScene{ false };
 	};
 }
 

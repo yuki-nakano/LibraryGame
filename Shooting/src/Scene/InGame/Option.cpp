@@ -21,10 +21,12 @@ namespace Game
 		}
 
 		return m_isAlive;
-
 	}
 
 	void Option::Draw()
 	{
+		if (!m_isAlive) { return; }
+
+		engine::Library::DrawRect(engine::Vec2f(0.0f, 0.0f), 1080, 920, engine::Vec3f(1.0f, 1.0f, 1.0f), 0.5f);
 	}
 }

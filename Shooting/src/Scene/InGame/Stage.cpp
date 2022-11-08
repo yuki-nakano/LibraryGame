@@ -42,6 +42,16 @@ namespace Game
 		}
 	}
 
+	Stage::~Stage()
+	{
+		for (int i = 0; i < 3; i++)
+		{
+			engine::Library::ReleseObj(m_mapName.at(i));
+		}
+
+		engine::Library::ReleseTexture("sky");
+	}
+
 	void Stage::Update(Player* player_)
 	{
 		if (engine::Library::IsHeldKey(KEY_A))

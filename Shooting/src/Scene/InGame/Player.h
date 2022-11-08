@@ -25,7 +25,7 @@ namespace Game
 
 		// アクセサ
 
-		float GetEnergyPer() { return m_objState.hp / m_objState.hp; }
+		float GetEnergyPer() { return (m_objState.hp / 1000); }
 		float GetSpeed() { return m_moveSpeed / m_maxSpeed; }
 		float GetEyeRoteXZ() { return m_eyeRoteXZ; }
 		float GetEyeRoteY() { return m_eyeRoteY; }

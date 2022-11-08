@@ -7,13 +7,22 @@
 
 namespace Game
 {
-	EnemyFactory::EnemyFactory(EnemyFactoryState enemy_factory_state_)
-		:m_enemyFactoryState(enemy_factory_state_)
+	EnemyFactory::EnemyFactory(BulletManager* bullet_manager_, EnemyFactoryState enemy_factory_state_)
+		: m_bullet(bullet_manager_)
+		, m_enemyFactoryState(enemy_factory_state_)
 	{
-		engine::Library::LoadObj("res/enemy/Star.obj", "star");
 		m_rote.y += 90.0f;
 		m_pos.z += 400.0f;
 		m_scale = engine::Vec3f(10.0f, 10.0f, 10.0f);
+	}
+
+	EnemyFactory::~EnemyFactory()
+	{
+		for (auto itr = m_enemyList.begin(); itr != m_enemyList.end();)
+		{
+			delete* itr;
+			itr = m_enemyList.erase(itr);
+		}
 	}
 
 	void EnemyFactory::Update()
@@ -65,7 +74,7 @@ namespace Game
 		switch (m_enemyFactoryState.enemyType)
 		{
 		case EnemyType::normal:
-			enemyBase = new NormalEnemy(m_pos);
+			enemyBase = new NormalEnemy(m_bullet);
 			break;
 		default:
 			break;

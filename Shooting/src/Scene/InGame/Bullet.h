@@ -23,6 +23,7 @@ namespace Game
 		float m_speed{ 10.0f };		// 速度
 		int m_deleteTime{ 300 };	// 生存時間
 		int m_coolTime{ 60 };		// クールタイム
+		std::string m_objName{ "star" };	/// オブジェ描画時の名前
 	};
 
 	/**
@@ -48,7 +49,6 @@ namespace Game
 
 	private:
 		BulletState m_bulletState{};		/// 弾のステータス
-		std::string m_objName{ "none" };	/// オブジェ描画時の名前
 	};
 }
 

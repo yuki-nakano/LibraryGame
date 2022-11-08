@@ -8,7 +8,7 @@ namespace Game
 	{
 	public:
 		GameUI(Player* player_);
-		~GameUI() {};
+		~GameUI();
 
 	public:
 		void Update();

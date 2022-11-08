@@ -14,8 +14,8 @@ namespace Game
 	class EnemyManager
 	{
 	public:
-		EnemyManager(Stage* stage_);
-		~EnemyManager() = default;
+		EnemyManager(Stage* stage_, BulletManager* bullet_manager_);
+		~EnemyManager();
 
 	public:
 		void Update();
@@ -33,7 +33,16 @@ namespace Game
 		*/
 		ObjBase* Collide(ObjBase* obj_base_);
 
+		/**
+		* @brief 倒したエネミーの数の取得
+		* @return 倒したエネミーの数
+		*/
+		int GetDeadEnemyNum();
+
 	private:
+		/// 弾
+		BulletManager* m_bullet{};
+
 		/// 生成したエネミーファクトリー
 		std::vector<EnemyFactory*> m_enemyList{};
 		Stage* m_stage{};
@@ -42,6 +51,8 @@ namespace Game
 		int m_summmonTime{ 300 };	/// 生成時間 
 
 		int m_maxEnemyNum{ 1 };	/// 生成できるエネミーファクトリーの最大数
+
+		int m_deadEnemyNum{ 0 };	/// 倒されたエネミーの数	
 	};
 }
 

@@ -14,8 +14,8 @@ namespace Game
 	class BulletManager
 	{
 	public:
-		BulletManager() = default;
-		~BulletManager() = default;
+		BulletManager();
+		~BulletManager();
 
 	public:
 		/**

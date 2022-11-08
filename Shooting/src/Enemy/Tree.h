@@ -11,7 +11,7 @@ namespace Game
 	{
 	public:
 		Tree(Node* node_);
-		~Tree() = default;
+		~Tree();
 
 		/**
 		* @brief ノード追加

@@ -41,7 +41,7 @@ namespace Game
 
 	public:
 		Stage();
-		~Stage() = default;
+		~Stage();
 
 	public:
 		void Update(Player* player_);
@@ -56,7 +56,6 @@ namespace Game
 		StageSize m_stageSize{};
 		std::vector<std::vector<int>> m_stageData{};	/// ステージデータ
 		std::array<std::string, 6> m_mapName{};			/// マップチップデータ
-
 
 		// 背景用座標
 		engine::Vec2f m_bgPos1{};
