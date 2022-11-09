@@ -59,7 +59,7 @@ namespace Game
 			m_bgPos1.x -= 0.5f * player_->GetSpeed();
 			m_bgPos2.x -= 0.5f * player_->GetSpeed();
 
-			// 背景画像サイズ　3080 * 1080
+			// 背景画像サイズ　3840 * 1080
 			if (m_bgPos1.x < -3840 + 1080)
 			{
 				m_bgPos2.x = m_bgPos1.x + 1080;
