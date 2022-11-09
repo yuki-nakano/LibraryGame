@@ -89,11 +89,6 @@ namespace Game
 		m_result->Draw();
 	}
 
-	bool InGameScene::IsEnd()
-	{
-		return m_isNextScene;
-	}
-
 	void InGameScene::Collide()
 	{
 		for (auto bullet : m_bullet->GetBulletList())

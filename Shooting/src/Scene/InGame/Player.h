@@ -10,25 +10,37 @@ class Stage;
 
 namespace Game
 {
+	/**
+	* @brief プレイヤー
+	*/
 	class Player : public ObjBase
 	{
 	public:
 		Player(Stage* stage_, BulletManager* bullet_manager_);
-		~Player();
+		~Player() = default;
 
 	public:
+		/**
+		* @brief 更新関数
+		*/
 		void Update();
 
+		/**
+		* @brief 描画関数
+		*/
 		void Draw();
 
+		/**
+		* @brief 接触時に呼び出す関数
+		*/
 		void Hit(ObjBase* obj_base_);
 
 		// アクセサ
 
-		float GetEnergyPer() { return (m_objState.hp / 1000); }
 		float GetSpeed() { return m_moveSpeed / m_maxSpeed; }
 		float GetEyeRoteXZ() { return m_eyeRoteXZ; }
 		float GetEyeRoteY() { return m_eyeRoteY; }
+		float GetHeight() { return m_height; }
 
 	private:
 		/**
@@ -42,14 +54,11 @@ namespace Game
 		void MoveReturn();
 
 	private:
-		/// ステージ
-		Stage* m_stage{};
-		/// 弾
-		BulletManager* m_bullet{};
+		Stage* m_stage{};			/// ステージ
+		BulletManager* m_bullet{};	/// 弾
 
 		/// 移動量
 		engine::Vec3f m_moveVec{};
-
 
 		float m_moveSpeed{ 0.0f };	/// 速度
 		float m_jump{};				/// ジャンプの移動量
@@ -75,6 +84,8 @@ namespace Game
 		float m_eyeRoteY{ 0.0f };		/// Yの回転角度
 
 		int m_bulletCoolTimer{ 0 };		/// 弾のクールタイマー
+
+		float m_height{ 100 };			/// プレイヤーの身長
 	};
 }
 

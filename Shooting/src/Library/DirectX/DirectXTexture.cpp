@@ -85,7 +85,7 @@ namespace engine
 		context->DrawIndexed(4, 0, 0);
 	}
 
-	void DirectXTexture::ReleseTexture(const std::string& name_)
+	void DirectXTexture::ReleaseTexture(const std::string& name_)
 	{
 		texList.at(name_)->Release();
 		texList.erase(name_);

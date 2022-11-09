@@ -42,7 +42,6 @@ namespace Game
 	private:
 		/// ルートノード
 		Node* m_root;
-
 	};
 }
 

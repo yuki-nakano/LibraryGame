@@ -7,8 +7,9 @@
 
 namespace Game
 {
-	Bullet::Bullet(const BulletState& bullet_state)
-		: m_bulletState(bullet_state)
+	Bullet::Bullet(const BulletState& bullet_state_, const engine::Vec3f& pos_, const engine::Vec3f& rote_, const engine::Vec3f& scale_)
+		: m_bulletState(bullet_state_)
+		, ObjBase(pos_, rote_, scale_)
 	{
 	}
 

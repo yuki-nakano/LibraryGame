@@ -9,11 +9,19 @@ namespace Game
 	class Option
 	{
 	public:
-		Option() = default;
-		~Option() = default;
+		Option();
+		~Option();
 
 	public:
+		/**
+		* @brief 実行関数
+		* @return 実行中はtrue
+		*/
 		bool Exec();
+
+		/**
+		* @brief 描画関数
+		*/
 		void Draw();
 
 	private:

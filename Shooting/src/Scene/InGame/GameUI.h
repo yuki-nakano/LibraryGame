@@ -4,6 +4,9 @@
 
 namespace Game
 {
+	/**
+	* @brief ゲームシーン中のUI
+	*/
 	class GameUI
 	{
 	public:
@@ -11,8 +14,14 @@ namespace Game
 		~GameUI();
 
 	public:
+		/**
+		* @brief 更新関数
+		*/
 		void Update();
 
+		/**
+		* @brief 描画関数
+		*/
 		void Draw();
 
 		/**

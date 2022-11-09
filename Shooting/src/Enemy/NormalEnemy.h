@@ -15,17 +15,26 @@ namespace Game
 	{
 	public:
 		NormalEnemy(BulletManager* bullet_manager_);
-		~NormalEnemy() = default;
+		~NormalEnemy();
 
+		/**
+		* @brief 更新関数
+		*/
 		void Update();
 
+		/**
+		* @brief 描画関数
+		*/
 		void Draw();
 
+		/**
+		* @brief 接触時に呼び出す関数
+		*/
 		void Hit(ObjBase* obj_base_);
 
 	private:
-		Tree* m_aiTree;		/// ビヘービアツリー
-		Node* m_activeNode;	/// 実行ノード
+		Tree* m_aiTree{};		/// ビヘービアツリー
+		Node* m_activeNode{};	/// 実行ノード
 	};
 }
 

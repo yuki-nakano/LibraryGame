@@ -18,11 +18,9 @@ namespace Game
 			3
 		};
 
-		EnemyFactory* enemyFactory = new EnemyFactory(m_bullet, enemyFactoryState);
-
-		enemyFactory->SetPos(engine::Vec3f(m_stage->GetStageData().stageFront / 2,
-			10,
-			m_stage->GetStageData().stageLeft / 2));
+		// ゲーム開始時に画面中央に一体生成
+		EnemyFactory* enemyFactory = new EnemyFactory(m_bullet, enemyFactoryState,
+			engine::Vec3f(m_stage->GetStageData().stageFront / 2, 100, m_stage->GetStageData().stageLeft / 2));
 
 		m_enemyList.push_back(enemyFactory);
 	}
@@ -67,7 +65,7 @@ namespace Game
 			{
 				CreateEnemy();
 
-				m_summonTimer = m_summmonTime;
+				m_summonTimer = m_summonTime;
 			}
 		}
 	}
@@ -89,13 +87,12 @@ namespace Game
 			3
 		};
 
-		EnemyFactory* enemyFactory = new EnemyFactory(m_bullet, enemyFactoryState);
-
-		enemyFactory->SetPos(engine::Vec3f(
-			RandomNum(m_stage->GetStageData().stageBack, m_stage->GetStageData().stageFront),
-			RandomNum(m_stage->GetStageData().stageDown, m_stage->GetStageData().stageUp),
-			RandomNum(m_stage->GetStageData().stageRight, m_stage->GetStageData().stageLeft)
-		));
+		// 画面内のランダムな位置に生成
+		EnemyFactory* enemyFactory = new EnemyFactory(m_bullet, enemyFactoryState
+			, engine::Vec3f(
+				RandomNum(m_stage->GetStageData().stageBack, m_stage->GetStageData().stageFront),
+				RandomNum(m_stage->GetStageData().stageDown, m_stage->GetStageData().stageUp),
+				RandomNum(m_stage->GetStageData().stageRight, m_stage->GetStageData().stageLeft)));
 
 		m_enemyList.push_back(enemyFactory);
 	}

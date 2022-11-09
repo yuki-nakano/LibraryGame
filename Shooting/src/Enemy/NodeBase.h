@@ -11,6 +11,9 @@ namespace Game
 		virtual ~NodeBase() = default;
 
 	public:
+		/**
+		* @brief 実行関数
+		*/
 		virtual bool Exec() = 0;
 	};
 }

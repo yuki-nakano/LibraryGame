@@ -37,7 +37,6 @@ namespace Game
 	{
 		if (child_ != nullptr)
 		{
-			//child_->SetParent(this);
 			m_children.push_back(child_);
 		}
 	}
@@ -77,10 +76,10 @@ namespace Game
 		{
 		case Node::SelectRule::None:
 			break;
-		case Node::SelectRule::Priority:
+		case Node::SelectRule::PrioritySelect:
 			selectNode = SelectPriorty(list, enemy_);
 			break;
-		case Node::SelectRule::Random:
+		case Node::SelectRule::RandomSelect:
 			selectNode = SelectRandom(list);
 			break;
 		default:

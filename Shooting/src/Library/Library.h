@@ -198,7 +198,7 @@ namespace engine
 		* @brief テクスチャの解放
 		* @param name_ LoadTexture関数で登録した名前
 		*/
-		static void ReleseTexture(const std::string& name_) { m_instance->texture->ReleseTexture(name_); }
+		static void ReleaseTexture(const std::string& name_) { m_instance->texture->ReleaseTexture(name_); }
 
 		//------------------------------------------------------------
 		//   Obj

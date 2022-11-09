@@ -17,9 +17,9 @@ namespace Game
 
 	TitleScene::~TitleScene()
 	{
-		engine::Library::ReleseTexture("TitleBG");
-		engine::Library::ReleseTexture("Title");
-		engine::Library::ReleseTexture("TitleButton");
+		engine::Library::ReleaseTexture("TitleBG");
+		engine::Library::ReleaseTexture("Title");
+		engine::Library::ReleaseTexture("TitleButton");
 	}
 
 	void TitleScene::Exec()
@@ -35,10 +35,5 @@ namespace Game
 		engine::Library::DrawTexture("TitleBG", engine::Vec2f(0.0f, 0.0f), 1080, 720);
 		engine::Library::DrawTexture("Title", engine::Vec2f(191.0f, 100.0f), 698.0f, 84.0f);
 		engine::Library::DrawTexture("TitleButton", engine::Vec2f(104.0f, 500.0f), 872.0f, 98.0f);
-	}
-
-	bool TitleScene::IsEnd()
-	{
-		return m_isNextScene;
 	}
 }

@@ -23,15 +23,21 @@ namespace Game
 	/**
 	* @brief エネミー生成クラス
 	*/
-	class EnemyFactory : public ObjBase
+	class EnemyFactory
 	{
 	public:
-		EnemyFactory(BulletManager* bullet_manager_, EnemyFactoryState enemy_factory_state_);
+		EnemyFactory(BulletManager* bullet_manager_, EnemyFactoryState enemy_factory_state_, const engine::Vec3f& pos_);
 		~EnemyFactory();
 
 	public:
+		/**
+		* @brief 更新関数
+		*/
 		void Update();
 
+		/**
+		* @brief 描画関数
+		*/
 		void Draw();
 
 		/**
@@ -45,11 +51,12 @@ namespace Game
 		*/
 		ObjBase* Collide(ObjBase* obj_base_);
 
-		void Hit(ObjBase* obj_base_);
-
 		// アクセサ
 
 		EnemyFactoryState GetFactoryState() { return m_enemyFactoryState; }
+		engine::Vec3f GetPos() { return m_pos; }
+
+		void SetPos(const engine::Vec3f& pos_) { m_pos = pos_; }
 
 	private:
 		/// 弾
@@ -62,7 +69,9 @@ namespace Game
 		std::vector<EnemyBase*> m_enemyList{};
 
 		int m_summonTimer{ 0 };		/// 生成タイマー
-		int m_summmonTime{ 300 };	/// 生成時間
+		int m_summonTime{ 300 };	/// 生成時間
+
+		engine::Vec3f m_pos{};	/// 座標
 	};
 }
 

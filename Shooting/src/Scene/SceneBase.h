@@ -17,8 +17,8 @@ namespace Game
 	class SceneBase
 	{
 	public:
-		SceneBase() {};
-		virtual ~SceneBase() {};
+		SceneBase() = default;
+		virtual ~SceneBase() = default;
 
 	public:
 		/**
@@ -32,14 +32,21 @@ namespace Game
 		virtual void Draw() = 0;
 
 		/**
-		* @brief シーン終了
+		* @brief シーン終了判定関数
 		*/
-		virtual bool IsEnd() = 0;
+		bool IsEnd()
+		{
+			return m_isNextScene;
+		}
 
 		Scene GetNextScene() const { return nextScene; };
 
 	protected:
+		/// 次のシーン
 		Scene nextScene{};
+
+		/// シーンを終了するか
+		bool m_isNextScene{ false };
 	};
 }
 

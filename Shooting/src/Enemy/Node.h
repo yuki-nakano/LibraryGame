@@ -1,13 +1,13 @@
 ﻿#ifndef NODE_H
 #define NODE_H
 
+#include "ActionEnemy.h"
+#include "JudgementAction.h"
+
 #include <iostream>
 #include <string>
 #include <stdlib.h>
 #include <vector>
-
-#include "ActionEnemy.h"
-#include "JudgementAction.h"
 
 namespace Game
 {
@@ -22,8 +22,8 @@ namespace Game
 		enum class SelectRule
 		{
 			None,		// 最後尾ノードのみ選択
-			Priority,	// 優先
-			Random		// ランダム
+			PrioritySelect,	// 優先
+			RandomSelect		// ランダム
 		};
 
 	public:
@@ -84,12 +84,12 @@ namespace Game
 		ActionState Update(EnemyBase* enemy_);
 
 	private:
-		std::string m_name{};	/// 名前
+		std::string m_name{};				/// 名前
 		std::vector<Node*> m_children{};	/// 子供ノードのリスト
-		SelectRule m_rule{};			/// ノード選択のルール
-		unsigned int m_priority{};		/// 優先度
+		SelectRule m_rule{};				/// ノード選択のルール
+		unsigned int m_priority{};			/// 優先度
 		ActionState(*m_Action)(EnemyBase*);	/// 実行関数
-		bool (*m_Judge)(EnemyBase*) {};			/// 実行判定関数
+		bool (*m_Judge)(EnemyBase*) {};		/// 実行判定関数
 	};
 }
 

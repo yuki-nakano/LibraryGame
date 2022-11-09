@@ -11,17 +11,11 @@ namespace Game
 	Player::Player(Stage* stage_, BulletManager* bullet_manager_)
 		:m_stage(stage_)
 		, m_bullet(bullet_manager_)
+		, ObjBase(engine::Vec3f(400.0f, m_height, 400.0f), engine::Vec3f(0.0f, 90.0f, 0.0f), engine::Vec3f(1.0f, 1.0f, 1.0f))
 	{
-		m_rote.y += 90.0f;
-		m_pos.x =
-			m_pos.z = 400.0f;
 		m_moveSpeed = m_nomalSpeed;
-		ObjState objState{ 1000, 0, 5.0f };
+		ObjState objState{ 1000, 0, 50.0f };
 		SetState(objState);
-	}
-
-	Player::~Player()
-	{
 	}
 
 	void Player::Update()
@@ -32,8 +26,10 @@ namespace Game
 
 		if (engine::Library::IsHeldKey(KEY_LMOUSE) && m_bulletCoolTimer <= 0)
 		{
-			ObjState objState{ 1, 5, 5.0f };
-			m_bullet->CreateBullet(m_bulletState, objState, m_pos, m_rote, engine::Vec3f(10.0f, 10.0f, 10.0f));
+			engine::Vec3f pos = m_pos;
+
+			ObjState objState{ 1, 5, 15.0f };
+			m_bullet->CreateBullet(m_bulletState, objState, pos += engine::Vec3f(0.0f, m_height / 2, 0.0f), m_rote, engine::Vec3f(10.0f, 10.0f, 10.0f));
 
 			m_bulletCoolTimer = m_bulletState.m_coolTime;
 		}
@@ -43,6 +39,7 @@ namespace Game
 
 	void Player::Draw()
 	{
+		engine::Library::RenderObj("star", m_pos, m_rote, engine::Vec3f(1.0f, 1.0f, 1.0f));
 	}
 
 	void Player::Hit(ObjBase* obj_base_)
@@ -117,16 +114,7 @@ namespace Game
 			m_moveVec.y = m_jump;
 		}
 
-
-		m_pos.x += m_moveVec.x;
-		m_pos.y += m_moveVec.y;
-		m_pos.z += m_moveVec.z;
-
-		if (m_pos.y < 0)
-		{
-			m_pos.y = 0.0f;
-			m_canJump = true;
-		}
+		m_pos += m_moveVec;
 
 		m_moveVec = { 0, 0, 0 };
 	}
@@ -141,8 +129,7 @@ namespace Game
 		if (m_pos.x < stageSize.stageBack) { m_pos.x = stageSize.stageBack; }
 		if (m_pos.x > stageSize.stageFront) { m_pos.x = stageSize.stageFront; }
 
-		if (m_pos.y < stageSize.stageDown) { m_pos.y = stageSize.stageDown; }
+		if (m_pos.y < stageSize.stageDown + m_height / 2) { m_pos.y = stageSize.stageDown + m_height / 2; m_canJump = true; }
 		if (m_pos.y > stageSize.stageUp) { m_pos.y = stageSize.stageUp; }
-
 	}
 }

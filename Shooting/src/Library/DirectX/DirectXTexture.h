@@ -66,7 +66,7 @@ namespace engine
 		* @brief テクスチャの解放
 		* @param name_ LoadTexture関数で登録した名前
 		*/
-		void ReleseTexture(const std::string& name_);
+		void ReleaseTexture(const std::string& name_);
 
 	private:
 		/**

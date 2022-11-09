@@ -7,13 +7,11 @@
 
 namespace Game
 {
-	EnemyFactory::EnemyFactory(BulletManager* bullet_manager_, EnemyFactoryState enemy_factory_state_)
+	EnemyFactory::EnemyFactory(BulletManager* bullet_manager_, EnemyFactoryState enemy_factory_state_, const engine::Vec3f& pos_)
 		: m_bullet(bullet_manager_)
 		, m_enemyFactoryState(enemy_factory_state_)
+		, m_pos(pos_)
 	{
-		m_rote.y += 90.0f;
-		m_pos.z += 400.0f;
-		m_scale = engine::Vec3f(10.0f, 10.0f, 10.0f);
 	}
 
 	EnemyFactory::~EnemyFactory()
@@ -53,15 +51,13 @@ namespace Game
 			{
 				CreateEnemy();
 
-				m_summonTimer = m_summmonTime;
+				m_summonTimer = m_summonTime;
 			}
 		}
 	}
 
 	void EnemyFactory::Draw()
 	{
-		engine::Library::RenderObj("star", m_pos, m_rote, m_scale);
-
 		for (auto enemy : m_enemyList)
 		{
 			enemy->Draw();
@@ -81,10 +77,8 @@ namespace Game
 		}
 
 		engine::Vec3f pos(m_pos);
-		enemyBase->SetPos(pos += engine::Vec3f(0.0f, 10.0f, 0.0f));
+		enemyBase->SetPos(pos);
 		enemyBase->SetFactoryPos(m_pos);
-		ObjState objState{ 10, 10, 50.0f };
-		enemyBase->SetState(objState);
 
 		m_enemyList.push_back(enemyBase);
 	}
@@ -106,9 +100,5 @@ namespace Game
 		}
 
 		return result;
-	}
-
-	void EnemyFactory::Hit(ObjBase* obj_base_)
-	{
 	}
 }

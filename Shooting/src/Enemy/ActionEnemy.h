@@ -13,13 +13,25 @@ namespace Game
 		Failed,		/// 行動失敗
 	};
 
-	// 死亡演出
+	/**
+	* @brief 死亡演出
+	* @param enemy_ モーションを適応させるエネミー
+	* @return モーションの状態
+	*/
 	ActionState ActionDead(EnemyBase* enemy_);
 
-	// 旋回
+	/**
+	* @brief 旋回
+	* @param enemy_ モーションを適応させるエネミー
+	* @return モーションの状態
+	*/
 	ActionState ActionLoop(EnemyBase* enemy_);
 
-	// 追跡
+	/**
+	* @brief 追跡
+	* @param enemy_ モーションを適応させるエネミー
+	* @return モーションの状態
+	*/
 	extern ActionState ActionChase(EnemyBase* enemy_);
 }
 

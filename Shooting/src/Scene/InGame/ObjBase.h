@@ -10,9 +10,9 @@ namespace Game
 	*/
 	struct ObjState
 	{
-		int hp{};
-		int damage{};
-		float hitRadius{};
+		int hp{};			/// 体力
+		int damage{};		/// ダメージ
+		float hitRadius{};	/// 当たり判定の半径
 	};
 
 	/**
@@ -21,8 +21,13 @@ namespace Game
 	class ObjBase
 	{
 	public:
-		ObjBase() = default;
-		~ObjBase() = default;
+		ObjBase(const engine::Vec3f& pos_, const engine::Vec3f& rote_, const engine::Vec3f& scale_)
+			: m_pos(pos_)
+			, m_rote(rote_)
+			, m_scale(scale_)
+		{
+		}
+		virtual ~ObjBase() = default;
 
 	public:
 		/**
@@ -56,9 +61,9 @@ namespace Game
 		/// オブジェクトのステータス
 		ObjState m_objState{};
 
-		engine::Vec3f m_pos{};	/// 座標
-		engine::Vec3f m_rote{};	/// 回転
-		engine::Vec3f m_scale{ 1.0f, 1.0f, 1.0f };	/// 拡縮
+		engine::Vec3f m_pos{};		/// 座標
+		engine::Vec3f m_rote{};		/// 回転
+		engine::Vec3f m_scale{};	/// 拡縮
 	};
 }
 

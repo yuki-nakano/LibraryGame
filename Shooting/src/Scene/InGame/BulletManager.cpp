@@ -20,14 +20,10 @@ namespace Game
 
 	void BulletManager::CreateBullet(const BulletState& bullet_state_, const ObjState& obj_state_, const engine::Vec3f& pos_, const engine::Vec3f& rote_, const engine::Vec3f& scale_)
 	{
-		Bullet* bullet = new Bullet(bullet_state_);
-		bullet->SetPos(pos_);
-		bullet->SetScale(scale_);
-		bullet->SetRote(rote_);
+		Bullet* bullet = new Bullet(bullet_state_, pos_, rote_, scale_);
 		bullet->SetState(obj_state_);
 
 		m_bulletList.push_back(bullet);
-
 	}
 
 	void BulletManager::Update()

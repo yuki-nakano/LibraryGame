@@ -32,14 +32,23 @@ namespace Game
 	class Bullet : public ObjBase
 	{
 	public:
-		Bullet(const BulletState& bullet_state);
+		Bullet(const BulletState& bullet_state_, const engine::Vec3f& pos_, const engine::Vec3f& rote_, const engine::Vec3f& scale_);
 		~Bullet() = default;
 
 	public:
+		/**
+		* @brief 更新関数
+		*/
 		void Update();
 
+		/**
+		* @brief 描画関数
+		*/
 		void Draw();
 
+		/**
+		* @brief 接触時に呼び出す関数
+		*/
 		void Hit(ObjBase* obj_base_);
 
 		// アクセサ
@@ -48,7 +57,7 @@ namespace Game
 		int GetDeleteTime() { return m_bulletState.m_deleteTime; }
 
 	private:
-		BulletState m_bulletState{};		/// 弾のステータス
+		BulletState m_bulletState{};	/// 弾のステータス
 	};
 }
 

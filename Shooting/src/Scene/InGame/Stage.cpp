@@ -7,11 +7,11 @@ namespace Game
 {
 	enum class MapData
 	{
-		Street_Empty,	// 空白
-		Street_Deadend,	// 行き止まり
-		Street_Curve,	// カーブ
-		Street_4Way,	// 四角
-		Street_3Way,	// 三角
+		Street_Empty,		// 空白
+		Street_Deadend,		// 行き止まり
+		Street_Curve,		// カーブ
+		Street_4Way,		// 四角
+		Street_3Way,		// 三角
 		Street_Straight,	// 直線
 	};
 
@@ -49,7 +49,7 @@ namespace Game
 			engine::Library::ReleseObj(m_mapName.at(i));
 		}
 
-		engine::Library::ReleseTexture("sky");
+		engine::Library::ReleaseTexture("sky");
 	}
 
 	void Stage::Update(Player* player_)
@@ -59,6 +59,7 @@ namespace Game
 			m_bgPos1.x -= 0.5f * player_->GetSpeed();
 			m_bgPos2.x -= 0.5f * player_->GetSpeed();
 
+			// 背景画像サイズ　3080 * 1080
 			if (m_bgPos1.x < -3840 + 1080)
 			{
 				m_bgPos2.x = m_bgPos1.x + 1080;
@@ -95,8 +96,9 @@ namespace Game
 		{
 			for (int x = 0; x <= m_stageSize.mapNumX; x++)
 			{
+				// objサイズ 200 * 200
 				engine::Library::RenderObj(m_mapName.at(m_stageData[z][x]),
-					engine::Vec3f(0 + 200 * x, -100, 0 + 200 * z), engine::Vec3f(0, 0, 0), engine::Vec3f(100, 100, 100));
+					engine::Vec3f(0 + 200 * x, 0, 0 + 200 * z), engine::Vec3f(0, 0, 0), engine::Vec3f(100, 100, 100));
 			}
 		}
 	}

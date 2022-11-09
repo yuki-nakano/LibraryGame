@@ -9,14 +9,21 @@
 namespace Game
 {
 	NormalEnemy::NormalEnemy(BulletManager* bullet_manager_)
+		: EnemyBase(engine::Vec3f(0.0f, 0.0f, 0.0f), engine::Vec3f(0.0f, 0.0f, 0.0f), engine::Vec3f(100.0f, 100.0f, 100.0f))
 	{
-		m_aiTree = new Tree(new Node("Root", Node::SelectRule::Priority, 0));
+		m_aiTree = new Tree(new Node("Root", Node::SelectRule::PrioritySelect, 0));
 		m_aiTree->AddNode("Root", new Node("Loop", Node::SelectRule::None, 1, ActionLoop));
 		m_aiTree->AddNode("Root", new Node("Dead", Node::SelectRule::None, 0, ActionDead, JudgeDead));
 
-		m_scale = engine::Vec3f(100.0f, 100.0f, 100.0f);
+		ObjState objState{ 10, 5, 50.0f };
+		SetState(objState);
 
 		m_bullet = bullet_manager_;
+	}
+
+	NormalEnemy::~NormalEnemy()
+	{
+		delete m_aiTree;
 	}
 
 	void NormalEnemy::Update()

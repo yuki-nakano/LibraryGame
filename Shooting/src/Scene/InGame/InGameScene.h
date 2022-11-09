@@ -13,6 +13,9 @@
 
 namespace Game
 {
+	/**
+	* @brief ゲームシーン
+	*/
 	class InGameScene : public SceneBase
 	{
 	public:
@@ -20,15 +23,15 @@ namespace Game
 		~InGameScene();
 
 	public:
+		/**
+		* @brief 実行関数
+		*/
 		void Exec();
 
-		void Draw();
-
 		/**
-		* @brief 終了判定関数
-		* @return 終了時にtrue
+		* @brief 描画関数
 		*/
-		bool IsEnd();
+		void Draw();
 
 	private:
 		// 接触判定
@@ -48,8 +51,6 @@ namespace Game
 		Result* m_result{};			/// リザルト
 
 		int m_timer{ 0 };	/// タイマー
-
-		bool m_isNextScene{ false };
 	};
 }
 

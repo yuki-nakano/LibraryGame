@@ -15,14 +15,15 @@ namespace Game
 		~TitleScene();
 
 	public:
+		/**
+		* @brief 実行関数
+		*/
 		void Exec();
 
+		/**
+		* @brief 描画関数
+		*/
 		void Draw();
-
-		bool IsEnd();
-
-	private:
-		bool m_isNextScene{ false };
 	};
 }
 

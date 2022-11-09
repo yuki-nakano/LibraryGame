@@ -40,17 +40,18 @@ namespace Game
 		int GetDeadEnemyNum();
 
 	private:
-		/// 弾
-		BulletManager* m_bullet{};
+
+		BulletManager* m_bullet{};	/// 弾
+		Stage* m_stage{};			/// ステージ
 
 		/// 生成したエネミーファクトリー
 		std::vector<EnemyFactory*> m_enemyList{};
-		Stage* m_stage{};
+
 
 		int m_summonTimer{ 300 };	/// 生成タイマー 
-		int m_summmonTime{ 300 };	/// 生成時間 
+		int m_summonTime{ 300 };	/// 生成時間 
 
-		int m_maxEnemyNum{ 1 };	/// 生成できるエネミーファクトリーの最大数
+		int m_maxEnemyNum{ 1 };		/// 生成できるエネミーファクトリーの最大数
 
 		int m_deadEnemyNum{ 0 };	/// 倒されたエネミーの数	
 	};

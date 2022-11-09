@@ -4,6 +4,7 @@
 #include "../Scene/InGame/ObjBase.h"
 #include "../Library/Library.h"
 #include "../Scene/InGame/BulletManager.h"
+#include "../Random.h"
 #include "Tree.h"
 
 namespace Game
@@ -14,25 +15,26 @@ namespace Game
 	};
 
 	/**
-	*エネミーの継承元
+	* @brief エネミーの継承元
 	*/
 	class EnemyBase : public ObjBase
 	{
 	public:
-		EnemyBase() = default;
-		virtual ~EnemyBase()
+		EnemyBase(const engine::Vec3f& pos_, const engine::Vec3f& rote_, const engine::Vec3f& scale_)
+			: ObjBase(pos_, rote_, scale_)
 		{
-			delete m_tree;
 		}
+
+		virtual ~EnemyBase() = default;
 
 	public:
 		/**
-		* @brief 更新
+		* @brief 更新関数
 		*/
 		virtual void Update() = 0;
 
 		/**
-		* @brief 描画
+		* @brief 描画関数
 		*/
 		virtual void Draw() = 0;
 
@@ -55,7 +57,7 @@ namespace Game
 				ObjState objState{ 1, 100, 20.0f };
 				m_bullet->CreateBullet(m_bulletState, objState, m_pos, m_rote, engine::Vec3f(10.0f, 10.0f, 10.0f));
 
-				m_bulletCoolTimer = m_bulletState.m_coolTime;
+				m_bulletCoolTimer = RandomNum(m_bulletState.m_coolTime / 2, m_bulletState.m_coolTime);
 			}
 
 			m_bulletCoolTimer--;
@@ -90,10 +92,7 @@ namespace Game
 		/// 弾
 		BulletManager* m_bullet{};
 
-		// ビヘービア用ツリー
-		Tree* m_tree{};
-
-		engine::Vec3f m_col{ 0.0f, 0.0f, 0.0f };			/// 通常時の色
+		engine::Vec3f m_col{};								/// 通常時の色
 		engine::Vec3f m_invincibleCol{ 1.0f, 0.0f, 0.0f };	/// 無敵時の色
 
 		engine::Vec3f m_factoryPos{};	/// 生成元の座標
@@ -103,7 +102,7 @@ namespace Game
 
 		float m_fov{ 45.0f };		/// 視野角
 		float m_far{ 300.0f };		/// 視野の半径
-		float m_loopTime{ 180 };	/// 生成元を一周するまでの時間
+		int m_loopTime{ 180 };	/// 生成元を一周するまでの時間
 
 		bool m_isAlive{ true };		/// 生存フラグ
 
