@@ -37,7 +37,7 @@ namespace Game
 		delete m_stage;
 		delete m_player;
 
-		ShowCursor(TRUE);
+		//ShowCursor(TRUE);
 	}
 
 	void InGameScene::Exec()
