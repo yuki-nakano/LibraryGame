@@ -70,20 +70,15 @@ namespace Game
 			}
 		}
 
-		// 右移動
-		if (engine::Library::IsHeldKey(KEY_D))
+		m_bgPos1.x += (engine::Library::GetMousePosX() - GetSystemMetrics(SM_CXSCREEN) / 2) * 0.01f;
+		m_bgPos2.x += (engine::Library::GetMousePosX() - GetSystemMetrics(SM_CXSCREEN) / 2) * 0.01f;
+		if (m_bgPos1.x > 0)
 		{
-			m_bgPos1.x += 0.5f * player_->GetSpeed();
-			m_bgPos2.x += 0.5f * player_->GetSpeed();
-
-			if (m_bgPos1.x > 0)
-			{
-				m_bgPos2.x = m_bgPos1.x - 3840;
-			}
-			else if (m_bgPos1.x > 1080)
-			{
-				m_bgPos1.x = 0;
-			}
+			m_bgPos2.x = m_bgPos1.x - 3840;
+		}
+		else if (m_bgPos1.x > 1080)
+		{
+			m_bgPos1.x = 0;
 		}
 	}
 
