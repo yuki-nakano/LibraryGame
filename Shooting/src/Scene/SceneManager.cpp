@@ -10,6 +10,11 @@ namespace Game
 		m_currentScene = new TitleScene();
 	}
 
+	SceneManager::~SceneManager()
+	{
+		delete m_currentScene;
+	}
+
 	void SceneManager::Update()
 	{
 		if (m_currentScene == nullptr) { return; }

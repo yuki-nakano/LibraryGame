@@ -12,7 +12,7 @@ namespace Game
 	{
 	public:
 		SceneManager();
-		~SceneManager() = default;
+		~SceneManager();
 
 	public:
 		/**
@@ -20,6 +20,7 @@ namespace Game
 		*/
 		void Update();
 
+	private:
 		/**
 		* @brief シーン遷移
 		*/
