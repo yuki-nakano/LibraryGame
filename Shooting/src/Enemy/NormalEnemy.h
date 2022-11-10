@@ -20,12 +20,12 @@ namespace Game
 		/**
 		* @brief 更新関数
 		*/
-		void Update();
+		void Update() override;
 
 		/**
 		* @brief 描画関数
 		*/
-		void Draw();
+		void Draw() override;
 
 		/**
 		* @brief 接触時に呼び出す関数

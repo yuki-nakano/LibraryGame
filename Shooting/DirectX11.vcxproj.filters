@@ -261,9 +261,6 @@
     <ClInclude Include="src\Enemy\Tree.h">
       <Filter>ソース ファイル\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="src\Enemy\NodeBase.h">
-      <Filter>ソース ファイル\Enemy</Filter>
-    </ClInclude>
     <ClInclude Include="src\Scene\InGame\Option.h">
       <Filter>ソース ファイル\Scene\InGame</Filter>
     </ClInclude>

@@ -29,20 +29,10 @@ namespace Game
 
 	public:
 		/**
-		* @brief 更新関数
-		*/
-		virtual void Update() = 0;
-
-		/**
-		* @brief 描画関数
-		*/
-		virtual void Draw() = 0;
-
-		/**
 		* @brief 他オブジェクトとの接触時に呼び出す
 		* @param obj_base_ 接触したオブジェクト
 		*/
-		void Hit(ObjBase* obj_base_)
+		void Hit(ObjBase* obj_base_) override
 		{
 			m_objState.hp -= obj_base_->GetState().damage;
 		}
