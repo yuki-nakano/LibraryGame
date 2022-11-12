@@ -67,13 +67,6 @@ namespace Game
 		float m_jump{};				/// ジャンプの移動量
 		bool m_canJump{ true };		/// ジャンプ可能か
 
-		BulletState m_bulletState{
-			BulletType::Player,
-			50.0f,
-			300,
-			10
-		};
-
 		float m_acceleration{ 0.1f };	/// 加速力
 		float m_deceleration{ -0.03f };	/// 減速力
 		float m_nomalSpeed{ 5.0f };		/// 基礎速度

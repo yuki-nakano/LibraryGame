@@ -77,6 +77,7 @@ namespace Game
 
 		void SetFactoryPos(const engine::Vec3f& factory_pos_) { m_factoryPos = factory_pos_; }
 		void SetTargetPos(const engine::Vec3f& target_pos_) { m_targetPos = target_pos_; }
+		void SetBulletState(const BulletState& bullet_state_) { m_bulletState = bullet_state_; }
 
 	protected:
 		/// 弾

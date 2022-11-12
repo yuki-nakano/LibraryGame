@@ -29,9 +29,16 @@ namespace Game
 			engine::Vec3f pos = m_pos;
 
 			ObjState objState{ 1, 5, 15.0f };
-			m_bulletManager->CreateBullet(m_bulletState, objState, pos += engine::Vec3f(0.0f, m_height / 2, 0.0f), m_rote, engine::Vec3f(10.0f, 10.0f, 10.0f));
+			BulletState bulletState{
+				BulletType::Player,
+				50.0f,
+				300,
+				10,
+				"star"
+			};
+			m_bulletManager->CreateBullet(bulletState, objState, pos += engine::Vec3f(0.0f, m_height / 2, 0.0f), m_rote, engine::Vec3f(10.0f, 10.0f, 10.0f));
 
-			m_bulletCoolTimer = m_bulletState.m_coolTime;
+			m_bulletCoolTimer = bulletState.m_coolTime;
 		}
 
 		m_bulletCoolTimer--;
