@@ -35,6 +35,12 @@ namespace Game
 		*/
 		void Hit(ObjBase* obj_base_) override;
 
+		/**
+		* @brief プレイヤーの死亡判定
+		* @return プレイヤーの体力が0以下になるとtrue
+		*/
+		bool IsDead();
+
 		// アクセサ
 
 		float GetSpeed() { return m_moveSpeed / m_maxSpeed; }

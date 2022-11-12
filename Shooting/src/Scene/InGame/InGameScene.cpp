@@ -66,7 +66,8 @@ namespace Game
 		SetCursorPos(GetSystemMetrics(SM_CXSCREEN) / 2, GetSystemMetrics(SM_CYSCREEN) / 2);
 		m_timer++;
 
-		if (m_player->GetState().hp < 0)
+		// ゲーム終了
+		if (m_player->IsDead())
 		{
 			m_result->ConvertIsAlive();
 		}

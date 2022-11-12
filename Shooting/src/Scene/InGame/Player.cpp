@@ -47,6 +47,11 @@ namespace Game
 		m_objState.hp -= obj_base_->GetState().damage;
 	}
 
+	bool Player::IsDead()
+	{
+		return (m_objState.hp < 0);
+	}
+
 	void Player::Move()
 	{
 		// 視点移動
