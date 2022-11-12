@@ -5,6 +5,7 @@
 
 #define _USE_MATH_DEFINES
 #include <math.h>
+#include <algorithm>
 
 namespace Game
 {
@@ -64,17 +65,21 @@ namespace Game
 		// 視点移動
 		m_rote.y += (engine::Library::GetMousePosX() - GetSystemMetrics(SM_CXSCREEN) / 2) * 0.1f;
 		m_rote.x += (engine::Library::GetMousePosY() - GetSystemMetrics(SM_CYSCREEN) / 2) * 0.1f;
-		if (m_rote.x > m_maxRote)
-		{
-			m_rote.x = m_maxRote;
-		}
-		else if (m_rote.x < -m_maxRote)
-		{
-			m_rote.x = -m_maxRote;
-		}
+		m_rote.x = std::clamp(m_rote.x, -m_maxRote, m_maxRote);
 
 		// 移動量
 		engine::Vec3f moveVec{};
+
+		// 加速
+		if (engine::Library::IsHeldKey(KEY_SHIFT))
+		{
+			m_moveSpeed += m_acceleration;
+		}
+		else
+		{
+			m_moveSpeed += m_deceleration;
+		}
+		m_moveSpeed = std::clamp(m_moveSpeed, m_nomalSpeed, m_maxSpeed);
 
 		// 左移動
 		if (engine::Library::IsHeldKey(KEY_A))
@@ -102,18 +107,6 @@ namespace Game
 		{
 			moveVec.x -= sinf(m_rote.y / 180.0f * M_PI) * m_nomalSpeed / 3;
 			moveVec.z -= cosf(m_rote.y / 180.0f * M_PI) * m_nomalSpeed / 3;
-		}
-
-		// 加速
-		if (engine::Library::IsHeldKey(KEY_SHIFT))
-		{
-			m_moveSpeed += m_acceleration;
-			if (m_moveSpeed > m_maxSpeed) { m_moveSpeed = m_maxSpeed; }
-		}
-		else
-		{
-			m_moveSpeed += m_deceleration;
-			if (m_moveSpeed < m_nomalSpeed) { m_moveSpeed = m_nomalSpeed; }
 		}
 
 		// ジャンプ
