@@ -63,9 +63,6 @@ namespace Game
 		Stage* m_stage{};			/// ステージ
 		BulletManager* m_bulletManager{};	/// 弾
 
-		/// 移動量
-		engine::Vec3f m_moveVec{};
-
 		float m_moveSpeed{ 0.0f };	/// 速度
 		float m_jump{};				/// ジャンプの移動量
 		bool m_canJump{ true };		/// ジャンプ可能か

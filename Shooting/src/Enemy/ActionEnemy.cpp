@@ -62,12 +62,16 @@ namespace Game
 		float distanceXZ{ hypotf(distanceX, distanceZ) };
 
 		float radianXZ = atan2f(distanceX, distanceZ) / M_PI * 180;
-		if (radianXZ < 5 && radianXZ > -5)
+		if (radianXZ < -5 || radianXZ > 5)
 		{
-
+			return ActionState::Success;
 		}
 
 		float radianY = atan2f(distanceY, distanceXZ) / M_PI * 180;
+		if (radianY < -5 || radianY > 5)
+		{
+			return ActionState::Success;
+		}
 
 		return ActionState::Run;
 	}
