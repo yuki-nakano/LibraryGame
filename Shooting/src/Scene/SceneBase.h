@@ -39,11 +39,11 @@ namespace Game
 			return m_isNextScene;
 		}
 
-		Scene GetNextScene() const { return nextScene; };
+		Scene GetNextScene() const { return m_nextScene; };
 
 	protected:
 		/// 次のシーン
-		Scene nextScene{};
+		Scene m_nextScene{};
 
 		/// シーンを終了するか
 		bool m_isNextScene{ false };
