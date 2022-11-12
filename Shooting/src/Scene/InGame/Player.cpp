@@ -10,7 +10,7 @@ namespace Game
 {
 	Player::Player(Stage* stage_, BulletManager* bullet_manager_)
 		:m_stage(stage_)
-		, m_bullet(bullet_manager_)
+		, m_bulletManager(bullet_manager_)
 		, ObjBase(engine::Vec3f(400.0f, m_height, 400.0f), engine::Vec3f(0.0f, 90.0f, 0.0f), engine::Vec3f(1.0f, 1.0f, 1.0f))
 	{
 		m_moveSpeed = m_nomalSpeed;
@@ -29,7 +29,7 @@ namespace Game
 			engine::Vec3f pos = m_pos;
 
 			ObjState objState{ 1, 5, 15.0f };
-			m_bullet->CreateBullet(m_bulletState, objState, pos += engine::Vec3f(0.0f, m_height / 2, 0.0f), m_rote, engine::Vec3f(10.0f, 10.0f, 10.0f));
+			m_bulletManager->CreateBullet(m_bulletState, objState, pos += engine::Vec3f(0.0f, m_height / 2, 0.0f), m_rote, engine::Vec3f(10.0f, 10.0f, 10.0f));
 
 			m_bulletCoolTimer = m_bulletState.m_coolTime;
 		}

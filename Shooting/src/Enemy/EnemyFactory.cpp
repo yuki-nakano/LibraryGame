@@ -8,7 +8,7 @@
 namespace Game
 {
 	EnemyFactory::EnemyFactory(BulletManager* bullet_manager_, EnemyFactoryState enemy_factory_state_, const engine::Vec3f& pos_)
-		: m_bullet(bullet_manager_)
+		: m_bulletManager(bullet_manager_)
 		, m_enemyFactoryState(enemy_factory_state_)
 		, m_pos(pos_)
 	{
@@ -70,7 +70,7 @@ namespace Game
 		switch (m_enemyFactoryState.enemyType)
 		{
 		case EnemyType::normal:
-			enemyBase = new NormalEnemy(m_bullet);
+			enemyBase = new NormalEnemy(m_bulletManager);
 			break;
 		default:
 			break;

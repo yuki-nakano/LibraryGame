@@ -41,7 +41,7 @@ namespace Game
 
 	private:
 
-		BulletManager* m_bullet{};	/// 弾
+		BulletManager* m_bulletManager{};	/// 弾
 		Stage* m_stage{};			/// ステージ
 
 		/// 生成したエネミーファクトリー

@@ -10,28 +10,28 @@ namespace Game
 	InGameScene::InGameScene()
 	{
 		std::vector<int> keyList = { KEY_A, KEY_D, KEY_S, KEY_W, KEY_SPACE, KEY_SHIFT ,KEY_LMOUSE ,KEY_ESC };
-		nextScene = Scene::Title;
+		m_nextScene = Scene::Title;
 		engine::Library::RegisterKey(keyList);
 		engine::Library::SetZ(0.1f, 5000.0f);
 
 		m_stage = new Stage;
-		m_bullet = new BulletManager;
-		m_player = new Player(m_stage, m_bullet);
+		m_bulletManager = new BulletManager;
+		m_player = new Player(m_stage, m_bulletManager);
 		m_gameUI = new GameUI(m_player);
 		m_camera = new CameraManager(m_player);
 		m_option = new Option;
-		m_enemy = new EnemyManager(m_stage, m_bullet);
-		m_result = new Result(m_enemy);
+		m_enemyManager = new EnemyManager(m_stage, m_bulletManager);
+		m_result = new Result(m_enemyManager);
 
 		ShowCursor(FALSE);
 	}
 
 	InGameScene::~InGameScene()
 	{
-		delete m_enemy;
+		delete m_enemyManager;
 		delete m_result;
 		delete m_option;
-		delete m_bullet;
+		delete m_bulletManager;
 		delete m_gameUI;
 		delete m_camera;
 		delete m_stage;
@@ -58,8 +58,8 @@ namespace Game
 		m_player->Update();
 		m_stage->Update(m_player);
 		m_camera->Update();
-		m_bullet->Update();
-		m_enemy->Update();
+		m_bulletManager->Update();
+		m_enemyManager->Update();
 
 		Collide();
 
@@ -77,8 +77,8 @@ namespace Game
 		m_stage->Draw();
 
 		m_player->Draw();
-		m_bullet->Draw();
-		m_enemy->Draw();
+		m_bulletManager->Draw();
+		m_enemyManager->Draw();
 
 		m_gameUI->DrawPlayerUI();
 
@@ -89,7 +89,7 @@ namespace Game
 
 	void InGameScene::Collide()
 	{
-		for (auto bullet : m_bullet->GetBulletList())
+		for (auto bullet : m_bulletManager->GetBulletList())
 		{
 			BulletState bulletState = bullet->GetState();
 
@@ -122,7 +122,7 @@ namespace Game
 
 	void InGameScene::CollideEnemy(ObjBase* obj_base_)
 	{
-		ObjBase* result = m_enemy->Collide(obj_base_);
+		ObjBase* result = m_enemyManager->Collide(obj_base_);
 		if (result != nullptr)
 		{
 			obj_base_->Hit(result);

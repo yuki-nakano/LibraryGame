@@ -6,7 +6,7 @@ namespace Game
 {
 	EnemyManager::EnemyManager(Stage* stage_, BulletManager* bullet_manager_)
 		:m_stage(stage_)
-		, m_bullet(bullet_manager_)
+		, m_bulletManager(bullet_manager_)
 	{
 		engine::Library::LoadObj("res/enemy/Alien.obj", "alien");
 		engine::Library::LoadObj("res/enemy/Star.obj", "star");
@@ -19,7 +19,7 @@ namespace Game
 		};
 
 		// ゲーム開始時に画面中央に一体生成
-		EnemyFactory* enemyFactory = new EnemyFactory(m_bullet, enemyFactoryState,
+		EnemyFactory* enemyFactory = new EnemyFactory(m_bulletManager, enemyFactoryState,
 			engine::Vec3f(m_stage->GetStageData().stageFront / 2, 100, m_stage->GetStageData().stageLeft / 2));
 
 		m_enemyList.push_back(enemyFactory);
@@ -88,7 +88,7 @@ namespace Game
 		};
 
 		// 画面内のランダムな位置に生成
-		EnemyFactory* enemyFactory = new EnemyFactory(m_bullet, enemyFactoryState
+		EnemyFactory* enemyFactory = new EnemyFactory(m_bulletManager, enemyFactoryState
 			, engine::Vec3f(
 				RandomNum(m_stage->GetStageData().stageBack, m_stage->GetStageData().stageFront),
 				RandomNum(m_stage->GetStageData().stageDown, m_stage->GetStageData().stageUp),

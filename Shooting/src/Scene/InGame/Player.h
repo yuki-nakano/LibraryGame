@@ -55,7 +55,7 @@ namespace Game
 
 	private:
 		Stage* m_stage{};			/// ステージ
-		BulletManager* m_bullet{};	/// 弾
+		BulletManager* m_bulletManager{};	/// 弾
 
 		/// 移動量
 		engine::Vec3f m_moveVec{};

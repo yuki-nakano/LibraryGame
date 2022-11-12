@@ -6,7 +6,7 @@ namespace Game
 {
 	TitleScene::TitleScene()
 	{
-		nextScene = Scene::InGame;
+		m_nextScene = Scene::InGame;
 		std::vector<int> keyList = { KEY_ENTER };
 		engine::Library::RegisterKey(keyList);
 

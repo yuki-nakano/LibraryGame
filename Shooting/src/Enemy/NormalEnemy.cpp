@@ -18,7 +18,7 @@ namespace Game
 		ObjState objState{ 10, 5, 50.0f };
 		SetState(objState);
 
-		m_bullet = bullet_manager_;
+		m_bulletManager = bullet_manager_;
 	}
 
 	NormalEnemy::~NormalEnemy()

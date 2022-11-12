@@ -45,7 +45,7 @@ namespace Game
 			if (m_bulletCoolTimer <= 0)
 			{
 				ObjState objState{ 1, 100, 20.0f };
-				m_bullet->CreateBullet(m_bulletState, objState, m_pos, m_rote, engine::Vec3f(10.0f, 10.0f, 10.0f));
+				m_bulletManager->CreateBullet(m_bulletState, objState, m_pos, m_rote, engine::Vec3f(10.0f, 10.0f, 10.0f));
 
 				m_bulletCoolTimer = RandomNum(m_bulletState.m_coolTime / 2, m_bulletState.m_coolTime);
 			}
@@ -80,7 +80,7 @@ namespace Game
 
 	protected:
 		/// 弾
-		BulletManager* m_bullet{};
+		BulletManager* m_bulletManager{};
 
 		engine::Vec3f m_col{};								/// 通常時の色
 		engine::Vec3f m_invincibleCol{ 1.0f, 0.0f, 0.0f };	/// 無敵時の色

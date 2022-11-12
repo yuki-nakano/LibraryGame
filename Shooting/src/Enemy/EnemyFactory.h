@@ -60,7 +60,7 @@ namespace Game
 
 	private:
 		/// 弾
-		BulletManager* m_bullet{};
+		BulletManager* m_bulletManager{};
 
 		/// エネミーファクトリーのステータス
 		EnemyFactoryState m_enemyFactoryState{};

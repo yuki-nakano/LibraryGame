@@ -41,14 +41,14 @@ namespace Game
 		void CollideEnemy(ObjBase* obj_base_);
 
 	private:
-		Player* m_player{};			/// プレイヤー
-		GameUI* m_gameUI{};			/// UI
-		CameraManager* m_camera{};	/// カメラ
-		Stage* m_stage{};			/// ステージ
-		BulletManager* m_bullet{};	/// 弾
-		EnemyManager* m_enemy{};	/// エネミー
-		Option* m_option{};			/// オプション
-		Result* m_result{};			/// リザルト
+		Player* m_player{};					/// プレイヤー
+		GameUI* m_gameUI{};					/// UI
+		CameraManager* m_camera{};			/// カメラ
+		Stage* m_stage{};					/// ステージ
+		BulletManager* m_bulletManager{};	/// 弾
+		EnemyManager* m_enemyManager{};		/// エネミー
+		Option* m_option{};					/// オプション
+		Result* m_result{};					/// リザルト
 
 		int m_timer{ 0 };	/// タイマー
 	};
