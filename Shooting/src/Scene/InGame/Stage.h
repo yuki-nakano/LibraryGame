@@ -47,7 +47,7 @@ namespace Game
 		/**
 		* @brief 更新関数
 		*/
-		void Update(Player* player_);
+		void Update();
 
 		/**
 		* @brief 描画関数

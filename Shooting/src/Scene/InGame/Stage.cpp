@@ -52,26 +52,11 @@ namespace Game
 		engine::Library::ReleaseTexture("sky");
 	}
 
-	void Stage::Update(Player* player_)
+	void Stage::Update()
 	{
-		if (engine::Library::IsHeldKey(KEY_A))
-		{
-			m_bgPos1.x -= 0.5f * player_->GetSpeed();
-			m_bgPos2.x -= 0.5f * player_->GetSpeed();
-
-			// 背景画像サイズ　3840 * 1080
-			if (m_bgPos1.x < -3840 + 1080)
-			{
-				m_bgPos2.x = m_bgPos1.x + 1080;
-			}
-			else if (m_bgPos1.x < -3840)
-			{
-				m_bgPos1.x = 0;
-			}
-		}
-
 		m_bgPos1.x += (engine::Library::GetMousePosX() - GetSystemMetrics(SM_CXSCREEN) / 2) * 0.01f;
 		m_bgPos2.x += (engine::Library::GetMousePosX() - GetSystemMetrics(SM_CXSCREEN) / 2) * 0.01f;
+		// 背景画像サイズ　3840 * 1080
 		if (m_bgPos1.x > 0)
 		{
 			m_bgPos2.x = m_bgPos1.x - 3840;

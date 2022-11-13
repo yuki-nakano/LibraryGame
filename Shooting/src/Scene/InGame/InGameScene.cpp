@@ -58,7 +58,7 @@ namespace Game
 		}
 
 		m_player->Update();
-		m_stage->Update(m_player);
+		m_stage->Update();
 		m_camera->Update();
 		m_bulletManager->Update();
 		m_enemyManager->Update();
