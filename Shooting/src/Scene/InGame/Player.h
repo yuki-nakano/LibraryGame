@@ -66,7 +66,7 @@ namespace Game
 		/**
 		* @brief ステージに合わせて移動
 		*/
-		void MoveReturn();
+		void ReturnToStage();
 
 	private:
 		Stage* m_stage{};			/// ステージ

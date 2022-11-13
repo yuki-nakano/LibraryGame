@@ -23,7 +23,7 @@ namespace Game
 	{
 		Move();
 
-		MoveReturn();
+		ReturnToStage();
 
 		if (engine::Library::IsHeldKey(KEY_LMOUSE) && m_bulletCoolTimer <= 0)
 		{
@@ -117,7 +117,7 @@ namespace Game
 		move_vec_.z += cosf(rote_ / 180.0f * M_PI) * scale_;
 	}
 
-	void Player::MoveReturn()
+	void Player::ReturnToStage()
 	{
 		Stage::StageSize stageSize = m_stage->GetStageData();
 
