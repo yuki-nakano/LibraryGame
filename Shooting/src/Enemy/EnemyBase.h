@@ -34,7 +34,7 @@ namespace Game
 		*/
 		void Hit(ObjBase* obj_base_) override
 		{
-			m_objState.hp -= obj_base_->GetState().damage;
+			m_objState.hp -= obj_base_->GetObjState().damage;
 		}
 
 		/**

@@ -50,7 +50,7 @@ namespace Game
 		engine::Vec3f GetPos() { return m_pos; }
 		engine::Vec3f GetRote() { return m_rote; }
 		engine::Vec3f GetScale() { return m_scale; }
-		ObjState GetState() { return m_objState; }
+		ObjState GetObjState() { return m_objState; }
 
 		void SetPos(const engine::Vec3f& pos_) { m_pos = pos_; }
 		void SetRote(const engine::Vec3f& rote_) { m_rote = rote_; }

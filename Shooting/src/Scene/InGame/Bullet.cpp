@@ -30,7 +30,7 @@ namespace Game
 
 	void Bullet::Hit(ObjBase* obj_base_)
 	{
-		m_objState.hp -= obj_base_->GetState().damage;
+		m_objState.hp -= obj_base_->GetObjState().damage;
 
 		if (m_objState.hp <= 0)
 		{

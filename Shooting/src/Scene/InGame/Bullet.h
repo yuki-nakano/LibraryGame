@@ -53,7 +53,7 @@ namespace Game
 
 		// アクセサ
 
-		BulletState GetState() { return m_bulletState; }
+		BulletState GetBulletState() { return m_bulletState; }
 		int GetDeleteTime() { return m_bulletState.m_deleteTime; }
 
 	private:

@@ -27,7 +27,7 @@ namespace Game
 
 	void GameUI::DrawPlayerUI()
 	{
-		float playerHp = m_player->GetState().hp;
+		float playerHp = m_player->GetObjState().hp;
 
 		//engine::Library::DrawRect(engine::Vec2f(0, 690), 1080, 30, engine::Vec3f(1.0f, 1.0f, 1.0f));
 		engine::Library::DrawRect(engine::Vec2f(0, 690), 1080 * playerHp / 1000, 30, engine::Vec3f(1.0f, playerHp / 1000, playerHp / 1000));

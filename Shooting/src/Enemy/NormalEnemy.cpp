@@ -62,7 +62,7 @@ namespace Game
 	{
 		if (m_invincibleTimer > 0) { return; }
 
-		m_objState.hp -= obj_base_->GetState().damage;
+		m_objState.hp -= obj_base_->GetObjState().damage;
 
 		if (m_invincibleTimer <= 0)
 		{

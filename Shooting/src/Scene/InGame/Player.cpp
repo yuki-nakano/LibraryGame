@@ -52,7 +52,7 @@ namespace Game
 
 	void Player::Hit(ObjBase* obj_base_)
 	{
-		m_objState.hp -= obj_base_->GetState().damage;
+		m_objState.hp -= obj_base_->GetObjState().damage;
 	}
 
 	bool Player::IsDead()

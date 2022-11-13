@@ -30,7 +30,7 @@ namespace Game
 
 	ActionState ActionLoop(EnemyBase* enemy_)
 	{
-		if (enemy_->GetState().hp <= 0)
+		if (enemy_->GetObjState().hp <= 0)
 		{
 			return ActionState::Success;
 		}
