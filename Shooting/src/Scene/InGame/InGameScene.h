@@ -9,6 +9,7 @@
 #include "BulletManager.h"
 #include "Option.h"
 #include "Result.h"
+#include "Collision.h"
 #include "../../Enemy/EnemyManager.h"
 
 namespace Game
@@ -34,13 +35,6 @@ namespace Game
 		void Draw();
 
 	private:
-		// 接触判定
-
-		void Collide();
-		void CollidePlayer(ObjBase* obj_base_);
-		void CollideEnemy(ObjBase* obj_base_);
-
-	private:
 		Player* m_player{};					/// プレイヤー
 		GameUI* m_gameUI{};					/// UI
 		CameraManager* m_camera{};			/// カメラ
@@ -49,6 +43,7 @@ namespace Game
 		EnemyManager* m_enemyManager{};		/// エネミー
 		Option* m_option{};					/// オプション
 		Result* m_result{};					/// リザルト
+		Collision* m_collision{};			/// 当たり判定
 
 		int m_timer{ 0 };	/// タイマー
 	};

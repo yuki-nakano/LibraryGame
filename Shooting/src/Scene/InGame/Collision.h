@@ -3,30 +3,46 @@
 
 #include "../../Library/Library.h"
 
-#define _USE_MATH_DEFINES
-#include <math.h>
+#include "BulletManager.h"
+#include "Player.h"
+#include "../../Enemy/EnemyManager.h"
 
 namespace Game
 {
-	/**
-	* @brief 球の接触判定関数
-	* @param pos_a_ １つ目の座標
-	* @param radius_a_ １つ目の半径
-	* @param pos_b_ ２つ目の座標
-	* @param radius_b_ ２つ目の半径
-	* @return 接触していたらtrue
-	*/
-	static bool CollideSphereAndSphere(const engine::Vec3f& pos_a_, const float& radius_a_, const engine::Vec3f& pos_b_, const float& radius_b_)
+	class Collision
 	{
-		float distance = powf((pos_a_.x - pos_b_.x), 2.0f) + powf((pos_a_.y - pos_b_.y), 2.0f) + powf((pos_a_.z - pos_b_.z), 2.0f);
+	public:
+		Collision(Player* player_, BulletManager* bullet_manager_, EnemyManager* enemy_manager_);
+		~Collision() = default;
 
-		if (powf((radius_a_ + radius_b_), 2.0f) > distance)
-		{
-			return true;
-		}
+	public:
+		/**
+		* @brief 当たり判定計算関数
+		*/
+		void Collide();
 
-		return false;
-	}
+	private:
+		/**
+		* @brief プレイヤーと弾の当たり判定
+		*/
+		void CollidePlayerAndBullet();
+
+		/**
+		* @brief プレイヤーとエネミーの当たり判定
+		*/
+		void CollidePlayerAndEnemy();
+
+		/**
+		* @brief 弾とエネミーの当たり判定
+		*/
+		void CollideBulletAndEnemy();
+
+	private:
+		Player* m_player{};					/// プレイヤー
+		BulletManager* m_bulletManager{};	/// 弾
+		EnemyManager* m_enemyManager{};		/// エネミー
+
+	};
 }
 
 #endif // !COLLISION_H

@@ -22,12 +22,14 @@ namespace Game
 		m_option = new Option;
 		m_enemyManager = new EnemyManager(m_stage, m_bulletManager);
 		m_result = new Result(m_enemyManager);
+		m_collision = new Collision(m_player, m_bulletManager, m_enemyManager);
 
 		ShowCursor(FALSE);
 	}
 
 	InGameScene::~InGameScene()
 	{
+		delete m_collision;
 		delete m_enemyManager;
 		delete m_result;
 		delete m_option;
@@ -61,7 +63,7 @@ namespace Game
 		m_bulletManager->Update();
 		m_enemyManager->Update();
 
-		Collide();
+		m_collision->Collide();
 
 		SetCursorPos(GetSystemMetrics(SM_CXSCREEN) / 2, GetSystemMetrics(SM_CYSCREEN) / 2);
 		m_timer++;
@@ -86,47 +88,5 @@ namespace Game
 		m_option->Draw();
 
 		m_result->Draw();
-	}
-
-	void InGameScene::Collide()
-	{
-		for (auto bullet : m_bulletManager->GetBulletList())
-		{
-			BulletState bulletState = bullet->GetState();
-
-			switch (bulletState.m_bulletType)
-			{
-			case BulletType::Enemy:
-				CollidePlayer(bullet);
-				break;
-			case BulletType::Player:
-				CollideEnemy(bullet);
-				break;
-			default:
-				break;
-			}
-		}
-
-		CollideEnemy(m_player);
-	}
-
-	void InGameScene::CollidePlayer(ObjBase* obj_base_)
-	{
-		if (CollideSphereAndSphere(
-			m_player->GetPos(), m_player->GetState().hitRadius,
-			obj_base_->GetPos(), obj_base_->GetState().hitRadius))
-		{
-			m_player->Hit(obj_base_);
-			obj_base_->Hit(m_player);
-		}
-	}
-
-	void InGameScene::CollideEnemy(ObjBase* obj_base_)
-	{
-		ObjBase* result = m_enemyManager->Collide(obj_base_);
-		if (result != nullptr)
-		{
-			obj_base_->Hit(result);
-		}
 	}
 }

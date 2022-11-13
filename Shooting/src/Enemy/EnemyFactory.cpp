@@ -3,7 +3,7 @@
 #include "../Library/Library.h"
 #include "EnemyBase.h"
 #include "NormalEnemy.h"
-#include "../Scene/InGame/Collision.h"
+#include "../Scene/InGame/CollisionCalculation.h"
 
 namespace Game
 {
@@ -83,22 +83,17 @@ namespace Game
 		m_enemyList.push_back(enemyBase);
 	}
 
-	ObjBase* EnemyFactory::Collide(ObjBase* obj_base_)
+	void EnemyFactory::Collide(ObjBase* obj_base_)
 	{
-		ObjBase* result{ nullptr };
-
 		for (auto enemy : m_enemyList)
 		{
 			if (CollideSphereAndSphere(
-				enemy->GetPos(), enemy->GetState().hitRadius,
-				obj_base_->GetPos(), obj_base_->GetState().hitRadius))
+				enemy->GetPos(), enemy->GetObjState().hitRadius,
+				obj_base_->GetPos(), obj_base_->GetObjState().hitRadius))
 			{
 				obj_base_->Hit(enemy);
 				enemy->Hit(obj_base_);
-				result = enemy;
 			}
 		}
-
-		return result;
 	}
 }

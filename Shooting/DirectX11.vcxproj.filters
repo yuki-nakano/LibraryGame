@@ -151,6 +151,9 @@
     <ClCompile Include="src\Scene\InGame\Result.cpp">
       <Filter>ソース ファイル\Scene\InGame</Filter>
     </ClCompile>
+    <ClCompile Include="src\Scene\InGame\Collision.cpp">
+      <Filter>ソース ファイル\Scene\InGame</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Library\DirectX\DirectXGraphics.h">
@@ -281,6 +284,9 @@
     </ClInclude>
     <ClInclude Include="src\Enemy\EnemyBase.h">
       <Filter>ソース ファイル\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Scene\InGame\CollisionCalculation.h">
+      <Filter>ソース ファイル\Scene\InGame</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

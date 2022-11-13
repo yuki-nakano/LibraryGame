@@ -47,6 +47,7 @@
     <ClCompile Include="src\Scene\InGame\Bullet.cpp" />
     <ClCompile Include="src\Scene\InGame\BulletManager.cpp" />
     <ClCompile Include="src\Scene\InGame\CameraManager.cpp" />
+    <ClCompile Include="src\Scene\InGame\Collision.cpp" />
     <ClCompile Include="src\Scene\InGame\GameUI.cpp" />
     <ClCompile Include="src\Scene\InGame\InGameScene.cpp" />
     <ClCompile Include="src\Scene\InGame\Option.cpp" />
@@ -90,6 +91,7 @@
     <ClInclude Include="src\Scene\InGame\BulletManager.h" />
     <ClInclude Include="src\Scene\InGame\CameraManager.h" />
     <ClInclude Include="src\Scene\InGame\Collision.h" />
+    <ClInclude Include="src\Scene\InGame\CollisionCalculation.h" />
     <ClInclude Include="src\Scene\InGame\GameUI.h" />
     <ClInclude Include="src\Scene\InGame\InGameScene.h" />
     <ClInclude Include="src\Scene\InGame\ObjBase.h" />

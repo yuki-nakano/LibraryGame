@@ -31,7 +31,7 @@ namespace Game
 		* @brief 接触チェック
 		* @param obj_base_ 接触したオブジェクト
 		*/
-		ObjBase* Collide(ObjBase* obj_base_);
+		void Collide(ObjBase* obj_base_);
 
 		/**
 		* @brief 倒したエネミーの数の取得

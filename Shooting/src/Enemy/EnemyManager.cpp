@@ -97,16 +97,12 @@ namespace Game
 		m_enemyList.push_back(enemyFactory);
 	}
 
-	ObjBase* EnemyManager::Collide(ObjBase* obj_base_)
+	void EnemyManager::Collide(ObjBase* obj_base_)
 	{
-		ObjBase* result{ nullptr };
-
 		for (auto factory : m_enemyList)
 		{
-			result = factory->Collide(obj_base_);
+			factory->Collide(obj_base_);
 		}
-
-		return result;
 	}
 
 	int EnemyManager::GetDeadEnemyNum()
