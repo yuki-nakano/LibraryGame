@@ -26,11 +26,6 @@ namespace Game
 		void Update() override;
 
 		/**
-		* @brief 描画関数
-		*/
-		void Draw() override;
-
-		/**
 		* @brief 接触時に呼び出す関数
 		*/
 		void Hit(ObjBase* obj_base_) override;

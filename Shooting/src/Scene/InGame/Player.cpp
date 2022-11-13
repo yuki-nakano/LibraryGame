@@ -45,11 +45,6 @@ namespace Game
 		m_bulletCoolTimer--;
 	}
 
-	void Player::Draw()
-	{
-		engine::Library::RenderObj("star", m_pos, m_rote, engine::Vec3f(1.0f, 1.0f, 1.0f));
-	}
-
 	void Player::Hit(ObjBase* obj_base_)
 	{
 		m_objState.hp -= obj_base_->GetObjState().damage;

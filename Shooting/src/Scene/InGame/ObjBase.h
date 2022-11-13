@@ -36,11 +36,6 @@ namespace Game
 		virtual void Update() = 0;
 
 		/**
-		* @brief 描画
-		*/
-		virtual void Draw() = 0;
-
-		/**
 		* @brief 接触時に呼び出す
 		*/
 		virtual void Hit(ObjBase* obj_base_) = 0;

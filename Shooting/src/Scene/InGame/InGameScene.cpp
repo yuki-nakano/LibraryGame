@@ -78,15 +78,10 @@ namespace Game
 	void InGameScene::Draw()
 	{
 		m_stage->Draw();
-
-		m_player->Draw();
 		m_bulletManager->Draw();
 		m_enemyManager->Draw();
-
 		m_gameUI->DrawPlayerUI();
-
 		m_option->Draw();
-
 		m_result->Draw();
 	}
 }

@@ -29,6 +29,11 @@ namespace Game
 
 	public:
 		/**
+		* @brief 描画関数
+		*/
+		virtual void Draw() = 0;
+
+		/**
 		* @brief 他オブジェクトとの接触時に呼び出す
 		* @param obj_base_ 接触したオブジェクト
 		*/

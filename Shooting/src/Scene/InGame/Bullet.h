@@ -44,7 +44,7 @@ namespace Game
 		/**
 		* @brief 描画関数
 		*/
-		void Draw() override;
+		void Draw();
 
 		/**
 		* @brief 接触時に呼び出す関数
