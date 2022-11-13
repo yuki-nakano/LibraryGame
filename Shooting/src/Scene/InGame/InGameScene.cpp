@@ -12,7 +12,7 @@ namespace Game
 		std::vector<int> keyList = { KEY_A, KEY_D, KEY_S, KEY_W, KEY_SPACE, KEY_SHIFT ,KEY_LMOUSE ,KEY_ESC };
 		m_nextScene = Scene::Title;
 		engine::Library::RegisterKey(keyList);
-		engine::Library::SetZ(0.1f, 5000.0f);
+		engine::Library::SetDrawingDistance(0.1f, 5000.0f);
 
 		m_stage = new Stage;
 		m_bulletManager = new BulletManager;
