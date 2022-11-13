@@ -82,32 +82,16 @@ namespace Game
 		m_moveSpeed = std::clamp(m_moveSpeed, m_nomalSpeed, m_maxSpeed);
 
 		// 左移動
-		if (engine::Library::IsHeldKey(KEY_A))
-		{
-			moveVec.x += sinf((m_rote.y - 90.0f) / 180.0f * M_PI) * m_nomalSpeed / 2;
-			moveVec.z += cosf((m_rote.y - 90.0f) / 180.0f * M_PI) * m_nomalSpeed / 2;
-		}
+		CalculateMoveVec(KEY_A, m_rote.y - 90.0f, m_nomalSpeed / 2, moveVec);
 
 		// 右移動
-		if (engine::Library::IsHeldKey(KEY_D))
-		{
-			moveVec.x += sinf((m_rote.y + 90.0f) / 180.0f * M_PI) * m_nomalSpeed / 2;
-			moveVec.z += cosf((m_rote.y + 90.0f) / 180.0f * M_PI) * m_nomalSpeed / 2;
-		}
+		CalculateMoveVec(KEY_D, m_rote.y + 90.0f, m_nomalSpeed / 2, moveVec);
 
 		// 前進
-		if (engine::Library::IsHeldKey(KEY_W))
-		{
-			moveVec.x += sinf(m_rote.y / 180.0f * M_PI) * m_moveSpeed;
-			moveVec.z += cosf(m_rote.y / 180.0f * M_PI) * m_moveSpeed;
-		}
+		CalculateMoveVec(KEY_W, m_rote.y, m_moveSpeed, moveVec);
 
 		// 後退
-		if (engine::Library::IsHeldKey(KEY_S))
-		{
-			moveVec.x -= sinf(m_rote.y / 180.0f * M_PI) * m_nomalSpeed / 3;
-			moveVec.z -= cosf(m_rote.y / 180.0f * M_PI) * m_nomalSpeed / 3;
-		}
+		CalculateMoveVec(KEY_S, m_rote.y + 180.0f, m_nomalSpeed / 3, moveVec);
 
 		// ジャンプ
 		if (engine::Library::IsHeldKey(KEY_SPACE) && m_canJump)
@@ -123,6 +107,14 @@ namespace Game
 		}
 
 		m_pos += moveVec;
+	}
+
+	void Player::CalculateMoveVec(const int& key_, const float& rote_, const float& scale_, engine::Vec3f& move_vec_)
+	{
+		if (!engine::Library::IsHeldKey(key_)) { return; }
+
+		move_vec_.x += sinf(rote_ / 180.0f * M_PI) * scale_;
+		move_vec_.z += cosf(rote_ / 180.0f * M_PI) * scale_;
 	}
 
 	void Player::MoveReturn()

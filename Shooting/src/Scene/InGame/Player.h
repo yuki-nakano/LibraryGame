@@ -55,6 +55,15 @@ namespace Game
 		void Move();
 
 		/**
+		* @brief 移動量の計算
+		* @param [in] key_ 押されたキー
+		* @param [in] rote_ 移動する向き
+		* @param [in] scale_ 移動量
+		* @param [out] move_vec_ 移動量の保存
+		*/
+		void CalculateMoveVec(const int& key_, const float& rote_, const float& scale_, engine::Vec3f& move_vec_);
+
+		/**
 		* @brief ステージに合わせて移動
 		*/
 		void MoveReturn();
