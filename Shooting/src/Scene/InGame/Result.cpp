@@ -38,11 +38,6 @@ namespace Game
 
 	}
 
-	bool Result::Exec()
-	{
-		return m_isAlive;
-	}
-
 	void Result::Draw()
 	{
 		if (!m_isAlive) { return; }
@@ -82,15 +77,6 @@ namespace Game
 
 	void Result::ConvertIsAlive()
 	{
-		if (m_isAlive)
-		{
-			m_isAlive = false;
-			ShowCursor(FALSE);
-		}
-		else
-		{
-			m_isAlive = true;
-			ShowCursor(TRUE);
-		}
+		m_isAlive ? m_isAlive = false : m_isAlive = true;
 	}
 }

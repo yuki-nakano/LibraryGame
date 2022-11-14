@@ -19,6 +19,16 @@ namespace Game
 	*/
 	class InGameScene : public SceneBase
 	{
+	private:
+		/// インゲーム内のフェーズ
+		enum class InGameScenePhase
+		{
+			Game,
+			Option,
+			Result,
+		};
+
+
 	public:
 		InGameScene();
 		~InGameScene();
@@ -35,6 +45,22 @@ namespace Game
 		void Draw();
 
 	private:
+		/**
+		* @brief ゲーム情報の更新
+		*/
+		void UpdateGame();
+
+		/**
+		* @brief オプションの更新
+		*/
+		void UpdateResult();
+
+		/**
+		* @brief リザルトの更新
+		*/
+		void UpdateOption();
+
+	private:
 		Player* m_player{};					/// プレイヤー
 		GameUI* m_gameUI{};					/// UI
 		CameraManager* m_camera{};			/// カメラ
@@ -46,6 +72,8 @@ namespace Game
 		Collision* m_collision{};			/// 当たり判定
 
 		int m_timer{ 0 };	/// タイマー
+
+		InGameScenePhase m_currentPhase{ InGameScenePhase::Game };	// 現在のフェーズ
 	};
 }
 

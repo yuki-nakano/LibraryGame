@@ -42,36 +42,19 @@ namespace Game
 
 	void InGameScene::Exec()
 	{
-		if (m_result->Exec())
+		switch (m_currentPhase)
 		{
-			if (engine::Library::IsHeldKey(KEY_ENTER))
-			{
-				m_isNextScene = true;
-			}
-
-			return;
-		}
-
-		if (m_option->Exec())
-		{
-			return;
-		}
-
-		m_player->Update();
-		m_stage->Update();
-		m_camera->Update();
-		m_bulletManager->Update();
-		m_enemyManager->Update();
-
-		m_collision->Collide();
-
-		SetCursorPos(GetSystemMetrics(SM_CXSCREEN) / 2, GetSystemMetrics(SM_CYSCREEN) / 2);
-		m_timer++;
-
-		// ゲーム終了
-		if (m_player->IsDead())
-		{
-			m_result->ConvertIsAlive();
+		case InGameScenePhase::Game:
+			UpdateGame();
+			break;
+		case InGameScenePhase::Option:
+			UpdateOption();
+			break;
+		case InGameScenePhase::Result:
+			UpdateResult();
+			break;
+		default:
+			break;
 		}
 	}
 
@@ -83,5 +66,51 @@ namespace Game
 		m_gameUI->DrawPlayerUI();
 		m_option->Draw();
 		m_result->Draw();
+	}
+
+	void InGameScene::UpdateGame()
+	{
+		m_player->Update();
+		m_stage->Update();
+		m_camera->Update();
+		m_bulletManager->Update();
+		m_enemyManager->Update();
+		m_collision->Collide();
+
+		SetCursorPos(GetSystemMetrics(SM_CXSCREEN) / 2, GetSystemMetrics(SM_CYSCREEN) / 2);
+
+		// オプションへ移行
+		if (engine::Library::IsPushedKey(KEY_ESC))
+		{
+			m_currentPhase = InGameScenePhase::Option;
+			m_option->ConvertIsAlive();
+			ShowCursor(TRUE);
+		}
+
+		// リザルト以降
+		if (m_player->IsDead())
+		{
+			m_result->ConvertIsAlive();
+			m_currentPhase = InGameScenePhase::Result;
+			ShowCursor(TRUE);
+		}
+	}
+
+	void InGameScene::UpdateResult()
+	{
+		if (engine::Library::IsHeldKey(KEY_ENTER))
+		{
+			m_isNextScene = true;
+		}
+	}
+
+	void InGameScene::UpdateOption()
+	{
+		if (engine::Library::IsPushedKey(KEY_ESC))
+		{
+			m_currentPhase = InGameScenePhase::Game;
+			m_option->ConvertIsAlive();
+			ShowCursor(FALSE);
+		}
 	}
 }

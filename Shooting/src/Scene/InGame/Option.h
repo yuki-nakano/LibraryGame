@@ -14,15 +14,14 @@ namespace Game
 
 	public:
 		/**
-		* @brief 実行関数
-		* @return 実行中はtrue
-		*/
-		bool Exec();
-
-		/**
 		* @brief 描画関数
 		*/
 		void Draw();
+
+		/**
+		* @brief リザルト切り替え関数
+		*/
+		void ConvertIsAlive();
 
 	private:
 		/// オプションを表示するか

@@ -16,12 +16,6 @@ namespace Game
 
 	public:
 		/**
-		* @brief 実行関数
-		* @return 実行中はtrue
-		*/
-		bool Exec();
-
-		/**
 		* @brief 描画関数
 		*/
 		void Draw();
