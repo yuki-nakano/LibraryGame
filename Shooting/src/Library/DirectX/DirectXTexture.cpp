@@ -35,7 +35,7 @@ namespace engine
 			return false;
 		}
 
-		texList.emplace(name_, textureView);
+		texList.try_emplace(name_, textureView);
 
 		return true;
 	}
