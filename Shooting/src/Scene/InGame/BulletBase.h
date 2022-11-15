@@ -44,10 +44,15 @@ namespace Game
 		*/
 		virtual void Draw() = 0;
 
+		/**
+		* @brief 弾の死亡判定
+		* @return 弾の生存時間が0以下になるとtrue
+		*/
+		bool IsDead() { return (m_bulletState.m_deleteTime <= 0); }
+
 		// アクセサ
 
 		BulletState GetBulletState() { return m_bulletState; }
-		int GetDeleteTime() { return m_bulletState.m_deleteTime; }
 
 	protected:
 		BulletState m_bulletState{};	/// 弾のステータス

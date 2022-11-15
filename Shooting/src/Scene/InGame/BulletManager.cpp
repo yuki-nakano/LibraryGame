@@ -34,7 +34,7 @@ namespace Game
 
 			bullet->Update();
 
-			if (bullet->GetDeleteTime() <= 0)
+			if (bullet->IsDead())
 			{
 				delete bullet;
 				itr = m_bulletList.erase(itr);
