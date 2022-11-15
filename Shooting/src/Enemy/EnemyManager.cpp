@@ -49,6 +49,7 @@ namespace Game
 
 				delete enemyFactory;
 				itr = m_enemyList.erase(itr);
+				continue;
 			}
 			else
 			{

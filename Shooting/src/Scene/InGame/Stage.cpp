@@ -68,7 +68,7 @@ namespace Game
 			{
 				// objサイズ 200 * 200
 				engine::Library::RenderObj(m_mapName.at(m_stageData[z][x]),
-					engine::Vec3f(0 + 200 * x, 0, 0 + 200 * z), engine::Vec3f(0, 0, 0), engine::Vec3f(100, 100, 100));
+					engine::Vec3f(0.0f + 200.0f * x, 0.0f, 0.0f + 200.0f * z), engine::Vec3f(0, 0, 0), engine::Vec3f(100, 100, 100));
 			}
 		}
 	}

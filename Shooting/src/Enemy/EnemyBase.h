@@ -81,9 +81,9 @@ namespace Game
 		float GetDistance() { return m_distance; }
 		float GetFOV() { return m_fov; }
 		float GetFar() { return m_far; }
-		float GetLoopTime() { return m_loopTime; }
-		float GetDeadTimer() { return m_deadTimer; }
-		float GetInvicibleTimer() { return m_invincibleTimer; }
+		int GetLoopTime() { return m_loopTime; }
+		int GetDeadTimer() { return m_deadTimer; }
+		int GetInvicibleTimer() { return m_invincibleTimer; }
 		bool GetAlive() { return m_isAlive; }
 
 		void SetFactoryPos(const engine::Vec3f& factory_pos_) { m_factoryPos = factory_pos_; }

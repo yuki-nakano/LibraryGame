@@ -32,7 +32,7 @@ namespace Game
 	* @param enemy_ モーションを適応させるエネミー
 	* @return モーションの状態
 	*/
-	extern ActionState ActionChase(EnemyBase* enemy_);
+	ActionState ActionChase(EnemyBase* enemy_);
 }
 
 #endif // !ACTION_ENEMY_H
