@@ -5,16 +5,6 @@
 
 namespace Game
 {
-	enum class MapData
-	{
-		Street_Empty,		// 空白
-		Street_Deadend,		// 行き止まり
-		Street_Curve,		// カーブ
-		Street_4Way,		// 四角
-		Street_3Way,		// 三角
-		Street_Straight,	// 直線
-	};
-
 	Stage::Stage()
 	{
 		m_mapName.at(0) = "Street_Empty";

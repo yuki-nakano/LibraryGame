@@ -32,13 +32,6 @@ namespace Game
 			int mapNumX{ 20 };
 		};
 
-		/// マップチップ
-		enum class MapData
-		{
-			Street_Empty,		// 空白
-			Street_Straight,	// 直線
-		};
-
 	public:
 		Stage();
 		~Stage();
