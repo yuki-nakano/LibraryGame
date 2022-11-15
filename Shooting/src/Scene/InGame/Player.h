@@ -84,6 +84,7 @@ namespace Game
 		float m_eyeRoteY{ 0.0f };		/// Yの回転角度
 
 		int m_bulletCoolTimer{ 0 };		/// 弾のクールタイマー
+		int m_bulletCoolTime{ 10 };		/// 弾のクールタイム
 
 		float m_height{ 100 };			/// プレイヤーの身長
 	};

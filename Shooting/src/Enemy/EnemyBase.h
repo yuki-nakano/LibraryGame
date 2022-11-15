@@ -50,9 +50,15 @@ namespace Game
 			if (m_bulletCoolTimer <= 0)
 			{
 				ObjState objState{ 1, 100, 20.0f };
+				BulletState m_bulletState{
+					BulletType::Enemy,
+					50.0f,
+					300,
+					"bullet"
+				};
 				m_bulletManager->CreateBullet(m_bulletState, objState, m_pos, m_rote, engine::Vec3f(10.0f, 10.0f, 10.0f));
 
-				m_bulletCoolTimer = RandomNum(m_bulletState.m_coolTime / 2, m_bulletState.m_coolTime);
+				m_bulletCoolTimer = RandomNum(m_bulletCoolTime / 2, m_bulletCoolTime);
 			}
 
 			m_bulletCoolTimer--;
@@ -82,7 +88,6 @@ namespace Game
 
 		void SetFactoryPos(const engine::Vec3f& factory_pos_) { m_factoryPos = factory_pos_; }
 		void SetTargetPos(const engine::Vec3f& target_pos_) { m_targetPos = target_pos_; }
-		void SetBulletState(const BulletState& bullet_state_) { m_bulletState = bullet_state_; }
 
 	protected:
 		/// 弾
@@ -108,16 +113,8 @@ namespace Game
 		int m_invincibleTime{ 60 };	/// 無敵時間
 		int m_invincibleTimer{ 0 };	/// 無敵時間のカウント
 
-		/// 弾のステータス
-		BulletState m_bulletState{
-		BulletType::Enemy,
-		50.0f,
-		300,
-		120,
-		"bullet"
-		};
-
 		int m_bulletCoolTimer{ 0 };		/// 弾のクールタイマー
+		int m_bulletCoolTime{ 120 };	/// 弾のクールタイム
 	};
 }
 
