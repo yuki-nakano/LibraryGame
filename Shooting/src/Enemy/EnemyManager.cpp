@@ -43,9 +43,7 @@ namespace Game
 		{
 			EnemyFactory* enemyFactory = *itr;
 
-			enemyFactory->Update();
-
-			if (enemyFactory->GetFactoryState().hp <= 0)
+			if (enemyFactory->IsDead())
 			{
 				m_deadEnemyNum += enemyFactory->GetFactoryState().maxNum;
 
@@ -56,6 +54,8 @@ namespace Game
 			{
 				itr++;
 			}
+
+			enemyFactory->Update();
 		}
 
 		if (m_enemyList.size() <= m_maxEnemyNum)

@@ -29,8 +29,6 @@ namespace Game
 		{
 			EnemyBase* enemyBase = *itr;
 
-			enemyBase->Update();
-
 			if (!enemyBase->GetAlive())
 			{
 				delete enemyBase;
@@ -42,6 +40,8 @@ namespace Game
 			{
 				itr++;
 			}
+
+			enemyBase->Update();
 		}
 
 		if (m_enemyList.size() < m_enemyFactoryState.maxNum)
@@ -95,5 +95,10 @@ namespace Game
 				enemy->Hit(obj_base_);
 			}
 		}
+	}
+
+	bool EnemyFactory::IsDead()
+	{
+		return (m_enemyFactoryState.hp <= 0);
 	}
 }

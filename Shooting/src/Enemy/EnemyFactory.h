@@ -50,6 +50,12 @@ namespace Game
 		*/
 		void Collide(ObjBase* obj_base_);
 
+		/**
+		* @brief エネミーファクトリーの死亡判定
+		* @return エネミーファクトリーの体力が0以下になるとtrue
+		*/
+		bool IsDead();
+
 		// アクセサ
 
 		EnemyFactoryState GetFactoryState() { return m_enemyFactoryState; }

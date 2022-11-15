@@ -32,17 +32,18 @@ namespace Game
 		{
 			BulletBase* bullet = *itr;
 
-			bullet->Update();
-
 			if (bullet->IsDead())
 			{
 				delete bullet;
 				itr = m_bulletList.erase(itr);
+				continue;
 			}
 			else
 			{
 				itr++;
 			}
+
+			bullet->Update();
 		}
 	}
 
