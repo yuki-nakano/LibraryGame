@@ -9,7 +9,7 @@
 namespace Game
 {
 	Result::Result(EnemyManager* enmy_manager_)
-		:m_enmy(enmy_manager_)
+		:m_enmyManager(enmy_manager_)
 	{
 		std::wstring filePass{ L"res/InGame/number/" };
 
@@ -55,7 +55,7 @@ namespace Game
 		// 画面中央に表示
 		engine::Library::DrawTextData(L"×", engine::Vec2f(540.0f, 400.0f));
 
-		int enemyNum = m_enmy->GetDeadEnemyNum();
+		int enemyNum = m_enmyManager->GetDeadEnemyNum();
 
 		// 画像サイズ 100 * 100
 		// 百の位 

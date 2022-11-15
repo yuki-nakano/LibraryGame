@@ -27,7 +27,7 @@ namespace Game
 
 	private:
 		/// エネミー
-		EnemyManager* m_enmy{};
+		EnemyManager* m_enmyManager{};
 
 		/// リザルトを表示するか
 		bool m_isAlive{ false };
