@@ -1,6 +1,6 @@
 ﻿#ifndef GAME_UI_H
 
-#include "Player.h"
+#include "ObjBase.h"
 
 namespace Game
 {
@@ -10,15 +10,10 @@ namespace Game
 	class GameUI
 	{
 	public:
-		GameUI(Player* player_);
+		GameUI(ObjBase* player_);
 		~GameUI();
 
 	public:
-		/**
-		* @brief 更新関数
-		*/
-		void Update();
-
 		/**
 		* @brief 描画関数
 		*/
@@ -31,7 +26,7 @@ namespace Game
 
 	private:
 		/// プレイヤー情報
-		Player* m_player{};
+		ObjBase* m_player{};
 	};
 }
 
