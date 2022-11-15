@@ -24,6 +24,9 @@ namespace Game
 		m_result = new Result(m_enemyManager);
 		m_collision = new Collision(m_player, m_bulletManager, m_enemyManager);
 
+		// マウスかソールの位置を画面中央に移動
+		SetCursorPos(GetSystemMetrics(SM_CXSCREEN) / 2, GetSystemMetrics(SM_CYSCREEN) / 2);
+		// マウスの非表示
 		ShowCursor(FALSE);
 	}
 
@@ -111,6 +114,7 @@ namespace Game
 			m_currentPhase = InGameScenePhase::Game;
 			m_option->ConvertIsAlive();
 			ShowCursor(FALSE);
+			SetCursorPos(GetSystemMetrics(SM_CXSCREEN) / 2, GetSystemMetrics(SM_CYSCREEN) / 2);
 		}
 	}
 }
