@@ -1,7 +1,7 @@
 ﻿#ifndef ENEMY_MANAGER_H
 #define ENEMY_MANAGER_H
 
-#include "EnemyFactory.h"
+#include "EnemySpawner.h"
 #include "../Scene/InGame/Stage.h"
 
 #include <vector>
@@ -45,7 +45,7 @@ namespace Game
 		Stage* m_stage{};			/// ステージ
 
 		/// 生成したエネミーファクトリー
-		std::vector<EnemyFactory*> m_enemyList{};
+		std::vector<EnemySpawner*> m_enemyList{};
 
 
 		int m_summonTimer{ 300 };	/// 生成タイマー 

@@ -1,5 +1,5 @@
-﻿#ifndef ENEMY_FACTORY_H
-#define ENEMY_FACTORY_H
+﻿#ifndef ENEMY_SPAWNER_H
+#define ENEMY_SPAWNER_H
 
 #include "../Scene/InGame/ObjBase.h"
 #include "EnemyBase.h"
@@ -11,9 +11,9 @@ class BulletManager;
 namespace Game
 {
 	/**
-	* @brief エネミーファクトリーのステータス
+	* @brief エネミースポナーのステータス
 	*/
-	struct EnemyFactoryState
+	struct EnemySpawnerState
 	{
 		EnemyType enemyType{};	/// 生成するエネミーのタイプ
 		int maxNum{};			/// 生成するエネミーの最大数
@@ -23,11 +23,11 @@ namespace Game
 	/**
 	* @brief エネミー生成クラス
 	*/
-	class EnemyFactory
+	class EnemySpawner
 	{
 	public:
-		EnemyFactory(BulletManager* bullet_manager_, EnemyFactoryState enemy_factory_state_, const engine::Vec3f& pos_);
-		~EnemyFactory();
+		EnemySpawner(BulletManager* bullet_manager_, EnemySpawnerState enemy_spawner_state_, const engine::Vec3f& pos_);
+		~EnemySpawner();
 
 	public:
 		/**
@@ -51,14 +51,14 @@ namespace Game
 		void Collide(ObjBase* obj_base_);
 
 		/**
-		* @brief エネミーファクトリーの死亡判定
-		* @return エネミーファクトリーの体力が0以下になるとtrue
+		* @brief エネミースポナーの死亡判定
+		* @return エネミースポナーの体力が0以下になるとtrue
 		*/
 		bool IsDead();
 
 		// アクセサ
 
-		EnemyFactoryState GetFactoryState() { return m_enemyFactoryState; }
+		EnemySpawnerState GetSpawnerState() { return m_enemySpawnerState; }
 		engine::Vec3f GetPos() { return m_pos; }
 
 		void SetPos(const engine::Vec3f& pos_) { m_pos = pos_; }
@@ -67,8 +67,8 @@ namespace Game
 		/// 弾
 		BulletManager* m_bulletManager{};
 
-		/// エネミーファクトリーのステータス
-		EnemyFactoryState m_enemyFactoryState{};
+		/// エネミースポナーのステータス
+		EnemySpawnerState m_enemySpawnerState{};
 
 		/// 生成したエネミー
 		std::vector<EnemyBase*> m_enemyList{};
@@ -80,4 +80,4 @@ namespace Game
 	};
 }
 
-#endif // !ENEMY_FACTORY_H
+#endif // !ENEMY_SPAWNER_H

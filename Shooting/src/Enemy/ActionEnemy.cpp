@@ -36,7 +36,7 @@ namespace Game
 		}
 
 		engine::Vec3f rote{ enemy_->GetRote() };
-		engine::Vec3f pos{ enemy_->GetFactoryPos() };
+		engine::Vec3f pos{ enemy_->GetSpawnerPos() };
 
 		rote += engine::Vec3f(0.0f, 360.0f / enemy_->GetLoopTime(), 0.0f);
 

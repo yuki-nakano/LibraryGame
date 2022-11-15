@@ -1,4 +1,4 @@
-﻿#include "EnemyFactory.h"
+﻿#include "EnemySpawner.h"
 
 #include "../Library/Library.h"
 #include "EnemyBase.h"
@@ -7,14 +7,14 @@
 
 namespace Game
 {
-	EnemyFactory::EnemyFactory(BulletManager* bullet_manager_, EnemyFactoryState enemy_factory_state_, const engine::Vec3f& pos_)
+	EnemySpawner::EnemySpawner(BulletManager* bullet_manager_, EnemySpawnerState enemy_spawner_state_, const engine::Vec3f& pos_)
 		: m_bulletManager(bullet_manager_)
-		, m_enemyFactoryState(enemy_factory_state_)
+		, m_enemySpawnerState(enemy_spawner_state_)
 		, m_pos(pos_)
 	{
 	}
 
-	EnemyFactory::~EnemyFactory()
+	EnemySpawner::~EnemySpawner()
 	{
 		for (auto itr = m_enemyList.begin(); itr != m_enemyList.end();)
 		{
@@ -23,7 +23,7 @@ namespace Game
 		}
 	}
 
-	void EnemyFactory::Update()
+	void EnemySpawner::Update()
 	{
 		for (auto itr = m_enemyList.begin(); itr != m_enemyList.end();)
 		{
@@ -34,7 +34,7 @@ namespace Game
 				delete enemyBase;
 				itr = m_enemyList.erase(itr);
 
-				m_enemyFactoryState.hp--;
+				m_enemySpawnerState.hp--;
 			}
 			else
 			{
@@ -44,7 +44,7 @@ namespace Game
 			enemyBase->Update();
 		}
 
-		if (m_enemyList.size() < m_enemyFactoryState.maxNum)
+		if (m_enemyList.size() < m_enemySpawnerState.maxNum)
 		{
 			m_summonTimer--;
 			if (m_summonTimer < 0)
@@ -56,7 +56,7 @@ namespace Game
 		}
 	}
 
-	void EnemyFactory::Draw()
+	void EnemySpawner::Draw()
 	{
 		for (auto enemy : m_enemyList)
 		{
@@ -64,10 +64,10 @@ namespace Game
 		}
 	}
 
-	void EnemyFactory::CreateEnemy()
+	void EnemySpawner::CreateEnemy()
 	{
 		EnemyBase* enemyBase{};
-		switch (m_enemyFactoryState.enemyType)
+		switch (m_enemySpawnerState.enemyType)
 		{
 		case EnemyType::normal:
 			enemyBase = new NormalEnemy(m_bulletManager);
@@ -78,12 +78,12 @@ namespace Game
 
 		engine::Vec3f pos(m_pos);
 		enemyBase->SetPos(pos);
-		enemyBase->SetFactoryPos(m_pos);
+		enemyBase->SetSpawnerPos(m_pos);
 
 		m_enemyList.push_back(enemyBase);
 	}
 
-	void EnemyFactory::Collide(ObjBase* obj_base_)
+	void EnemySpawner::Collide(ObjBase* obj_base_)
 	{
 		for (auto enemy : m_enemyList)
 		{
@@ -97,8 +97,8 @@ namespace Game
 		}
 	}
 
-	bool EnemyFactory::IsDead()
+	bool EnemySpawner::IsDead()
 	{
-		return (m_enemyFactoryState.hp <= 0);
+		return (m_enemySpawnerState.hp <= 0);
 	}
 }

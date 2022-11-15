@@ -76,7 +76,7 @@ namespace Game
 
 		// アクセサ
 
-		engine::Vec3f GetFactoryPos() { return m_factoryPos; }
+		engine::Vec3f GetSpawnerPos() { return m_spawnerPos; }
 		engine::Vec3f GetTargetPos() { return m_targetPos; }
 		float GetDistance() { return m_distance; }
 		float GetFOV() { return m_fov; }
@@ -86,7 +86,7 @@ namespace Game
 		int GetInvicibleTimer() { return m_invincibleTimer; }
 		bool GetAlive() { return m_isAlive; }
 
-		void SetFactoryPos(const engine::Vec3f& factory_pos_) { m_factoryPos = factory_pos_; }
+		void SetSpawnerPos(const engine::Vec3f& spawner_pos_) { m_spawnerPos = spawner_pos_; }
 		void SetTargetPos(const engine::Vec3f& target_pos_) { m_targetPos = target_pos_; }
 
 	protected:
@@ -96,7 +96,7 @@ namespace Game
 		engine::Vec3f m_col{};								/// 通常時の色
 		engine::Vec3f m_invincibleCol{ 1.0f, 0.0f, 0.0f };	/// 無敵時の色
 
-		engine::Vec3f m_factoryPos{};	/// 生成元の座標
+		engine::Vec3f m_spawnerPos{};	/// 生成元の座標
 		engine::Vec3f m_targetPos{};	/// 追跡対象の座標
 
 		float m_distance{ 300.0f };		///生成元との距離

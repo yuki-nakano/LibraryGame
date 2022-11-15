@@ -124,7 +124,7 @@
     <ClCompile Include="src\Scene\InGame\BulletManager.cpp">
       <Filter>ソース ファイル\Scene\InGame</Filter>
     </ClCompile>
-    <ClCompile Include="src\Enemy\EnemyFactory.cpp">
+    <ClCompile Include="src\Enemy\EnemySpawner.cpp">
       <Filter>ソース ファイル\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="src\Enemy\Node.cpp">
@@ -252,7 +252,7 @@
     <ClInclude Include="src\Scene\InGame\Collision.h">
       <Filter>ソース ファイル\Scene\InGame</Filter>
     </ClInclude>
-    <ClInclude Include="src\Enemy\EnemyFactory.h">
+    <ClInclude Include="src\Enemy\EnemySpawner.h">
       <Filter>ソース ファイル\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="src\Enemy\Node.h">

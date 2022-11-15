@@ -20,7 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Enemy\ActionEnemy.cpp" />
-    <ClCompile Include="src\Enemy\EnemyFactory.cpp" />
+    <ClCompile Include="src\Enemy\EnemySpawner.cpp" />
     <ClCompile Include="src\Enemy\EnemyManager.cpp" />
     <ClCompile Include="src\Enemy\JudgementAction.cpp" />
     <ClCompile Include="src\Enemy\Node.cpp" />
@@ -60,7 +60,7 @@
   <ItemGroup>
     <ClInclude Include="src\Enemy\ActionEnemy.h" />
     <ClInclude Include="src\Enemy\EnemyBase.h" />
-    <ClInclude Include="src\Enemy\EnemyFactory.h" />
+    <ClInclude Include="src\Enemy\EnemySpawner.h" />
     <ClInclude Include="src\Enemy\EnemyManager.h" />
     <ClInclude Include="src\Enemy\JudgementAction.h" />
     <ClInclude Include="src\Enemy\Node.h" />

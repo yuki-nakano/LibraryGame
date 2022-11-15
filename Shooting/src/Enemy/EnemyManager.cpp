@@ -11,7 +11,7 @@ namespace Game
 		engine::Library::LoadObj("res/enemy/Alien.obj", "alien");
 		engine::Library::LoadObj("res/enemy/Star.obj", "star");
 
-		EnemyFactoryState enemyFactoryState
+		EnemySpawnerState enemySpawnerState
 		{
 			EnemyType::normal,
 			3,
@@ -19,10 +19,10 @@ namespace Game
 		};
 
 		// ゲーム開始時に画面中央に一体生成
-		EnemyFactory* enemyFactory = new EnemyFactory(m_bulletManager, enemyFactoryState,
+		EnemySpawner* enemySpawner = new EnemySpawner(m_bulletManager, enemySpawnerState,
 			engine::Vec3f(m_stage->GetStageData().stageFront / 2, 100, m_stage->GetStageData().stageLeft / 2));
 
-		m_enemyList.push_back(enemyFactory);
+		m_enemyList.push_back(enemySpawner);
 	}
 
 	EnemyManager::~EnemyManager()
@@ -41,13 +41,13 @@ namespace Game
 	{
 		for (auto itr = m_enemyList.begin(); itr != m_enemyList.end();)
 		{
-			EnemyFactory* enemyFactory = *itr;
+			EnemySpawner* enemySpawner = *itr;
 
-			if (enemyFactory->IsDead())
+			if (enemySpawner->IsDead())
 			{
-				m_deadEnemyNum += enemyFactory->GetFactoryState().maxNum;
+				m_deadEnemyNum += enemySpawner->GetSpawnerState().maxNum;
 
-				delete enemyFactory;
+				delete enemySpawner;
 				itr = m_enemyList.erase(itr);
 				continue;
 			}
@@ -56,7 +56,7 @@ namespace Game
 				itr++;
 			}
 
-			enemyFactory->Update();
+			enemySpawner->Update();
 		}
 
 		if (m_enemyList.size() <= m_maxEnemyNum)
@@ -73,15 +73,15 @@ namespace Game
 
 	void EnemyManager::Draw()
 	{
-		for (auto enemyFactory : m_enemyList)
+		for (auto enemySpawner : m_enemyList)
 		{
-			enemyFactory->Draw();
+			enemySpawner->Draw();
 		}
 	}
 
 	void EnemyManager::CreateEnemy()
 	{
-		EnemyFactoryState enemyFactoryState
+		EnemySpawnerState enemySpawnerState
 		{
 			EnemyType::normal,
 			3,
@@ -89,20 +89,20 @@ namespace Game
 		};
 
 		// 画面内のランダムな位置に生成
-		EnemyFactory* enemyFactory = new EnemyFactory(m_bulletManager, enemyFactoryState
+		EnemySpawner* enemySpawner = new EnemySpawner(m_bulletManager, enemySpawnerState
 			, engine::Vec3f(
 				RandomNum(m_stage->GetStageData().stageBack, m_stage->GetStageData().stageFront),
 				RandomNum(m_stage->GetStageData().stageDown, m_stage->GetStageData().stageUp),
 				RandomNum(m_stage->GetStageData().stageRight, m_stage->GetStageData().stageLeft)));
 
-		m_enemyList.push_back(enemyFactory);
+		m_enemyList.push_back(enemySpawner);
 	}
 
 	void EnemyManager::Collide(ObjBase* obj_base_)
 	{
-		for (auto factory : m_enemyList)
+		for (auto Spawner : m_enemyList)
 		{
-			factory->Collide(obj_base_);
+			Spawner->Collide(obj_base_);
 		}
 	}
 
@@ -112,7 +112,7 @@ namespace Game
 
 		for (auto enemyList : m_enemyList)
 		{
-			enemyNum += enemyList->GetFactoryState().maxNum - enemyList->GetFactoryState().hp;
+			enemyNum += enemyList->GetSpawnerState().maxNum - enemyList->GetSpawnerState().hp;
 		}
 
 		return enemyNum;
