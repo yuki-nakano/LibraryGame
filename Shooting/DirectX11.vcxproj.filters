@@ -118,7 +118,7 @@
     <ClCompile Include="src\Scene\InGame\Player.cpp">
       <Filter>ソース ファイル\Scene\InGame</Filter>
     </ClCompile>
-    <ClCompile Include="src\Scene\InGame\Bullet.cpp">
+    <ClCompile Include="src\Scene\InGame\BulletStraight.cpp">
       <Filter>ソース ファイル\Scene\InGame</Filter>
     </ClCompile>
     <ClCompile Include="src\Scene\InGame\BulletManager.cpp">
@@ -246,7 +246,7 @@
     <ClInclude Include="src\Scene\InGame\BulletManager.h">
       <Filter>ソース ファイル\Scene\InGame</Filter>
     </ClInclude>
-    <ClInclude Include="src\Scene\InGame\Bullet.h">
+    <ClInclude Include="src\Scene\InGame\BulletStraight.h">
       <Filter>ソース ファイル\Scene\InGame</Filter>
     </ClInclude>
     <ClInclude Include="src\Scene\InGame\Collision.h">
@@ -286,6 +286,9 @@
       <Filter>ソース ファイル\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="src\Scene\InGame\CollisionCalculation.h">
+      <Filter>ソース ファイル\Scene\InGame</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Scene\InGame\BulletBase.h">
       <Filter>ソース ファイル\Scene\InGame</Filter>
     </ClInclude>
   </ItemGroup>

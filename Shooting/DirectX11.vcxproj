@@ -44,7 +44,7 @@
     <ClCompile Include="src\Library\WindowsAPI\Mouse.cpp" />
     <ClCompile Include="src\Library\WindowsAPI\WindowsAPI.cpp" />
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\Scene\InGame\Bullet.cpp" />
+    <ClCompile Include="src\Scene\InGame\BulletStraight.cpp" />
     <ClCompile Include="src\Scene\InGame\BulletManager.cpp" />
     <ClCompile Include="src\Scene\InGame\CameraManager.cpp" />
     <ClCompile Include="src\Scene\InGame\Collision.cpp" />
@@ -87,7 +87,8 @@
     <ClInclude Include="src\Library\WindowsAPI\Mouse.h" />
     <ClInclude Include="src\Library\WindowsAPI\WindowsAPI.h" />
     <ClInclude Include="src\Random.h" />
-    <ClInclude Include="src\Scene\InGame\Bullet.h" />
+    <ClInclude Include="src\Scene\InGame\BulletStraight.h" />
+    <ClInclude Include="src\Scene\InGame\BulletBase.h" />
     <ClInclude Include="src\Scene\InGame\BulletManager.h" />
     <ClInclude Include="src\Scene\InGame\CameraManager.h" />
     <ClInclude Include="src\Scene\InGame\Collision.h" />

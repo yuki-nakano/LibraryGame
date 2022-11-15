@@ -1,5 +1,5 @@
-﻿#ifndef BULLET_H
-#define BULLET_H
+﻿#ifndef BULLET_BASE_H
+#define BULLET_BASE_H
 
 #include "ObjBase.h"
 
@@ -29,36 +29,30 @@ namespace Game
 	/**
 	* @brief 弾クラス
 	*/
-	class Bullet : public ObjBase
+	class BulletBase : public ObjBase
 	{
 	public:
-		Bullet(const BulletState& bullet_state_, const engine::Vec3f& pos_, const engine::Vec3f& rote_, const engine::Vec3f& scale_);
-		~Bullet() = default;
+		BulletBase(const BulletState& bullet_state_, const engine::Vec3f& pos_, const engine::Vec3f& rote_, const engine::Vec3f& scale_)
+			: m_bulletState(bullet_state_)
+			, ObjBase(pos_, rote_, scale_)
+		{
+		}
+		virtual ~BulletBase() = default;
 
 	public:
-		/**
-		* @brief 更新関数
-		*/
-		void Update() override;
-
 		/**
 		* @brief 描画関数
 		*/
-		void Draw();
-
-		/**
-		* @brief 接触時に呼び出す関数
-		*/
-		void Hit(ObjBase* obj_base_) override;
+		virtual void Draw() = 0;
 
 		// アクセサ
 
 		BulletState GetBulletState() { return m_bulletState; }
 		int GetDeleteTime() { return m_bulletState.m_deleteTime; }
 
-	private:
+	protected:
 		BulletState m_bulletState{};	/// 弾のステータス
 	};
 }
 
-#endif // !BULLET_H
+#endif // !BULLET_BASE_H

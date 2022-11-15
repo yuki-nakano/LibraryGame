@@ -1,7 +1,7 @@
 ﻿#ifndef BULLET_MANAGER_H
 #define BULLET_MANAGER_H
 
-#include "Bullet.h"
+#include "BulletStraight.h"
 #include "../../Library/Library.h"
 
 #include <vector>
@@ -40,11 +40,11 @@ namespace Game
 
 		// アクセサ
 
-		std::vector<Bullet*> GetBulletList() { return m_bulletList; }
+		std::vector<BulletBase*> GetBulletList() { return m_bulletList; }
 
 	private:
 		/// 弾リスト
-		std::vector<Bullet*> m_bulletList{};
+		std::vector<BulletBase*> m_bulletList{};
 	};
 }
 
