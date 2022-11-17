@@ -48,14 +48,8 @@ namespace Game
 	{
 		engine::Vec3f pos = m_pos;
 
-		if (m_invincibleTimer > 0)
-		{
-			engine::Library::RenderObjSetColor("alien", pos += engine::Vec3f(0.0f, -50.0f, 0.0f), m_rote, m_scale, m_invincibleCol);
-		}
-		else
-		{
-			engine::Library::RenderObjSetColor("alien", pos += engine::Vec3f(0.0f, -50.0f, 0.0f), m_rote, m_scale, m_col);
-		}
+		engine::Vec3f col = (m_invincibleTimer > 0 ? m_invincibleCol : m_col);
+		engine::Library::RenderObjSetColor("alien", pos += engine::Vec3f(0.0f, -50.0f, 0.0f), m_rote, m_scale, col);
 	}
 
 	void NormalEnemy::Hit(ObjBase* obj_base_)
