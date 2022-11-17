@@ -64,14 +64,14 @@ namespace Game
 
 		m_objState.hp -= obj_base_->GetObjState().damage;
 
-		if (m_invincibleTimer <= 0)
-		{
-			m_invincibleTimer = m_invincibleTime;
-		}
-
 		if (m_objState.hp <= 0)
 		{
 			m_deadTimer = m_deadTime;
+		}
+
+		if (m_invincibleTimer <= 0)
+		{
+			m_invincibleTimer = m_invincibleTime;
 		}
 	}
 }
