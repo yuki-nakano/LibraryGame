@@ -35,6 +35,8 @@ namespace Game
 				itr = m_enemyList.erase(itr);
 
 				m_enemySpawnerState.hp--;
+
+				continue;
 			}
 			else
 			{

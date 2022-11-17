@@ -49,6 +49,7 @@ namespace Game
 
 				delete enemySpawner;
 				itr = m_enemyList.erase(itr);
+
 				continue;
 			}
 			else
