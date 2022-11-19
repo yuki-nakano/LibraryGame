@@ -2,9 +2,12 @@
 #define ENEMY_MANAGER_H
 
 #include "EnemySpawner.h"
+#include "Tree.h"
 #include "../Scene/InGame/Stage.h"
 
 #include <vector>
+#include <map>
+#include <string>
 
 namespace Game
 {
@@ -53,7 +56,9 @@ namespace Game
 
 		int m_maxEnemyNum{ 1 };		/// 生成できるエネミーファクトリーの最大数
 
-		int m_deadEnemyNum{ 0 };	/// 倒されたエネミーの数	
+		int m_deadEnemyNum{ 0 };	/// 倒されたエネミーの数
+
+		std::map<std::string, Tree*> m_aiTree{};	/// 行動用ツリー
 	};
 }
 

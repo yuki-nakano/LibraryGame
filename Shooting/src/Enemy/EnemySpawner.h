@@ -2,6 +2,7 @@
 #define ENEMY_SPAWNER_H
 
 #include "../Scene/InGame/ObjBase.h"
+#include "Tree.h"
 #include "EnemyBase.h"
 
 #include <vector>
@@ -26,7 +27,7 @@ namespace Game
 	class EnemySpawner
 	{
 	public:
-		EnemySpawner(BulletManager* bullet_manager_, EnemySpawnerState enemy_spawner_state_, const engine::Vec3f& pos_);
+		EnemySpawner(BulletManager* bullet_manager_, Tree* ai_tree_, EnemySpawnerState enemy_spawner_state_, const engine::Vec3f& pos_);
 		~EnemySpawner();
 
 	public:
@@ -77,6 +78,8 @@ namespace Game
 		int m_summonTime{ 300 };	/// 生成時間
 
 		engine::Vec3f m_pos{};	/// 座標
+
+		Tree* m_aiTree{};		/// ビヘービアツリー
 	};
 }
 

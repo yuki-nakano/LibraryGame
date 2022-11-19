@@ -7,8 +7,9 @@
 
 namespace Game
 {
-	EnemySpawner::EnemySpawner(BulletManager* bullet_manager_, EnemySpawnerState enemy_spawner_state_, const engine::Vec3f& pos_)
+	EnemySpawner::EnemySpawner(BulletManager* bullet_manager_, Tree* ai_tree_, EnemySpawnerState enemy_spawner_state_, const engine::Vec3f& pos_)
 		: m_bulletManager(bullet_manager_)
+		, m_aiTree(ai_tree_)
 		, m_enemySpawnerState(enemy_spawner_state_)
 		, m_pos(pos_)
 	{
@@ -72,7 +73,7 @@ namespace Game
 		switch (m_enemySpawnerState.enemyType)
 		{
 		case EnemyType::normal:
-			enemyBase = new NormalEnemy(m_bulletManager);
+			enemyBase = new NormalEnemy(m_bulletManager, m_aiTree);
 			break;
 		default:
 			break;

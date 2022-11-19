@@ -8,6 +8,13 @@ namespace Game
 		:m_stage(stage_)
 		, m_bulletManager(bullet_manager_)
 	{
+		// エネミーAI作成
+		// NomalEnemy用
+		Tree* AITree = new Tree(new Node("Root", Node::SelectRule::PrioritySelect, 0));
+		AITree->AddNode("Root", new Node("Loop", Node::SelectRule::None, 1, ActionLoop));
+		AITree->AddNode("Root", new Node("Dead", Node::SelectRule::None, 0, ActionDead, JudgeDead));
+		m_aiTree.emplace("nomal", AITree);
+
 		engine::Library::LoadObj("res/enemy/Alien.obj", "alien");
 		engine::Library::LoadObj("res/enemy/Star.obj", "star");
 
@@ -19,7 +26,7 @@ namespace Game
 		};
 
 		// ゲーム開始時に画面中央に一体生成
-		EnemySpawner* enemySpawner = new EnemySpawner(m_bulletManager, enemySpawnerState,
+		EnemySpawner* enemySpawner = new EnemySpawner(m_bulletManager, m_aiTree.at("nomal"), enemySpawnerState,
 			engine::Vec3f(m_stage->GetStageData().stageFront / 2, 100, m_stage->GetStageData().stageLeft / 2));
 
 		m_enemyList.push_back(enemySpawner);
@@ -34,6 +41,12 @@ namespace Game
 		{
 			delete* itr;
 			itr = m_enemyList.erase(itr);
+		}
+
+		for (auto itr = m_aiTree.begin(); itr != m_aiTree.end();)
+		{
+			delete itr->second;
+			itr = m_aiTree.erase(itr);
 		}
 	}
 
@@ -89,8 +102,11 @@ namespace Game
 			3
 		};
 
+		// エネミーの種類が増えた場合分岐処理が必要
+		Tree* aiTree = m_aiTree.at("nomal");
+
 		// 画面内のランダムな位置に生成
-		EnemySpawner* enemySpawner = new EnemySpawner(m_bulletManager, enemySpawnerState
+		EnemySpawner* enemySpawner = new EnemySpawner(m_bulletManager, aiTree, enemySpawnerState
 			, engine::Vec3f(
 				RandomNum(m_stage->GetStageData().stageBack, m_stage->GetStageData().stageFront),
 				RandomNum(m_stage->GetStageData().stageDown, m_stage->GetStageData().stageUp),

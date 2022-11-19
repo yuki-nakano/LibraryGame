@@ -20,8 +20,9 @@ namespace Game
 	class EnemyBase : public ObjBase
 	{
 	public:
-		EnemyBase(const engine::Vec3f& pos_, const engine::Vec3f& rote_, const engine::Vec3f& scale_)
-			: ObjBase(pos_, rote_, scale_)
+		EnemyBase(Tree* ai_tree_, const engine::Vec3f& pos_, const engine::Vec3f& rote_, const engine::Vec3f& scale_)
+			: m_aiTree(ai_tree_)
+			, ObjBase(pos_, rote_, scale_)
 		{
 		}
 
@@ -71,7 +72,7 @@ namespace Game
 		void SubInvicibleTimer() { m_invincibleTime--; }
 
 		// 切り替え関数
-		void ChangeAlive() { m_isAlive ? m_isAlive = false : m_isAlive = true; }
+		void ChangeAlive() { m_isAlive = false; }
 
 
 		// アクセサ
@@ -115,6 +116,8 @@ namespace Game
 
 		int m_bulletCoolTimer{ 0 };		/// 弾のクールタイマー
 		int m_bulletCoolTime{ 120 };	/// 弾のクールタイム
+
+		Tree* m_aiTree{};		/// ビヘービアツリー
 	};
 }
 

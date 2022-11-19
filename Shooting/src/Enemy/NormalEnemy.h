@@ -14,8 +14,8 @@ namespace Game
 	class NormalEnemy : public EnemyBase
 	{
 	public:
-		NormalEnemy(BulletManager* bullet_manager_);
-		~NormalEnemy();
+		NormalEnemy(BulletManager* bullet_manager_, Tree* ai_tree_);
+		~NormalEnemy() = default;
 
 		/**
 		* @brief 更新関数
@@ -33,7 +33,6 @@ namespace Game
 		void Hit(ObjBase* obj_base_);
 
 	private:
-		Tree* m_aiTree{};		/// ビヘービアツリー
 		Node* m_activeNode{};	/// 実行ノード
 	};
 }
