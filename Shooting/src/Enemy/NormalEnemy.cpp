@@ -9,12 +9,10 @@
 namespace Game
 {
 	NormalEnemy::NormalEnemy(BulletManager* bullet_manager_, Tree* ai_tree_)
-		: EnemyBase(ai_tree_, engine::Vec3f(0.0f, 0.0f, 0.0f), engine::Vec3f(0.0f, 0.0f, 0.0f), engine::Vec3f(100.0f, 100.0f, 100.0f))
+		: EnemyBase(bullet_manager_, ai_tree_, engine::Vec3f(0.0f, 0.0f, 0.0f), engine::Vec3f(0.0f, 0.0f, 0.0f), engine::Vec3f(100.0f, 100.0f, 100.0f))
 	{
 		ObjState objState{ 10, 5, 50.0f };
 		SetState(objState);
-
-		m_bulletManager = bullet_manager_;
 	}
 
 	void NormalEnemy::Update()

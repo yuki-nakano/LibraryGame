@@ -20,8 +20,9 @@ namespace Game
 	class EnemyBase : public ObjBase
 	{
 	public:
-		EnemyBase(Tree* ai_tree_, const engine::Vec3f& pos_, const engine::Vec3f& rote_, const engine::Vec3f& scale_)
+		EnemyBase(BulletManager* bullet_manager_, Tree* ai_tree_, const engine::Vec3f& pos_, const engine::Vec3f& rote_, const engine::Vec3f& scale_)
 			: m_aiTree(ai_tree_)
+			, m_bulletManager(bullet_manager_)
 			, ObjBase(pos_, rote_, scale_)
 		{
 		}
