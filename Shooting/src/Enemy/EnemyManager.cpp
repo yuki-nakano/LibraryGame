@@ -62,15 +62,12 @@ namespace Game
 
 				delete enemySpawner;
 				itr = m_enemyList.erase(itr);
-
-				continue;
 			}
 			else
 			{
+				enemySpawner->Update();
 				itr++;
 			}
-
-			enemySpawner->Update();
 		}
 
 		if (m_enemyList.size() <= m_maxEnemyNum)

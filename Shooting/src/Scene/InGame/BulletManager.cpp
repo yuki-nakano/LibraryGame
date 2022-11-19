@@ -36,14 +36,12 @@ namespace Game
 			{
 				delete bullet;
 				itr = m_bulletList.erase(itr);
-				continue;
 			}
 			else
 			{
+				bullet->Update();
 				itr++;
 			}
-
-			bullet->Update();
 		}
 	}
 
