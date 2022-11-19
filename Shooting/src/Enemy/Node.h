@@ -8,6 +8,7 @@
 #include <string>
 #include <stdlib.h>
 #include <vector>
+#include <functional>
 
 namespace Game
 {
@@ -36,7 +37,8 @@ namespace Game
 		* @param judge_ 実行判定関数
 		*/
 		Node(const std::string& name_, const SelectRule& rule_, const unsigned int& priority_,
-			ActionState(*action_)(EnemyBase*) = nullptr, bool (*judge_)(EnemyBase*) = nullptr);
+			std::function<ActionState(EnemyBase*)> action_ = nullptr,
+			std::function<bool(EnemyBase*)> judge_ = nullptr);
 		~Node() = default;
 
 	public:
@@ -88,8 +90,10 @@ namespace Game
 		std::vector<Node*> m_children{};	/// 子供ノードのリスト
 		SelectRule m_rule{};				/// ノード選択のルール
 		unsigned int m_priority{};			/// 優先度
-		ActionState(*m_Action)(EnemyBase*);	/// 実行関数
-		bool (*m_Judge)(EnemyBase*) {};		/// 実行判定関数
+
+		std::function<ActionState(EnemyBase*)> m_Action;	/// 実行関数
+		std::function<bool(EnemyBase*)> m_Judge;			/// 実行判定関数
+
 	};
 }
 

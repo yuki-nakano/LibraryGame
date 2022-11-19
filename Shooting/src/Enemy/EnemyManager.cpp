@@ -2,6 +2,8 @@
 
 #include "../Random.h"
 
+#include <functional>
+
 namespace Game
 {
 	EnemyManager::EnemyManager(Stage* stage_, BulletManager* bullet_manager_)
@@ -11,8 +13,8 @@ namespace Game
 		// エネミーAI作成
 		// NomalEnemy用
 		Tree* AITree = new Tree(new Node("Root", Node::SelectRule::PrioritySelect, 0));
-		AITree->AddNode("Root", new Node("Loop", Node::SelectRule::None, 1, ActionLoop));
-		AITree->AddNode("Root", new Node("Dead", Node::SelectRule::None, 0, ActionDead, JudgeDead));
+		AITree->AddNode("Root", new Node("Loop", Node::SelectRule::None, 1, std::bind(ActionLoop, std::placeholders::_1)));
+		AITree->AddNode("Root", new Node("Dead", Node::SelectRule::None, 0, std::bind(ActionDead, std::placeholders::_1), std::bind(JudgeDead, std::placeholders::_1)));
 		m_aiTree.emplace("nomal", AITree);
 
 		engine::Library::LoadObj("res/enemy/Alien.obj", "alien");

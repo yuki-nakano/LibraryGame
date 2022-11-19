@@ -5,7 +5,7 @@
 namespace Game
 {
 	Node::Node(const std::string& name_, const SelectRule& rule_, const unsigned int& priority_,
-		ActionState(*action_)(EnemyBase*), bool (*judge_)(EnemyBase*))
+		std::function<ActionState(EnemyBase*)> action_, std::function<bool(EnemyBase*)> judge_)
 		:m_name(name_)
 		, m_Judge(judge_)
 		, m_rule(rule_)
