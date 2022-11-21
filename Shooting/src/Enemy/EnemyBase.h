@@ -19,6 +19,10 @@ namespace Game
 	*/
 	class EnemyBase : public ObjBase
 	{
+		friend ActionState ActionDead(EnemyBase*);
+		friend ActionState ActionLoop(EnemyBase*);
+		friend ActionState ActionChase(EnemyBase*);
+
 	public:
 		EnemyBase(BulletManager* bullet_manager_, Tree* ai_tree_, const engine::Vec3f& pos_, const engine::Vec3f& rote_, const engine::Vec3f& scale_)
 			: m_aiTree(ai_tree_)
@@ -66,30 +70,11 @@ namespace Game
 			m_bulletCoolTimer--;
 		}
 
-		// タイマー減少関数
-		void SubDeadTimer() { m_deadTimer--; }
-
-		// タイマー減少関数
-		void SubInvicibleTimer() { m_invincibleTime--; }
-
-		// 切り替え関数
-		void ChangeAlive() { m_isAlive = false; }
-
-
 		// アクセサ
 
-		engine::Vec3f GetSpawnerPos() { return m_spawnerPos; }
-		engine::Vec3f GetTargetPos() { return m_targetPos; }
-		float GetDistance() { return m_distance; }
-		float GetFOV() { return m_fov; }
-		float GetFar() { return m_far; }
-		int GetLoopTime() { return m_loopTime; }
-		int GetDeadTimer() { return m_deadTimer; }
-		int GetInvicibleTimer() { return m_invincibleTimer; }
 		bool GetAlive() { return m_isAlive; }
 
 		void SetSpawnerPos(const engine::Vec3f& spawner_pos_) { m_spawnerPos = spawner_pos_; }
-		void SetTargetPos(const engine::Vec3f& target_pos_) { m_targetPos = target_pos_; }
 
 	protected:
 		/// 弾
