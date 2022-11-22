@@ -22,6 +22,7 @@ namespace Game
 		friend ActionState ActionDead(EnemyBase*);
 		friend ActionState ActionLoop(EnemyBase*);
 		friend ActionState ActionChase(EnemyBase*);
+		friend bool JudgeDead(EnemyBase*);
 
 	public:
 		EnemyBase(BulletManager* bullet_manager_, Tree* ai_tree_, const engine::Vec3f& pos_, const engine::Vec3f& rote_, const engine::Vec3f& scale_)
